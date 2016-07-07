@@ -8,7 +8,10 @@
 
 \usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=20mm,lmargin=20mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
 
+\usepackage[nodisplayskipstretch]{setspace}
 \usepackage{amsmath}
+%\usepackage{mathenv}
+\usepackage{indentfirst}
 
 \usepackage{txfonts} % use before local fonts - only for math
 %\usepackage{dejavu}
@@ -19,8 +22,25 @@
 \usepackage{graphicx}
 \usepackage{placeins} % FloatBarrier
 
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+\usetikzlibrary{circuits}
+\usetikzlibrary{circuits.ee}
+\usetikzlibrary{circuits.ee.IEC}
+%\usetikzlibrary{circuits.logic.IEC}
+
 \usepackage[english,ukraineb,russian]{babel}
 %\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption} % format=hang|plain...
+
+\tikzset{
+  >=stealth,
+  %semiRed/.style={fill=red,opacity=0.3,draw=black,thin},
+  medline/.style={draw=black,line width=0.6pt},
+  boldline/.style={draw=black,line width=2.0pt},
+  wire/.style={draw=black,line width=1.0pt},
+  elelem/.style={draw=black,line width=1.5pt}
+}
 
 \hypersetup{
   pdftitle={Словеса об идентификации},
@@ -29,6 +49,12 @@
   linkcolor=blue,
   citecolor=brown
 }
+
+% \linespread{1.3} setspace must be better
+% \onehalfspacing
+\setstretch{1.2}
+
+\newcommand{\LinkRef}[1]{ \textit{#1} }
 
 
 \title{Словеса об идентификации}
@@ -42,7 +68,7 @@
 \tableofcontents
 
 
-\section{Проблемы определения идентификации}
+\section{Определение идентификации}
 
 \subsection{История}
 
@@ -115,22 +141,21 @@ More: Eykhoff, Rastrigin.
 Откуда брать.
 
 
-\subsection{Тестовые системы (хаотические)} % _LOR_
+\subsection{Тестовые системы (хаотические)}
 
 \subsubsection{Лоренц} % _LOR_
 
-ASAU-22, 23, 24, 25, 26. APIR-2012. CSIT-2015. ISDMCI-2014, ISDMCI-2015.
-ITMM-2012, ITMM-2014, ITMM-2015
+\LinkRef{
+  lor: ASAU-22, 23, 24, 25, 26. APIR-2012. CSIT-2015. ISDMCI-2014, ISDMCI-2015.
+  ITMM-2012, ITMM-2014, ITMM-2015
+}
 
 \begin{equation}
-\left\{
-\begin{array}{l}
-  \dot{x} = \sigma (y-x ) \\
-  \dot{y} = x (r-z) - y \\
-  \dot{z} = x y - b z
-\end{array}
-\right.
-.
+\begin{cases}
+  \dot{x} = \sigma (y-x ) , \\
+  \dot{y} = x (r-z) - y , \\
+  \dot{z} = x y - b z .
+\end{cases}
 \label{atu:eq:lor}
 \end{equation}
 
@@ -147,7 +172,7 @@ $b = 2.66667$, $\sigma = 10$.
 
 \begin{figure}[htb!]
 \centerline{\includegraphics[width=0.5\textwidth]{p/cha/lor_phase3.pdf} }
-\caption{Динамика системы Лоренца (\ref{atu:eq:lor})}
+\caption{Аттрактор системы Лоренца (\ref{atu:eq:lor})}
 \label{atu:f:lor_phase}
 \end{figure}
 
@@ -155,7 +180,9 @@ $b = 2.66667$, $\sigma = 10$.
 \FloatBarrier
 \subsubsection{Дуффинг} % _DUFF_
 
-ASAU-12, 15. APIR-2009.
+\LinkRef{
+ duff: ASAU-12, 15. APIR-2009. \ldots
+}
 
 \begin{equation}
  \ddot{x} + c_0 \dot{x} + \Omega_0^2 x + \beta x^3 = u(t) ,
@@ -198,48 +225,211 @@ $\overline{x^2}$
 \FloatBarrier
 \subsubsection{Чуа} % _CHUA_
 
-ASAU-18, MKMM-2014, APIR-2011
+\LinkRef{
+ chua: ASAU-18, MKMM-2014, APIR-2011
+}
+
+\begin{figure}[htb!]
+\begin{center}
+  \begin{tikzpicture}[circuit ee IEC,very thick,circuit symbol unit=3.5mm]
+  \node (L1) at (0,1.5) [point up,elelem,inductor={info = $L$}] {};
+  \node      at (0.2,2.4) {$I_L$};
+  \node (C2) at (1.5,1.5) [point up,elelem,capacitor={info = $C_2$}] {};
+  \node      at (1.8,1.8) {$V_2$};
+  \node (pc2d) at (1.5,0) [contact] {};
+  \node (pc2u) at (1.5,3) [contact] {};
+  \node (C1) at (5.0,1.5) [point up,elelem,capacitor={info = $C_1$}] {};
+  \node      at (5.3,1.8) {$V_1$};
+  \node (pc1d) at (5,0) [contact] {};
+  \node (pc1u) at (5,3) [contact] {};
+  \node (R) at (3,3) [elelem,resistor={info = $R$}] {};
+  \node (Rc) at (7,1.5) [elelem,point up,resistor={info = $R_c$}] {};
+  \draw (Rc) ++(-0.15,-0.7) rectangle+(0.3,0.2);
+  \draw (L1) |- (pc2d) -- (pc1d) -| (Rc) [wire];
+  \draw (L1) |- (pc2u) -- (R) -- (pc1u) -| (Rc) [wire];
+  \draw (pc2u) -- (C2) [wire]; \draw (pc2d) -- (C2) [wire];
+  \draw (pc1u) -- (C1) [wire]; \draw (pc1d) -- (C1) [wire];
+  \node (Gr) at (5,-0.3) [elelem,point down,ground] {};
+  \draw (pc1d) -- (Gr) [wire];
+  \end{tikzpicture}
+\end{center}
+\caption{Условная электрическая цепь, реализующая хаотическую систему Чуа}
+\label{atu:fig:chuascheme}
+\end{figure}
+
 
 \begin{equation}
-\begin{array}{l}
-  C_1 \dot{V}_1 = \frac{1}{R} ( V_2 - V_1 ) - g(V_1) \\
-  C_2 \dot{V}_2 = \frac{1}{R} ( V_1 - V_2 ) + I_L \\
-  \dot{I}_L = - \frac{1}{L} V_2
-\end{array}
+\begin{cases}
+  C_1 \dot{V_1}  = \frac{1}{R} ( V_2 - V_1 ) - g(V_1), \\
+  C_2 \dot{V_2}  = \frac{1}{R} ( V_1 - V_2 ) + I_L, \\
+  \dot{I_L}      = - \frac{1}{L} V_2 .
+\end{cases}
 \label{atu:eq:chua}
 \end{equation}
 
-Идентифицируемый параметр:
-\( m_2 = m_1 - m_0 \), $ m_2 \in [ -0.1; -0.7 ] $.
+Единственным нелинейным элементом в данной системе является ``диод Чуа'' с
+характеристикой $g(V)$~(рис.~\ref{atu:fig:diodchua}),
+обладающий различным отрицательным сопротивлением
+($m_0$ и $m_1$) на разных участках,
+тем самым являющийся управляемым источником энергии.
 
-Остальные параметры:
-$C_1 = 1/9$, $C_2 = 1$, $L= 1/7$, $R = 1/0.7$.
+
+\begin{equation}
+g(V) =
+\begin{cases}
+  m_1 V = ( m_0 + m_2 ) V & |V| <   U_0, \\
+  m_0 V                   & |V| \ge U_0.
+\end{cases}
+\label{atu:eq:diodchua}
+\end{equation}
 
 \begin{figure}[htb!]
-\centerline{\includegraphics[width=0.5\textwidth]{p/cha/chua_phase.pdf} }
-\caption{Динамика системы Чуа (\ref{atu:eq:chua})}
+\begin{center}
+  \begin{tikzpicture}
+    \coordinate (XMIN) at (-4.5,0.0);
+    \coordinate (XMAX) at ( 4.5,0.0);
+    \coordinate (YMIN) at (0,-2.5);
+    \coordinate (YMAX) at (0, 2.5);
+    \draw (XMIN) -- (XMAX) [medline,->] node[below] {$U$};
+    \draw (YMIN) -- (YMAX) [medline,->] node[left]  {$I$};
+    \draw (-4,2) -- (-1,1) -- (1,-1) -- (4,-2) [boldline];
+    \draw (1,-1) -- (1,0) [dashed,medline];
+    \draw (1,-1) -- (4,-1) [dashed,medline];
+    \draw (1.41,0) arc [medline,->,start angle=0,end angle=-45,radius=1.41];
+    \draw (1,-1) ++(2,0) arc [medline,->,start angle=0,end angle=-18,radius=2.0];
+    \filldraw (1,0) circle[radius=0.05,fill=black] node[above] {$U_0$};
+    \node[right] at (1.2,-0.6) {$\alpha_1: \tan(\alpha_1)=m_1$};
+    \node[right] at (3.0,-1.3) {$\alpha_0$};
+  \end{tikzpicture}
+\end{center}
+\caption{Характеристика \(I=g(V)\) диода Чуа}
+\label{atu:fig:diodchua}
+\end{figure}
+
+
+При этом, параметр \(m_0\) определяет поступление энергии в систему
+при больших амплитудах \(V_1\), и, в целом, характеризует
+энергетические возможности источника.
+Аналогично, параметр \(m_1\) определяет поступление энергии
+при малых колебаниях, в частности, определяет, будет ли
+система переходить в колебательное состояние при малых начальных
+возмущениях, и какой будет режим этих колебаний.
+С другой стороны, параметр \(m_1\) является суммой
+``глобального параметра'' \(m_0\) и ``довеска'',
+определяющего дополнительный вклад при малых амплитудах,
+то имеет смысл перейти от параметра \(m_1\) к параметру
+\( m_2 = m_1 - m_0 \), который тем самым, в целом
+и определяет нелинейность
+системы. При \( m_2 = 0 \) система становится линейной
+и не представляет особого интереса. Поэтому
+в данной работе в качестве
+идентифицируемого параметра рассматривается параметр \(m_2\).
+
+В зависимости от величины этого параметра,
+система может переходить в режимы затухания,
+периодического и сложно-периодического движения, а также в режим
+хаотических колебаний. При этом сложно-периодическое и хаотическое
+движения чередуются с изменением величины \(m_2\).
+
+% Идентифицируемый параметр:
+% \( m_2 = m_1 - m_0 \), $ m_2 \in [ -0.1; -0.7 ] $.
+
+Классически параметры задаются следующим образом~[chua]:
+$C_1 = 1/9$, $C_2 = 1$, $L= 1/7$, $R = 1/0.7$, $m_0=-0.5$, $ m_2 \in [ -0.15; -1.0 ] $.
+
+Введём обозначения:
+\[
+  a_{11} = \frac{1}{R C_1}; \;
+  a_{13} = \frac{1}{C_1}; \;
+  a_{21} = \frac{1}{R C_2}; \;
+  a_{23} = \frac{1}{C_2}; \;
+  a_{31} = -\frac{1}{L}; \;
+  a_g = - \frac{m_0}{C_1}; \;
+  \mu = - \frac{m_2}{C_1}.
+\]
+
+\noindent
+Получаем:
+
+\begin{equation}
+\begin{cases}
+  \dot{V}_1  = -a_{11} V_1 + a_{11}  V_2  + g_1(V_1) , \\
+  \dot{V}_2  = +a_{21} V_1 - a_{21}  V_2  + a_{23} I_L    , \\
+  \dot{I}_L  =  a_{31} V_2.
+\end{cases}
+\label{atu:eq:chua2}
+\end{equation}
+
+
+\begin{equation}
+g_1(V) =
+\begin{cases}
+  ( a_g + \mu ) V , & |V| <   U_0, \\
+  a_g V           , & |V| \ge U_0.
+\end{cases}
+\label{atu:eq:diodchua2}
+\end{equation}
+
+При этом классические значения параметров будут представлены следующим образом:
+$ a_{11} = 6.5 $, $a_{21} = 0.7$, $ a_{23} = -7 $, $ a_g = 4.5 $,
+$ \mu \in [ 1.29 ; 9 ] $.
+Соответственно, в этих обозначениях
+идентифицируемым параметров является $\mu$.
+
+
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_1-p_xyz_mu=2x74.png}
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_1-p_xyz_mu=4x50.png}
+}
+\caption{Аттрактор системы Чуа (\ref{atu:eq:chua2}) при различных значениях $\mu$}
 \label{atu:f:chua_phase}
 \end{figure}
 
-Критерий
-$\overline{V_1^2}$, $\bar{|V_1|}$!
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x00.png}
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x74.png}
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=4x50.png}
+}
+\caption{Спектры системы Чуа (\ref{atu:eq:chua2}) при различных значениях $\mu$}
+\label{atu:f:chua_spectrum}
+\end{figure}
+
+Для определения критерия рассмотрим зависимости
+$q_{*}(\mu) $, полученные путём моделирования
+для системы Чуа (рис.~\ref{atu:f:chua_q}):
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_q-p_mu2.png}
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_q-p_mu1.png}
+}
+  \caption{Зависимости $q_{*}(\mu) $ для системы Чуа (\ref{atu:eq:chua2})}
+\label{atu:f:chua_q}
+\end{figure}
+
+Из графиков очевидно, что величина $ q_{V_1}(\mu) $
+является наилучшим кандидатом в критерии, ввиду близкой к линейной зависимости
+в рабочем диапазоне.
 
 
 
 
 \FloatBarrier
-\subsubsection{Рёсслер} % _ROSS_
+\subsubsection{Система Рёсслера} % _ROSS_
 
-ASAU-14. ISDMCI-2011, ISDMCI-2012
+\LinkRef{
+  ross: ASAU-14. ISDMCI-2011, ISDMCI-2012
+}
 
 \begin{equation}
-\left\{
-\begin{array}{l}
-\dot{x} = -y -z  \\
-\dot{y} = x + a*y \\
-\dot{z} = b + z \cdot ( x-c )
-\end{array}
-\right. .
+\begin{cases}
+  \dot{x}  = -y - z  ,  \\
+  \dot{y}  = x + a y ,\\
+  \dot{z}  = b + z \cdot ( x-c ) .
+\end{cases}
 \label{atu:eq:rossler}
 \end{equation}
 
@@ -252,7 +442,7 @@ $ c \in [2; 50] $, $c_0=5.88$.
 
 \begin{figure}[htb!]
 \centerline{\includegraphics[width=0.5\textwidth]{p/cha/ross_phase3.pdf} }
-\caption{Динамика системы Рёсслера (\ref{atu:eq:rossler})}
+\caption{Аттрактор системы Рёсслера (\ref{atu:eq:rossler})}
 \label{atu:f:ross_phase}
 \end{figure}
 
@@ -264,7 +454,9 @@ $ z_{\max}$, $ \overline{z} $.
 \FloatBarrier
 \subsubsection{Ван-Дер-Поль} % _VDP_
 
-ASAU-16, 17(alt), ITMM-2011
+\LinkRef{
+  vdp: ASAU-16, 17(alt), ITMM-2011
+}
 
 \begin{equation}
  \ddot{x} + \varepsilon (1-x^2)  \dot{x} + \Omega_0^2 x  = u(t) .
@@ -297,33 +489,37 @@ $\overline{x^2}$
 \FloatBarrier
 \subsubsection{Колпитц} % _COLP_
 
-ASAU-21, APIR-2013
+\LinkRef{
+  colp: ASAU-21, APIR-2013
+}
 
-\begin{align}
- \label{atu:eq:colp_phys}
-  C_1 \frac{dV_{1}}{dt} & = I_L - I_{CE} \notag , \\
-  L_1 \frac{dI_L}{dt}    & = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
-  C_2 \frac{dV_{2}}{dt} & = I_L - \frac{V_{2}}{R_e}, \notag
-\end{align}
+\begin{equation}
+\label{atu:eq:colp_phys}
+\begin{cases}
+  C_1 \frac{dV_{1}}{dt}  = I_L - I_{CE} , \\
+  L_1 \frac{dI_L}{dt}    = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
+  C_2 \frac{dV_{2}}{dt}  = I_L - \frac{V_{2}}{R_e}.
+\end{cases}
+\end{equation}
 
-\begin{align}
+\begin{equation}
 \label{atu:eq:colp}
-  \dot{x} &= y - a F(z), \notag \\
-  \dot{y} &= c - x - by - z, \\
-  \dot{z} &= y - dz. \notag
-\end{align}
+\begin{cases}
+  \dot{x} = y - a F(z), \\
+  \dot{y} = c - x - by - z, \\
+  \dot{z} = y - d z.
+\end{cases}
+\end{equation}
 
-Простая модель транзистора:
-$
+Используется простая модель транзистора:
+\[
 F(z) =
-\left\{
-\begin{array}{l}
+\begin{cases}{l}
     e-z-1, \; z \le e-1
     \\
     0, z>e-1
-\end{array}
-\right.
-$.
+\end{cases}.
+\]
 
 Идентифицируемый параметр:
 $b \in [ 0.5; 1.1 ]$
@@ -333,7 +529,7 @@ $ a = 30$, $b = 0.78$, $c=15$, $d=0.08$, $e=7.5$.
 
 \begin{figure}[htb!]
 \centerline{\includegraphics[width=0.5\textwidth]{p/cha/colp_phase.pdf} }
-\caption{Динамика системы Колпитца (\ref{atu:eq:colp})}
+\caption{Аттрактор системы Колпитца (\ref{atu:eq:colp})}
 \label{atu:f:colp_phase}
 \end{figure}
 
@@ -344,9 +540,12 @@ $\overline{y^2}(t)$
 
 
 \FloatBarrier
-\subsubsection{Колебательная с зоной нечувствительности в возращающей силе} % _DEADVI_
 
-ASAU-20, ISDMCI-2013
+\subsubsection{Колебательная с зоной нечувствительности в возвращающей силе} % _DEADVI_
+
+\LinkRef{
+  deadvi: ASAU-20, ISDMCI-2013
+}
 
 \begin{equation}
 \ddot{x} + c_0 \dot{x} + a \cdot x + b \cdot \mathrm{db}(x,x_0) = u(t),
@@ -376,7 +575,9 @@ $\overline{x^2(t)}$
 \FloatBarrier
 \subsubsection{Система с сухим трением}
 
-ASAU-11.
+\LinkRef{
+  fric: ASAU-11, \ldots
+}
 
 \begin{equation}
  m \ddot{x} + f( x, \dot{x}, \ldots)  = u(t).
@@ -387,27 +588,45 @@ ASAU-11.
 $\overline{e^2(t)}$
 
 Перед этим -- гистерезисная фильтрация.
+Или много проще.
 
 
 
 \FloatBarrier
 \subsubsection{Релаксационные генераторы}
 
-ASAU-18 (no id?)
+
+\LinkRef{
+  relax: ASAU-18 (no id?)
+}
 
 \begin{figure}[htb!]
 \centerline{\includegraphics[width=0.5\textwidth]{p/cha/relax_phase3_0500.pdf} }
-\caption{Динамика системы с релаксационными генераторами}
+\caption{Аттрактор системы с релаксационными генераторами}
 \label{atu:f:relax_phase3}
 \end{figure}
 
 
 
 \FloatBarrier
-\subsubsection{VGlass} % _VGLASS
+\subsubsection{VGlass} % _VGLASS_
 
-ITMM-2013
+\LinkRef{
+  vglass: ITMM-2013
+}
 
+\begin{figure}[htb!]
+\centerline{\includegraphics[width=0.5\textwidth]{p/cha/vg1-graph_phase.png} }
+\caption{Фазовый портрет системы ``vglass'' }
+\label{atu:f:vglass_phase}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{Sprott A}
+
+\LinkRef{
+  sprott\_a: MKMM-2016
+}
 
 
 \FloatBarrier
