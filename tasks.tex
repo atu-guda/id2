@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 %\usepackage{mathenv}
 \usepackage{indentfirst}
+\usepackage{titling}
 
 \usepackage{txfonts} % use before local fonts - only for math
 %\usepackage{dejavu}
@@ -30,9 +31,6 @@
 \usetikzlibrary{circuits.ee.IEC}
 %\usetikzlibrary{circuits.logic.IEC}
 
-\usepackage[english,ukraineb,russian]{babel}
-%\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption} % format=hang|plain...
-
 \tikzset{
   >=stealth,
   %semiRed/.style={fill=red,opacity=0.3,draw=black,thin},
@@ -42,9 +40,37 @@
   elelem/.style={draw=black,line width=1.5pt}
 }
 
+\usepackage[english,ukraineb,russian]{babel}
+%\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption} % format=hang|plain...
+
+\usepackage{currfile}
+
+\setcounter{topnumber}{3}
+\renewcommand\topfraction{.7}
+\setcounter{bottomnumber}{2}
+\renewcommand\bottomfraction{.6}
+\setcounter{totalnumber}{7}
+\renewcommand\textfraction{.1}
+\renewcommand\floatpagefraction{.5}
+\setcounter{dbltopnumber}{2}
+\renewcommand\dbltopfraction{.7}
+\renewcommand\dblfloatpagefraction{.6}
+
+\clubpenalty9500
+\widowpenalty9500%
+
+
+\newlength{\TW}
+\setlength{\TW}{0.01\textwidth}
+
+\DeclareMathOperator*{\sign}{sign}
+
+\title{Идентификация хаотических систем}
+\author{А.И.~Гуда}
+
 \hypersetup{
-  pdftitle={Словеса об идентификации},
-  pdfauthor={А.И.~Гуда},
+  pdftitle={\thetitle},
+  pdfauthor={\theauthor},
   colorlinks=true,
   linkcolor=blue,
   citecolor=brown
@@ -57,13 +83,11 @@
 \newcommand{\LinkRef}[1]{ \textit{#1} }
 
 
-\title{Словеса об идентификации}
-\author{А.И.~Гуда}
-
 \begin{document}
 
 % \maketitle
-{ \tiny \verb! ~/proj/id_data/text/tasks.tex! }
+%{ \tiny \verb! ~/proj/id_data/text/tasks.tex! }
+{ \tiny \currfilepath }
 
 \tableofcontents
 
@@ -143,12 +167,15 @@ More: Eykhoff, Rastrigin.
 
 \subsection{Тестовые системы (хаотические)}
 
-\subsubsection{Лоренц} % _LOR_
+\subsubsection{Система Лоренца} % _LOR_
 
 \LinkRef{
   lor: ASAU-22, 23, 24, 25, 26. APIR-2012. CSIT-2015. ISDMCI-2014, ISDMCI-2015.
   ITMM-2012, ITMM-2014, ITMM-2015
 }
+
+В качестве первой идентифицируемой хаотической системы рассмотрим
+систему Лоренса, динамика которой описывается системой уравнений~[??]:
 
 \begin{equation}
 \begin{cases}
@@ -159,15 +186,21 @@ More: Eykhoff, Rastrigin.
 \label{atu:eq:lor}
 \end{equation}
 
+Наиболее ценным с точки зрения идентификации является параметр
+$r$, определяющий как энергетическое состояние системы,
+так и вид динамики системы.
+Для определённости зададим остальные параметры следующим образом:
+$b = 2.6666667$, $\sigma = 10$.
+
 Критерий
 $\overline{x^2}$
 
 
-Идентифицируемый параметр:
-$r \in [ 5; 100 ] $.
-
-Остальные параметры:
-$b = 2.66667$, $\sigma = 10$.
+% Идентифицируемый параметр:
+% $r \in [ 5; 100 ] $.
+%
+% Остальные параметры:
+% $b = 2.66667$, $\sigma = 10$.
 
 
 \begin{figure}[htb!]
@@ -178,7 +211,7 @@ $b = 2.66667$, $\sigma = 10$.
 
 
 \FloatBarrier
-\subsubsection{Дуффинг} % _DUFF_
+\subsubsection{Система Дуффинга} % _DUFF_
 
 \LinkRef{
  duff: ASAU-12, 15. APIR-2009. \ldots
@@ -223,11 +256,15 @@ $\overline{x^2}$
 
 
 \FloatBarrier
-\subsubsection{Чуа} % _CHUA_
+\subsubsection{Система Чуа} % _CHUA_
 
 \LinkRef{
  chua: ASAU-18, MKMM-2014, APIR-2011
 }
+
+Одной из известных хаотических систем, легко реализуемых как модельно,
+так и схемотехнически (рис.~\ref{atu:fig:chuascheme}),
+является нелинейная система Чуа~[??]:
 
 \begin{figure}[htb!]
 \begin{center}
@@ -267,9 +304,10 @@ $\overline{x^2}$
 \label{atu:eq:chua}
 \end{equation}
 
-Единственным нелинейным элементом в данной системе является ``диод Чуа'' с
+Единственным нелинейным элементом в данной системе является ``диод Чуа''
+(обозначен на схеме как $R_c$) с
 характеристикой $g(V)$~(рис.~\ref{atu:fig:diodchua}),
-обладающий различным отрицательным сопротивлением
+обладающий различным отрицательным наклоном
 ($m_0$ и $m_1$) на разных участках,
 тем самым являющийся управляемым источником энергии.
 
@@ -335,7 +373,7 @@ g(V) =
 % \( m_2 = m_1 - m_0 \), $ m_2 \in [ -0.1; -0.7 ] $.
 
 Классически параметры задаются следующим образом~[chua]:
-$C_1 = 1/9$, $C_2 = 1$, $L= 1/7$, $R = 1/0.7$, $m_0=-0.5$, $ m_2 \in [ -0.15; -1.0 ] $.
+$C_1 = 1/9$, $C_2 = 1$, $L= 1/7$, $R = 1/0.7$, $m_0=-0.5$, $ m_2 \in [ -0.15; -0.7 ] $.
 
 Введём обозначения:
 \[
@@ -372,7 +410,7 @@ g_1(V) =
 
 При этом классические значения параметров будут представлены следующим образом:
 $ a_{11} = 6.5 $, $a_{21} = 0.7$, $ a_{23} = -7 $, $ a_g = 4.5 $,
-$ \mu \in [ 1.29 ; 9 ] $.
+$ \mu \in [ 1.29 ; 5.6 ] $.
 Соответственно, в этих обозначениях
 идентифицируемым параметров является $\mu$.
 
@@ -387,15 +425,6 @@ $ \mu \in [ 1.29 ; 9 ] $.
 \label{atu:f:chua_phase}
 \end{figure}
 
-\begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x00.png}
-  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x74.png}
-  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=4x50.png}
-}
-\caption{Спектры системы Чуа (\ref{atu:eq:chua2}) при различных значениях $\mu$}
-\label{atu:f:chua_spectrum}
-\end{figure}
 
 Для определения критерия рассмотрим зависимости
 $q_{*}(\mu) $, полученные путём моделирования
@@ -414,6 +443,115 @@ $q_{*}(\mu) $, полученные путём моделирования
 является наилучшим кандидатом в критерии, ввиду близкой к линейной зависимости
 в рабочем диапазоне.
 
+% TODO: общие слова перенести к первой системе.
+Следующим важным параметром, необходимым для системы идентификации, является
+характерное время время оценивания $\tau$, или же обратная ему величина $a_q$,
+входящая в (). %TODO
+
+Для предварительного оценивания величины $a_q$ рассмотрим спектры системы при различных
+$\mu$ (рис.~\ref{atu:f:chua_spectrum}). Как следует из графиков, спектр системы достаточно
+ограничен сверху, однако, в хаотическом режиме является сплошным практически до нуля.
+Это не даёт возможности непосредственно определить $a_q$ исходя из спектра,
+однако, первые существенные пики наблюдаются при $ \omega \approx 0.3 $, следовательно,
+первоначальное значение $a_q$ можно оценить как $ a_q \approx 0.3 / \pi \approx 0.1 $.
+
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x00.png}
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=2x74.png}
+  \includegraphics[width=0.32\textwidth]{p/cha/chua/chua_f-p_f_mu=4x50.png}
+}
+\caption{Спектры системы Чуа (\ref{atu:eq:chua2}) при различных значениях $\mu$}
+\label{atu:f:chua_spectrum}
+\end{figure}
+
+Следующий способ оценить $a_q$ -- исследовать полученную в результате моделирования
+зависимость среднеквадратичного отклонения $e_q$ оценки величины $q$, нормированной
+на саму величину $q$ в стационарном случае. Полученная зависимость представлена
+на рис.~\ref{atu:f:chua_tau}.
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.4\textwidth]{p/cha/chua/chua_tau-p_e_a.png}
+}
+\caption{Типичная зависимость $e_q/q(a_q)$ для системы (\ref{atu:eq:chua2})}
+\label{atu:f:chua_tau}
+\end{figure}
+
+Из этого графика можно сделать вывод, что первоначальная оценка $a_q$
+была сделана корректно.
+
+В качестве системы идентификации использовалась система с 5 поисковыми агентами и
+двумя неподвижными моделями. Для исследования динамических свойств системы идентификации
+параметр $\mu_o$ для объекта задавался двумя способами:
+
+\begin{equation}
+ \mu_o(t) = p_0 + U_p \sign \sin( \omega_p t ),
+  \label{atu:eq:chua_mu_sign}
+\end{equation}
+
+\begin{equation}
+ \mu_o(t) = p_0 + U_p \sin( \omega_p t ).
+  \label{atu:eq:chua_mu_sin}
+\end{equation}
+
+Динамика процессов идентификации для системы Чуа представлена на рис.~\ref{atu:f:chua_id}.
+
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-pl_n_sign.png}
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-pl_n_sin.png}
+}
+\caption{Процесс идентификации параметра $\mu$ системы (\ref{atu:eq:chua2})
+  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
+}
+\label{atu:f:chua_id}
+\end{figure}
+
+Для более точной настройки параметров самой системы идентификации
+рассмотрим зависимости среднеквадратических ошибок идентификации
+от основных параметров системы идентификации.
+
+Одним из важнейших параметров является $q_\gamma$ -- масштаб функции качества.
+Зависимости для этого параметра приведены на рис.~\ref{atu:f:chua_e_qgamma}.
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_qg_e_sign.png}
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_qg_e_sin.png}
+}
+  \caption{Зависимости  $\bar{e}(q_\gamma)$ для системы (\ref{atu:eq:chua2})
+  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
+}
+\label{atu:f:chua_e_qgamma}
+\end{figure}
+
+Явно выраженного экстремума не было обнаружено, что свидетельствует
+о сильной робастности метода.
+
+Для проверки корректности выбора величины $a_q$ была построены зависимости
+среднеквадратических ошибок идентификации (рис.\ref{atu:f:chua_e_a_q}).
+
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_a_q_e_sign.png}
+  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_a_q_e_sin.png}
+}
+  \caption{Зависимости  $\bar{e}(a_q)$ для системы (\ref{atu:eq:chua2})
+  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
+}
+\label{atu:f:chua_e_a_q}
+\end{figure}
+
+Как и следовало ожидать, первоначальная оценка ``правильного'' значения величины $a_q$
+была сделана достаточно точно. При этом, при синусоидальном изменении параметра объекта
+меньшая ошибка идентификации наблюдается при меньших значениях $a_q$, что связано
+с тем, в данном случае нет необходимости в слежении за скачкообразно изменяющимся параметром,
+и, следовательно, допустимо большее время оценивания. Напротив, в случае (\ref{atu:eq:chua_mu_sign})
+увеличение времени оценивания приводит к заметному снижению интегральной точности идентификации.
 
 
 
@@ -441,7 +579,7 @@ $ c \in [2; 50] $, $c_0=5.88$.
 \(b \in[0;4] \), $b_0=1$.
 
 \begin{figure}[htb!]
-\centerline{\includegraphics[width=0.5\textwidth]{p/cha/ross_phase3.pdf} }
+\centerline{\includegraphics[width=0.6\textwidth]{p/cha/ross_phase3.pdf} }
 \caption{Аттрактор системы Рёсслера (\ref{atu:eq:rossler})}
 \label{atu:f:ross_phase}
 \end{figure}
@@ -452,7 +590,7 @@ $ z_{\max}$, $ \overline{z} $.
 
 
 \FloatBarrier
-\subsubsection{Ван-Дер-Поль} % _VDP_
+\subsubsection{Система Ван-дер-Поля} % _VDP_
 
 \LinkRef{
   vdp: ASAU-16, 17(alt), ITMM-2011
@@ -487,7 +625,7 @@ $\overline{x^2}$
 
 
 \FloatBarrier
-\subsubsection{Колпитц} % _COLP_
+\subsubsection{Генератор Колпитца} % _COLP_
 
 \LinkRef{
   colp: ASAU-21, APIR-2013
