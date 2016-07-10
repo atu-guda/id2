@@ -22,23 +22,18 @@
 
 \usepackage{graphicx}
 \usepackage{placeins} % FloatBarrier
+\usepackage{siunitx}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
-\usetikzlibrary{circuits}
-\usetikzlibrary{circuits.ee}
-\usetikzlibrary{circuits.ee.IEC}
+%\usetikzlibrary{circuits}
+%\usetikzlibrary{circuits.ee}
+%\usetikzlibrary{circuits.ee.IEC}
 %\usetikzlibrary{circuits.logic.IEC}
 
-\tikzset{
-  >=stealth,
-  %semiRed/.style={fill=red,opacity=0.3,draw=black,thin},
-  medline/.style={draw=black,line width=0.6pt},
-  boldline/.style={draw=black,line width=2.0pt},
-  wire/.style={draw=black,line width=1.0pt},
-  elelem/.style={draw=black,line width=1.5pt}
-}
+\input{tikzsetup.tex}
+\usepackage[europeanresistors,americaninductors,siunitx,fulldiodes]{circuitikz}
 
 \usepackage[english,ukraineb,russian]{babel}
 %\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption} % format=hang|plain...
@@ -268,27 +263,7 @@ $\overline{x^2}$
 
 \begin{figure}[htb!]
 \begin{center}
-  \begin{tikzpicture}[circuit ee IEC,very thick,circuit symbol unit=3.5mm]
-  \node (L1) at (0,1.5) [point up,elelem,inductor={info = $L$}] {};
-  \node      at (0.2,2.4) {$I_L$};
-  \node (C2) at (1.5,1.5) [point up,elelem,capacitor={info = $C_2$}] {};
-  \node      at (1.8,1.8) {$V_2$};
-  \node (pc2d) at (1.5,0) [contact] {};
-  \node (pc2u) at (1.5,3) [contact] {};
-  \node (C1) at (5.0,1.5) [point up,elelem,capacitor={info = $C_1$}] {};
-  \node      at (5.3,1.8) {$V_1$};
-  \node (pc1d) at (5,0) [contact] {};
-  \node (pc1u) at (5,3) [contact] {};
-  \node (R) at (3,3) [elelem,resistor={info = $R$}] {};
-  \node (Rc) at (7,1.5) [elelem,point up,resistor={info = $R_c$}] {};
-  \draw (Rc) ++(-0.15,-0.7) rectangle+(0.3,0.2);
-  \draw (L1) |- (pc2d) -- (pc1d) -| (Rc) [wire];
-  \draw (L1) |- (pc2u) -- (R) -- (pc1u) -| (Rc) [wire];
-  \draw (pc2u) -- (C2) [wire]; \draw (pc2d) -- (C2) [wire];
-  \draw (pc1u) -- (C1) [wire]; \draw (pc1d) -- (C1) [wire];
-  \node (Gr) at (5,-0.3) [elelem,point down,ground] {};
-  \draw (pc1d) -- (Gr) [wire];
-  \end{tikzpicture}
+\input{p/cha/chua/chuascheme.pgf}
 \end{center}
 \caption{Условная электрическая цепь, реализующая хаотическую систему Чуа}
 \label{atu:f:chuascheme}
@@ -323,22 +298,7 @@ g(V) =
 
 \begin{figure}[htb!]
 \begin{center}
-  \begin{tikzpicture}
-    \coordinate (XMIN) at (-4.5,0.0);
-    \coordinate (XMAX) at ( 4.5,0.0);
-    \coordinate (YMIN) at (0,-2.5);
-    \coordinate (YMAX) at (0, 2.5);
-    \draw (XMIN) -- (XMAX) [medline,->] node[below] {$U$};
-    \draw (YMIN) -- (YMAX) [medline,->] node[left]  {$I$};
-    \draw (-4,2) -- (-1,1) -- (1,-1) -- (4,-2) [boldline];
-    \draw (1,-1) -- (1,0) [dashed,medline];
-    \draw (1,-1) -- (4,-1) [dashed,medline];
-    \draw (1.41,0) arc [medline,->,start angle=0,end angle=-45,radius=1.41];
-    \draw (1,-1) ++(2,0) arc [medline,->,start angle=0,end angle=-18,radius=2.0];
-    \filldraw (1,0) circle[radius=0.05,fill=black] node[above] {$U_0$};
-    \node[right] at (1.2,-0.6) {$\alpha_1: \tan(\alpha_1)=m_1$};
-    \node[right] at (3.0,-1.3) {$\alpha_0$};
-  \end{tikzpicture}
+\input{p/cha/chua/diodchua.pgf}
 \end{center}
 \caption{Характеристика \(I=g(V)\) диода Чуа}
 \label{atu:f:diodchua}
@@ -647,8 +607,11 @@ $\overline{x^2}$
 Из множества схем данная была выбрана из-за наличия
 одного источника напряжения, и простоты схемотехнической реализации.
 
+
 \begin{figure}[htb!]
-\centerline{\includegraphics[width=0.5\textwidth]{p/cha/colp/colp_schem.pdf} }
+\begin{center}
+\input{p/cha/colp/colp_scheme.pgf}
+\end{center}
 \caption{Электрическая схема генератора Колпитца на биполярном транзисторе}
 \label{atu:f:colp_schem}
 \end{figure}
@@ -712,8 +675,17 @@ $ T_s = \sqrt{L C} $.
   \frac{dx}{dt_s} \equiv \dot{x} = T_s \frac{dx}{dt} .
 \]
 
-%Тот же самый множитель $T_s$ появляется и в выражениях для
-%токов, т.к. $I=dQ/dt$, и сокращается.
+При приведении токов к безразмернму виду следует отметить, что
+$I = dQ/dt$, и множитель $T_s$ появляется и в выражениях для токов.
+
+\begin{equation}
+\label{atu:eq:colp_phys2}
+\begin{cases}
+  C T_s \dot{V_1}  = T_s I_L - T_s I_{CE} , \\
+  L T_s \dot{I_L}  = V_{CC} - V_{1} - V_{2} - T_s I_L R_C , \\
+  C T_s \dot{V_2}  = T_s I_L - \frac{V_{2}}{R_e}.
+\end{cases}
+\end{equation}
 
 Динамические свойства (в т.ч. условия начала генерации и перехода в хаотический режим) определяются
 соотношением активных и реактивных свойств системы. При этом величина

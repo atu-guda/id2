@@ -1,0 +1,17 @@
+% vi:syntax=tex
+\begin{tikzpicture}
+  \coordinate (XMIN) at (-4.5,0.0);
+  \coordinate (XMAX) at ( 4.5,0.0);
+  \coordinate (YMIN) at (0,-2.5);
+  \coordinate (YMAX) at (0, 2.5);
+  \draw (XMIN) -- (XMAX) [medline,->] node[below] {$U$};
+  \draw (YMIN) -- (YMAX) [medline,->] node[left]  {$I$};
+  \draw (-4,2) -- (-1,1) -- (1,-1) -- (4,-2) [boldline];
+  \draw (1,-1) -- (1,0) [dashed,medline];
+  \draw (1,-1) -- (4,-1) [dashed,medline];
+  \draw (1.41,0) arc [medline,->,start angle=0,end angle=-45,radius=1.41];
+  \draw (1,-1) ++(2,0) arc [medline,->,start angle=0,end angle=-18,radius=2.0];
+  \filldraw (1,0) circle[radius=0.05,fill=black] node[above] {$U_0$};
+  \node[right] at (1.2,-0.6) {$\alpha_1: \tan(\alpha_1)=m_1$};
+  \node[right] at (3.0,-1.3) {$\alpha_0$};
+\end{tikzpicture}

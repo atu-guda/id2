@@ -1,0 +1,33 @@
+% vi:syntax=tex
+
+\begin{circuitikz}[line width=0.7]
+  \ctikzset{bipoles/thickness=2}
+  \def\Top{3.0}
+  \draw (0.0,0.0) to[L,l=$L$,i=$I_L$] (0,\Top)
+   to[R=R] (6.0,\Top)
+   to[ageneric,l=$R_c$] (6.0,0.0) -- (0.0,0.0);
+  \draw(1.5,0.0) to[C,l=$C_2$,v=$V_2$] (1.5,\Top );
+  \draw(4.5,0.0) to[C,l=$C_1$,v=$V_1$] (4.5,\Top );
+\end{circuitikz}
+
+% \begin{tikzpicture}[circuit ee IEC,very thick,circuit symbol unit=3.5mm]
+%   \node (L1) at (0,1.5) [point up,elelem,inductor={info = $L$}] {};
+%   \node      at (0.2,2.4) {$I_L$};
+%   \node (C2) at (1.5,1.5) [point up,elelem,capacitor={info = $C_2$}] {};
+%   \node      at (1.8,1.8) {$V_2$};
+%   \node (pc2d) at (1.5,0) [contact] {};
+%   \node (pc2u) at (1.5,3) [contact] {};
+%   \node (C1) at (5.0,1.5) [point up,elelem,capacitor={info = $C_1$}] {};
+%   \node      at (5.3,1.8) {$V_1$};
+%   \node (pc1d) at (5,0) [contact] {};
+%   \node (pc1u) at (5,3) [contact] {};
+%   \node (R) at (3,3) [elelem,resistor={info = $R$}] {};
+%   \node (Rc) at (7,1.5) [elelem,point up,resistor={info = $R_c$}] {};
+%   \draw (Rc) ++(-0.15,-0.7) rectangle+(0.3,0.2);
+%   \draw (L1) |- (pc2d) -- (pc1d) -| (Rc) [wire];
+%   \draw (L1) |- (pc2u) -- (R) -- (pc1u) -| (Rc) [wire];
+%   \draw (pc2u) -- (C2) [wire]; \draw (pc2d) -- (C2) [wire];
+%   \draw (pc1u) -- (C1) [wire]; \draw (pc1d) -- (C1) [wire];
+%   \node (Gr) at (5,-0.3) [elelem,point down,ground] {};
+%   \draw (pc1d) -- (Gr) [wire];
+% \end{tikzpicture}
