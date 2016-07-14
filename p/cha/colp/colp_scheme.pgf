@@ -3,53 +3,39 @@
 \begin{circuitikz}[line width=0.7]
   \ctikzset{bipoles/thickness=2}
   \def\Top{8.0}
-  %
-  \draw (3.0,3.0) node[npn](npn) {};
-  \draw (2.8,3.0) circle[radius=0.5];
-  %\draw (npn.center) circle[radius=0.5];
-  %
-  \draw (0.0,0.0)
-   to[R,l=$R_2$,-*]  (0.0,3.0)
-   to[R,l=$R_1$]     (0.0,\Top)
-   to[short]         (6.0,\Top)
-   to[battery,l=$V_{cc}$] (6.0,0.0)
+  \def\Rig{7.0}
+  \def\LinC{5.5}
+  \def\LinQ{3.5}
+  % transistor
+  \draw (\LinQ,3.0) node[npn](npn) {}
+        (npn.center) ++(-0.2,0) circle[radius=0.5]
+        (npn.C) node[left=3mm, above=-3.6mm]{$Q_1$}
+        (npn.B) node[left=2mm, above=0.2mm]{$V_b$};
+  \draw (npn.C) ++(0.4,-0.4) -- ++(0.0,-0.8) [->] node[right] {$I_{ce}$};
+  % border
+  \draw (0.0,0.0) -- (\Rig,0.0)
+   to[battery,l=$V_{cc}$]  (\Rig,\Top)
+   to[short]         (0,\Top)
+   to[R,mirror,l=$R_1$]     (0.0,3.0)
+   to[R,mirror,l=$R_2$,*-]  (0.0,0.0)
    -- (0.0,0.0);
-  %
+  % base part
   \draw (1.5,0.0) to[C,l=$C_0$,*-*] (1.5,3.0);
   \draw (0.0,3.0) -- (npn.base);
-  \draw (3.0,0.0) to[vR,l=$R_e$,*-*] (3.0,2.0)
-   to[short] (npn.emitter);
+  % emitter part
+  \draw (\LinQ,0.0) to[R,l=$R_e$,*-*] (\LinQ,2.0)
+   to[short] (npn.E);
+   % collector part
   \draw (npn.collector)
-   to[L,l=$L$,i<=$I_L$] (3.0,6.0)
-   to[R,l=$R_c$] (3.0,\Top);
+   to[L,mirror,l=$L$,i<=$I_L$] (\LinQ,6.0)
+   to[vR,l=$R_c$] (\LinQ,\Top);
   %
-  \draw (4.5,0.0) to[C,l=$C_2$,v=$V_2$,*-*] (4.5,2.0);
-  \draw (4.5,2.0) -- (3.0,2.0);
-  \draw (4.5,2.0) to[C,l=$C_1$,v=$V_1$]     (4.5,4.0);
-  \draw (4.5,4.0) -- (3.0,4.0);
-  \filldraw (3.0,4.0) circle[radius=0.05];
+  \draw (\LinC,0.0) to[C,l=$C_2$,v=$V_2$,*-*] (\LinC,2.0);
+  \draw (\LinC,2.0) -- (\LinQ,2.0);
+  \draw (\LinC,2.0) to[C,l=$C_1$,v=$V_1$]     (\LinC,4.0);
+  \draw (\LinC,4.0) -- (\LinQ,4.0);
+  \filldraw (\LinQ,4.0) circle[radius=0.05];
 \end{circuitikz}
 
 
-
-%\begin{tikzpicture}[circuit ee IEC,very thick,circuit symbol unit=2.5mm]
-%%\tikzset{circuit declare symbol=transistor}
-%%\tikzset{set transistor graphic=transistor IEC graphic}
-%  \node (R2)    at (0.0,0.0) [elelem,point up,resistor={info = $R_2$}] {};
-%  \node (pR1R2) at (0.0,1.5) [contact] {};
-%  \node (R1)    at (0.0,3.0) [elelem,point up,resistor={info = $R_1$}] {};
-%  %
-%  \node (C0)    at (1.5,0.0) [point up,elelem,capacitor={info = $C_0$}] {};
-%  \node (pR2C0) at (1.5,1.5) [contact] {};
-%  %
-%  \node (Re)    at (3.0,0.0) [elelem,point up,resistor={adjustable,info = $R_e$}] {};
-%  %\node (Q1)    at (3.0,1.5) [elelem,point right,transistor] {};
-%  \node (L)     at (3.0,3.0) [elelem,point up,inductor={info = $L$}] {};
-%  \node (Rc)    at (3.0,4.5) [elelem,point up,resistor={info = $R_c$}] {};
-%  %
-%  \node (C2)    at (4.5,0.0) [point up,elelem,capacitor={info = $C_2$}] {};
-%  \node (C1)    at (4.5,3.0) [point up,elelem,capacitor={info = $C_1$}] {};
-%  %
-%  \node (Bat)   at (6.0,0.0) [point up,elelem,battery={info = $Vcc$}] {};
-%\end{tikzpicture}
 
