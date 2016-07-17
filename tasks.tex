@@ -11,6 +11,7 @@
 \usepackage[nodisplayskipstretch]{setspace}
 \usepackage{amsmath}
 %\usepackage{mathenv}
+\usepackage{mathtools}
 \usepackage{indentfirst}
 \usepackage{titling}
 
@@ -626,11 +627,11 @@ $V_b = V_{CC} \frac{R_1}{R_1+R_2}$,
 
 \begin{equation}
 \label{atu:eq:colp_phys}
-\begin{cases}
+\begin{dcases}
   C_1 \frac{dV_{1}}{dt}  = I_L - I_{CE} , \\
   L   \frac{dI_L}{dt}    = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
   C_2 \frac{dV_{2}}{dt}  = I_L - \frac{V_{2}}{R_e}.
-\end{cases}
+\end{dcases}
 \end{equation}
 
 
@@ -679,7 +680,7 @@ $ \rho = \sqrt{L/C} $ имеет размерность сопротивлени
 \]
 \[
   b = \frac{R_c}{\rho}; \quad
-  d = \frac{\rho}{R_C}. % sic!
+  d = \frac{\rho}{R_e}. % sic!
 \]
 
 Система уравнений принимает вид:
@@ -687,11 +688,11 @@ $ \rho = \sqrt{L/C} $ имеет размерность сопротивлени
 
 \begin{equation}
 \label{atu:eq:colp_phys2}
-\begin{cases}
-  \frac{d x}{dt}  = \frac{1}{\rho C}  y - \frac{1}{\rho C} i_{ce} , \\
-  \frac{d y}{dt}  = \frac{\rho}{L} c    - \frac{\rho}{L} r_c y - \frac{\rho}{L} x- \frac{\rho}{L} z, \\
-  \frac{d_z}{dt}  = \frac{1}{\rho C}  y - \frac{1}{\rho C} \frac{1}{r_e} z.
-\end{cases}
+\begin{dcases}
+  \dfrac{d x}{dt}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} i_{ce} , \\
+  \dfrac{d y}{dt}  = \dfrac{\rho}{L} c    - \dfrac{\rho}{L} r_c y - \dfrac{\rho}{L} x- \dfrac{\rho}{L} z, \\
+  \dfrac{d_z}{dt}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} \dfrac{1}{r_e} z.
+\end{dcases}
 \end{equation}
 
 Общий множитель $ \frac{1}{\rho C} = \frac{\rho}{L} = \sqrt{\frac{1}{LC}} $ в правых частях уравнений
@@ -804,22 +805,95 @@ F(z) =
 \]
 
 
-Идентифицируемый параметр
+Диапазон изменения идентифицируемого параметра
 $b \in [ 0.02; 4.2 ]$
+определяется, с одной стороны, собственным сопротивлением катушки индуктивности,
+с другой -- срывом генерации.
+
 
 %
 % Остальные параметры:
 % $ a = 30$, $b = 0.78$, $c=15$, $d=0.08$, $e=7.5$.
 
+% \begin{figure}[htb!]
+% \centerline{\includegraphics[width=0.5\textwidth]{p/cha/colp/colp_phase.pdf} }
+% \caption{Аттрактор системы Колпитца (\ref{atu:eq:colp})}
+% \label{atu:f:colp_phase}
+% \end{figure}
+
+На рис.~\ref{atu:f:colp_real_xzz}--\ref{atu:f:colp_model_f} предствлены как результаты реального эксперимента,
+так и данные, полученные в результате численного моделирования динамики системы (\ref{atu:eq:colp}).
+Представлены проекции аттракторов но плоскость $(x+z,z)$ (естественный вид для оциллографа),
+трёхмерный вид аттракторов, и спектры.
+На каждом рисунке представлено три режима: обычный, момент первого удвоения периода и хаотический режим.
+
+
 \begin{figure}[htb!]
-\centerline{\includegraphics[width=0.5\textwidth]{p/cha/colp/colp_phase.pdf} }
-\caption{Аттрактор системы Колпитца (\ref{atu:eq:colp})}
-\label{atu:f:colp_phase}
+ \centerline{
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m1_vv.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m2_vv.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m3_vv_ac.png}
+ }
+  \caption{Проекции аттракторов реальной системы Колпитца на плоскость $(x+z,z)$
+  для трёх режимов}
+  \label{atu:f:colp_real_xzz}
+\end{figure}
+
+\begin{figure}[htb!]
+ \centerline{
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_z_xpz_b=1x70.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_z_xpz_b=1x37.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_z_xpz_b=0x99.png}
+ }
+  \caption{Проекции аттракторов модели (\ref{atu:eq:colp}) системы Колпитца на плоскость $(x+z,z)$
+  для трёх режимов}
+  \label{atu:f:colp_model_xzz}
 \end{figure}
 
 
-Критерий
-$\overline{y^2}(t)$
+\begin{figure}[htb!]
+ \centerline{
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_xyz_b=1x70.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_xyz_b=1x37.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_0-p_xyz_b=0x99.png}
+ }
+  \caption{Аттрактороы модели (\ref{atu:eq:colp}) системы Колпитца для трёх режимов}
+  \label{atu:f:colp_model_xyz}
+\end{figure}
+
+\begin{figure}[htb!]
+ \centerline{
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m1_f.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m2_f.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_m3_f.png}
+ }
+  \caption{Спектры реальной системы Колпитца  для трёх режимов}
+  \label{atu:f:colp_real_f}
+\end{figure}
+
+\begin{figure}[htb!]
+ \centerline{
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_f-p_f_b=1x70.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_f-p_f_b=1x37.png}
+   \includegraphics[width=0.32\textwidth]{p/cha/colp/colp_f-p_f_b=0x99.png}
+ }
+  \caption{Спектры модели (\ref{atu:eq:colp}) системы Колпитца для трёх режимов}
+  \label{atu:f:colp_model_f}
+\end{figure}
+
+Сравнение результатов физического и численного моделирования позволяют сделать вывод
+о качественном подобии поведения реальной системы и модели.
+Тем не менее, величины параметра $b$, при которых получены
+рассматриваемые режимы, совпадают недостаточно точно.
+Для реальной системы значения параметра: $b = 1.06, \; 0.94, \; 0.90 $,
+а для модели: $b = 1.70, \; 1.34, \; 0.99 $.
+Скорее всего, это связано с грубостью модели (\ref{atu:eq:bjt_libear_model}) транзистора,
+и требует дальнейшего исследования.
+К сожалению, ограниченный набор данных, получаемых с осциллографа (8192 отсчёта) не позволяют
+получить достаточно подробный спектр реальной системы.
+
+% Критерий
+% $\overline{y^2}(t)$
 
 
 
