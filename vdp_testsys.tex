@@ -1,0 +1,36 @@
+
+\FloatBarrier
+\subsubsection{Система Ван-дер-Поля} % _VDP_
+
+\LinkRef{
+  vdp: ASAU-16, 17(alt), ITMM-2011
+}
+
+\begin{equation}
+ \ddot{x} + \varepsilon (1-x^2)  \dot{x} + \Omega_0^2 x  = u(t) .
+\label{atu:eq:vdp}
+\end{equation}
+
+\( u(t) = U_{in} \sin ( \omega_{in} t ) \),
+
+Идентифицируемый параметр:
+\( \varepsilon \in [1;2]  \)
+
+Остальные параметры:
+\(U_{in}=0.3\),
+\(\omega_{in}=0.2715\).
+
+
+\begin{figure}[htb!]
+\centerline{\includegraphics[width=0.5\textwidth]{p/cha/vdp_phase.pdf} }
+\caption{Фазовый портрет системы Ван-дер-Поля (\ref{atu:eq:vdp})}
+\label{atu:f:vdp_phase}
+\end{figure}
+
+Критерий:
+$\overline{T}$ + люфт + sign.
+
+Альтернативный критерий:
+$\overline{x^2}$
+
+

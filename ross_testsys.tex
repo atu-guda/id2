@@ -1,0 +1,33 @@
+
+\FloatBarrier
+\subsubsection{Система Рёсслера} % _ROSS_
+
+\LinkRef{
+  ross: ASAU-14. ISDMCI-2011, ISDMCI-2012
+}
+
+\begin{equation}
+\begin{cases}
+  \dot{x}  = -y - z  ,  \\
+  \dot{y}  = x + a y ,\\
+  \dot{z}  = b + z \cdot ( x-c ) .
+\end{cases}
+\label{atu:eq:rossler}
+\end{equation}
+
+Идентифицируемый параметр:
+$ c \in [2; 50] $, $c_0=5.88$.
+
+Остальные параметры:
+\( a \in (0, 0.35 ) \), $a_0=0.25$,
+\(b \in[0;4] \), $b_0=1$.
+
+\begin{figure}[htb!]
+\centerline{\includegraphics[width=0.6\textwidth]{p/cha/ross_phase3.pdf} }
+\caption{Аттрактор системы Рёсслера (\ref{atu:eq:rossler})}
+\label{atu:f:ross_phase}
+\end{figure}
+
+Критерий
+$ z_{\max}$, $ \overline{z} $.
+
