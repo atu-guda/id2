@@ -25,6 +25,8 @@
 \usepackage{placeins} % FloatBarrier
 \usepackage{siunitx}
 
+\usepackage[backend=biber]{biblatex}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
@@ -59,6 +61,8 @@
 
 \title{Идентификация хаотических систем}
 \author{А.И.~Гуда}
+
+\addbibresource{atuworks.bib}
 
 \hypersetup{
   pdftitle={\thetitle},
@@ -376,8 +380,7 @@ More: Eykhoff, Rastrigin.
 
 %Адаптация $\tau_q$ / просто $\tau$ от $x$.
 
-
-
+\printbibliography
 
 
 \end{document}
