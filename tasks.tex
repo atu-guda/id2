@@ -25,8 +25,8 @@
 \usepackage{placeins} % FloatBarrier
 \usepackage{siunitx}
 
-%\usepackage[backend=biber,sorting=none,bibstyle=gost-standard]{biblatex}
-\usepackage[backend=biber,sorting=none,maxnames=100]{biblatex}
+\usepackage[backend=biber,sorting=none,maxnames=100,bibstyle=gost-numeric,babel=other]{biblatex}
+%\usepackage[backend=biber,sorting=none,maxnames=100]{biblatex}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -65,6 +65,7 @@
 
 %\DeclareFieldFormat{titlecase}{xxx #1 xxx}
 \addbibresource{atuworks.bib}
+\addbibresource{artrefs.bib}
 
 \hypersetup{
   pdftitle={\thetitle},
@@ -87,6 +88,8 @@
 % \maketitle
 %{ \tiny \verb! ~/proj/id_data/text/tasks.tex! }
 { \tiny \currfilepath }
+
+\sloppy
 
 \tableofcontents
 
