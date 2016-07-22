@@ -17,6 +17,7 @@
 # *.eps
 # *.pdf
 tasks.pdf
+com_monog_atu.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

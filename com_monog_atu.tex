@@ -1,0 +1,97 @@
+\documentclass[a4paper,13pt,atutfonts]{cmonogra}
+
+
+\usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=25mm,lmargin=20mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
+
+%\usepackage{txfonts} % use before local fonts - only for math
+%\usepackage{amsfonts}
+%\usepackage{fouriernc}
+
+
+\input{commonsetup.tex}
+
+\input{tikzsetup.tex}
+
+\setstretch{1.2}
+
+\title{Название книги}
+\author{Коллективный автор}
+
+\addbibresource{atuworks.bib}
+\addbibresource{artrefs.bib}
+
+\hypersetup{
+  pdftitle={\thetitle},
+  pdfauthor={\theauthor},
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=brown
+}
+
+%\newcommand{\LinkRef}[1]{ \textit{\color{red}#1} }
+\newcommand{\LinkRef}[1]{}
+% \newcommand{\Cmt}[1]{ {\small\color{red}#1} }
+\newcommand{\Cmt}[1]{}
+
+\input{defs.tex}
+
+\pagestyle{stheadings}
+
+\begin{document}
+
+\sloppy
+
+\tableofcontents
+
+
+\MonoArticle{atu}{Идентификация хаотических систем}{А.И.~Гуда, А.И.~Михалёв}{Гуда~А.И., Михалёв~А.И.}
+
+\subsection*{Введение}
+
+фафыва фыа фыва фафа ф афва ф
+
+\subsection*{Мультимодельные методы идентификации}
+
+\subsubsection*{Критерии идентификации}
+
+
+
+\subsection*{Хаотические тестовые системы }
+
+% \input{lor_testsys.tex} % unfilled, but is near to good
+
+% \input{duff_testsys.tex}
+
+\input{chua_testsys.tex} % good
+
+% \input{ross_testsys.tex} % ??
+
+% \input{vdp_testsys.tex} % ??
+
+\input{colp_testsys.tex} % good
+
+% \input{deadvi_testsys.tex} %
+
+\input{spr_a_testsys.tex} % good
+
+\input{fric_testsys.tex}  % good
+
+% \input{relax_testsys.tex} % no id
+
+% \input{vglass_testsys.tex} %
+
+
+
+\subsection*{Выводы}
+
+Выводы.
+\label{e:atu}
+
+
+\printbibliography
+
+\FloatBarrier
+
+
+\end{document}
+
