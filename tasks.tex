@@ -25,7 +25,8 @@
 \usepackage{placeins} % FloatBarrier
 \usepackage{siunitx}
 
-\usepackage[backend=biber]{biblatex}
+%\usepackage[backend=biber,sorting=none,bibstyle=gost-standard]{biblatex}
+\usepackage[backend=biber,sorting=none,maxnames=100]{biblatex}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -62,6 +63,7 @@
 \title{Идентификация хаотических систем}
 \author{А.И.~Гуда}
 
+%\DeclareFieldFormat{titlecase}{xxx #1 xxx}
 \addbibresource{atuworks.bib}
 
 \hypersetup{
@@ -88,6 +90,7 @@
 
 \tableofcontents
 
+\nocite{*} % debug literature
 
 \section{Определение идентификации}
 
