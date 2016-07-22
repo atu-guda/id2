@@ -5,60 +5,28 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 
-
 \usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=20mm,lmargin=20mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
 
-\usepackage[nodisplayskipstretch]{setspace}
 \usepackage{amsmath}
-%\usepackage{mathenv}
-\usepackage{mathtools}
-\usepackage{indentfirst}
-\usepackage{titling}
-
-\usepackage{txfonts} % use before local fonts - only for math
+\usepackage{mathtext}
+%\usepackage{txfonts} % use before local fonts - only for math
+%\usepackage{amsfonts}
+\usepackage{fouriernc}
 %\usepackage{dejavu}
+
 \usepackage{atu_csb}
 \usepackage{atu_ofs}
 \usepackage{atu_nim}
+%\DeclareSymbolFont{T2Aletters}{T2A}{csb}{m}{it}
+%\DeclareSymbolFont{OT1letters}{T2A}{csb}{m}{it}
 
-\usepackage{graphicx}
-\usepackage{placeins} % FloatBarrier
-\usepackage{siunitx}
 
-\usepackage[backend=biber,sorting=none,maxnames=100,bibstyle=gost-numeric,babel=other]{biblatex}
-%\usepackage[backend=biber,sorting=none,maxnames=100]{biblatex}
-
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usetikzlibrary{patterns}
+\input{commonsetup.tex}
 
 \input{tikzsetup.tex}
-\usepackage[europeanresistors,americaninductors,siunitx,fulldiodes]{circuitikz}
-
-\usepackage[english,ukraineb,russian]{babel}
-%\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption} % format=hang|plain...
-
-\usepackage{currfile}
-
-\setcounter{topnumber}{3}
-\renewcommand\topfraction{.7}
-\setcounter{bottomnumber}{2}
-\renewcommand\bottomfraction{.6}
-\setcounter{totalnumber}{7}
-\renewcommand\textfraction{.1}
-\renewcommand\floatpagefraction{.5}
-\setcounter{dbltopnumber}{2}
-\renewcommand\dbltopfraction{.7}
-\renewcommand\dblfloatpagefraction{.6}
-
-\clubpenalty9500
-\widowpenalty9500%
 
 
-\newlength{\TW}
-\setlength{\TW}{0.01\textwidth}
-
-\DeclareMathOperator*{\sign}{sign}
+\setstretch{1.2}
 
 \title{Идентификация хаотических систем}
 \author{А.И.~Гуда}
@@ -75,10 +43,6 @@
   citecolor=brown
 }
 
-% \linespread{1.3} setspace must be better
-% \onehalfspacing
-\setstretch{1.2}
-
 \newcommand{\LinkRef}[1]{ \textit{\color{red}#1} }
 \newcommand{\Cmt}[1]{ {\small\color{red}#1} }
 
@@ -88,6 +52,10 @@
 % \maketitle
 %{ \tiny \verb! ~/proj/id_data/text/tasks.tex! }
 { \tiny \currfilepath }
+
+% \[
+%   \iint\limits_{яd}^{йr} f(x) Ы(x) dx .
+% \]
 
 \sloppy
 
@@ -224,7 +192,7 @@ More: Eykhoff, Rastrigin.
 априорные величины определяются на этапе постановки
 задачи идентификации. В первую очередь это
 параметры масштаба: допустимый диапазон
-изменения параметров \( \mathfrak{P}\),
+изменения параметров \( \mathbf{P}\),
 характерное время работы
 идентифицируемой системы, а также
 требуемая точность и скорость идентификации
