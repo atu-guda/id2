@@ -48,9 +48,9 @@ $V_b = V_{CC} \frac{R_1}{R_1+R_2}$,
 \begin{equation}
 \label{atu:eq:colp_phys}
 \begin{dcases}
-  C_1 \frac{dV_{1}}{dt}  = I_L - I_{CE} , \\
-  L   \frac{dI_L}{dt}    = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
-  C_2 \frac{dV_{2}}{dt}  = I_L - \frac{V_{2}}{R_e}.
+  C_1 \od{V_{1}}{t}  = I_L - I_{CE} , \\
+  L   \od{I_L}{t}    = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
+  C_2 \od{V_{2}}{t}  = I_L - \frac{V_{2}}{R_e}.
 \end{dcases}
 \end{equation}
 
@@ -109,9 +109,9 @@ $ \rho = \sqrt{L/C} $ имеет размерность сопротивлени
 \begin{equation}
 \label{atu:eq:colp_phys2}
 \begin{dcases}
-  \dfrac{d x}{dt}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} i_{ce} , \\
-  \dfrac{d y}{dt}  = \dfrac{\rho}{L} c    - \dfrac{\rho}{L} r_c y - \dfrac{\rho}{L} x- \dfrac{\rho}{L} z, \\
-  \dfrac{d_z}{dt}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} \dfrac{1}{r_e} z.
+  \od{x}{t}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} i_{ce} , \\
+  \od{y}{t}  = \dfrac{\rho}{L} c    - \dfrac{\rho}{L} r_c y - \dfrac{\rho}{L} x- \dfrac{\rho}{L} z, \\
+  \od{z}{t}  = \dfrac{1}{\rho C}  y - \dfrac{1}{\rho C} \dfrac{1}{r_e} z.
 \end{dcases}
 \end{equation}
 
@@ -128,9 +128,9 @@ $ T_s = \sqrt{L C} $.
 
 \[
   t_s = \frac{t}{T_s}; \quad
-  dt = T_s dt_s; \quad
-  \frac{d}{dt} = \frac{1}{T_s} \frac{d}{dt_s}; \quad
-  \frac{dx}{dt_s} \equiv \dot{x} = T_s \frac{dx}{dt} .
+  \mathrm{d}\, t = T_s \mathrm{d}\, t_s; \quad
+  \od{}{t}  = \frac{1}{T_s} \od{}{t_s}; \quad
+  \od{x}{t_s} \equiv \dot{x} = T_s \od{x}{t} .
 \]
 
 Поведение величины $I_{ce}$ достаточно хорошо описывает модель

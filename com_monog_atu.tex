@@ -10,7 +10,9 @@
 
 \setstretch{1.2}
 
-\title{Название книги}
+\input{defs.tex}
+
+\title{\bookname}
 \author{Коллективный автор}
 
 \addbibresource{atuworks.bib}
@@ -29,7 +31,6 @@
 % \newcommand{\Cmt}[1]{ {\small\color{red}#1} }
 \newcommand{\Cmt}[1]{}
 
-\input{defs.tex}
 
 \pagestyle{stheadings}
 
@@ -65,7 +66,7 @@
 один из простых видов критерия может быть задан так:
 
 \begin{equation}
-\frac{dq_{x^2}}{dt}
+\od{q_{x^2}}{t}
 =
 \frac{1}{\tau} \left( x^2(t) - q_{x^2}(t) \right)
 ,
