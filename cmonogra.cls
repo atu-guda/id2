@@ -3,22 +3,24 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{cmonogra}
               [2016/07/225 v0.1 atu  LaTeX document class for collective monography]
-\RequirePackage{mathtext}
-\RequirePackage[T1,T2A]{fontenc}
-\RequirePackage[unicode]{hyperref}
+%
+% - main packages
 \RequirePackage{cmap}
+\RequirePackage[TS1,T1,T2A]{fontenc}
+\RequirePackage[unicode]{hyperref}
 \RequirePackage[utf8]{inputenc}
 %
 \newcommand\@ptsize{}
-\newif\if@restonecol
-\newif\if@titlepage
-\@titlepagetrue
-\newif\if@openright
+% if-s
+\newif\if@restonecol \@restonecolfalse
+\newif\if@titlepage  \@titlepagefalse
+\newif\if@atutext    \@atutextfalse
+\newif\if@dejavu     \@dejavufalse
+\newif\if@droid      \@droidfalse
+\newif\if@paratype   \@paratypefalse
+\newif\if@fouriernc  \@fourierncfalse
 \newif\if@mainmatter \@mainmattertrue
-\newif\if@atutext
-\@atutextfalse
-\newif\if@atumath
-\@atumathfalse
+\newif\if@extrapkg   \@extrapkgtrue
 %
 \DeclareOption{a4paper}
    {\setlength\paperheight {297mm}%
@@ -39,13 +41,17 @@
 \DeclareOption{12pt}{\renewcommand\@ptsize{12}}
 \DeclareOption{13pt}{\renewcommand\@ptsize{13}}
 \DeclareOption{14pt}{\renewcommand\@ptsize{14}}
-\DeclareOption{atutfonts}{\@atutexttrue}
-\DeclareOption{atumfonts}{\@atumathtrue}
+\DeclareOption{atutext}{\@atutexttrue}
+\DeclareOption{dejavu}{\@dejavutrue}
+\DeclareOption{droid}{\@droidtrue}
+\DeclareOption{paratype}{\@paratypetrue}
+\DeclareOption{fouriernc}{\@fouriernctrue}
 \DeclareOption{draft}{\setlength\overfullrule{5pt}}
 \DeclareOption{final}{\setlength\overfullrule{0pt}}
 \DeclareOption{titlepage}{\@titlepagetrue}
 \DeclareOption{notitlepage}{\@titlepagefalse}
-\ExecuteOptions{a5paper,10pt,final}
+\DeclareOption{noextra}{\@extrapkgfalse}
+\ExecuteOptions{a4paper,12pt,final}
 \ProcessOptions
 
 \input{ts\@ptsize.clo}
@@ -57,46 +63,35 @@
 \@medpenalty  151
 \@highpenalty 301
 
-
+% special - before fonts
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+%
+\if@fouriernc % must be before fonts
+  \RequirePackage{fouriernc}
+\fi
+%
 \if@atutext
-  % atu: TMP: TODO:
-  %\RequirePackage{dejavu}
   \RequirePackage{atu_csb}
   \RequirePackage{atu_prg}
   \RequirePackage{atu_nim}
-  \DeclareSymbolFont{T2Aletters}{T2A}{csb}{m}{it}
-  \DeclareSymbolFont{TS1letters}{T2A}{csb}{m}{it}
 \fi
-
-%% test:
-%\if@atutext
-%  \RequirePackage{droid}
-%  % \RequirePackage{dejavu}
-%  % \DeclareSymbolFont{T2Aletters}{T2A}{csb}{m}{it}
-%\fi
-
-% test:
-%\if@atutext
-%  \RequirePackage{paratype}
-%  % \DeclareSymbolFont{T2Aletters}{T2A}{csb}{m}{it}
-%\fi
-
-\if@atumath
-  \RequirePackage{atulmath}
+%
+\if@dejavu
+  \RequirePackage{dejavu}
 \fi
+%
+\if@droid
+  \RequirePackage{droid}
+\fi
+%
+\if@paratype
+  \RequirePackage{paratype}
+\fi
+%
 
-% aux packages
+% aux packages 1
 \RequirePackage{fancyhdr}
-\RequirePackage{indentfirst}
-\RequirePackage{graphicx}
-\RequirePackage{amsmath}
-\RequirePackage[nodisplayskipstretch]{setspace}
-\RequirePackage{placeins} % FloatBarrier
-\RequirePackage{siunitx}
-\RequirePackage{titling}
-\RequirePackage{mathtools}
-\RequirePackage[english,ukraineb,russian]{babel}
-\RequirePackage{tikz}
 
 
 \setcounter{topnumber}{3}
@@ -111,7 +106,7 @@
 \renewcommand\dblfloatpagefraction{.6}
 
 \clubpenalty9500
-\widowpenalty9500%
+\widowpenalty9900%
 
 \newlength{\TW}
 \setlength{\TW}{0.01\textwidth}
@@ -614,6 +609,8 @@
    \buildrel{\lower2pt\hbox{$ \scriptstyle\frown $}}\over{#1}%
  }%
 }
+% for cyrillic chars in formulas
+\newcommand{\Mc}[1]{{\text{\it #1}}}
 
 %\renewcommand{\footnoterule}{}
 
@@ -622,6 +619,20 @@
 %        {\begin{list}{$\bullet$}{\setlength{\itemsep}{0cm}%
 %        \setlength{\parsep}{0cm}\setlength{\topsep}{2mm}\item[]}}{\end{list}}
 
+% aux packages 2
+\if@extrapkg
+  \RequirePackage{import}
+  \RequirePackage{bropd} % od, pd
+  \RequirePackage{indentfirst}
+  \RequirePackage{graphicx}
+  \RequirePackage[nodisplayskipstretch]{setspace} %setstretch
+  \RequirePackage{placeins} % FloatBarrier
+  \RequirePackage{siunitx}
+  \RequirePackage{titling}
+  \RequirePackage{mathtools}
+  \RequirePackage[english,ukraineb,russian]{babel}
+  \RequirePackage{tikz}
+\fi
 
 \sloppy
 
