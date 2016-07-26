@@ -623,6 +623,7 @@
 \if@extrapkg
   \RequirePackage{import}
   \RequirePackage{bropd} % od, pd
+  %\RequirePackage{commath} % od, pd
   \RequirePackage{indentfirst}
   \RequirePackage{graphicx}
   \RequirePackage[nodisplayskipstretch]{setspace} %setstretch

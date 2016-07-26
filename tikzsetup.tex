@@ -1,8 +1,19 @@
+\usepackage{blox}
+\usepackage[europeanresistors,americaninductors,siunitx,fulldiodes]{circuitikz}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+%\usepgflibrary{shapes.geometric}
+
 \tikzset{
   >=stealth,
   %semiRed/.style={fill=red,opacity=0.3,draw=black,thin},
   medline/.style={draw=black,line width=0.6pt},
+  medlinep/.style={draw=black,line width=0.6pt,->},
+  semiboldline/.style={draw=black,line width=1.2pt},
   boldline/.style={draw=black,line width=2.0pt},
   wire/.style={draw=black,line width=1.0pt},
   elelem/.style={draw=black,line width=1.5pt}
 }
+
