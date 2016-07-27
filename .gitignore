@@ -15,9 +15,9 @@
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-# *.pdf
-tasks.pdf
-com_monog_atu.pdf
+*.pdf
+#tasks.pdf
+#com_monog_atu.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

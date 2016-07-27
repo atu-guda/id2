@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{cmap}
+
+\usepackage[TS1,T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[unicode]{hyperref}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fouriernc}
+
+
+%\usepackage{dejavu}
+\usepackage{paratype}
+%\usepackage{droid}
+
+% \usepackage{atu_csb}
+% \usepackage{atu_prg}
+% \usepackage{atu_nim}
+
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[nodisplayskipstretch]{setspace} %setstretch
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage[english,ukraineb,russian]{babel}
+\usepackage{tikz}
+
+\newcommand{\Mc}[1]{{\text{\it #1}}}
+
+\input{tikzsetup.tex}
+
+\usepackage[english,ukraineb,russian]{babel}
+
+\title{Tikz figures test}
+\author{А.И.~Гуда}
+
+\begin{document}
+
+\begin{center}
+\Large{Tikz figures test}
+\end{center}
+
+Проверка tikz рисунков.
+
+\begin{figure}[h!]
+\begin{center}
+\input{f0.pgf}
+\end{center}
+\caption{Нулевая картинка}
+\label{atu:f:f0}
+\end{figure}
+
+И ещё.
+
+\begin{figure}[htb!]
+\begin{center}
+\input{agent1.pgf}
+\end{center}
+\caption{Поисковый агент, настраивающий параметр одной модели}
+\label{atu:f:agent1}
+\end{figure}
+
+
+\[
+  \int\limits_{a}^{b} \varepsilon(t)
+  =
+  \sum\limits_{a_w=-1}^{n} \sin\left(
+    \frac{ 1 + z_{a_w}^T + \aleph \hbar \Re - \nabla \mathbf{x} + \mathfrak{PZ} }
+         {\eta \cdot \theta \gamma \varepsilon \omega}
+  \right) \mathrm{d} x.
+\]
+
+
+\end{document}

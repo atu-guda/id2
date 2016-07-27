@@ -1,0 +1,57 @@
+% vi:syntax=tex
+\begin{tikzpicture}
+  \draw[hair,step=1.0] (0,-3) grid (12.0,3.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  \bXInput{U};
+  \bXLinkName[0.5]{U}{$u(t)$};
+  % --- M
+  \bXBlocL[2.0]{M}{$\mathbf{M}_i$}{U};
+   \fill[fill=red]      (M)        circle[radius=0.05];
+   \fill[fill=red]      (M.north)  circle[radius=0.05];
+   \fill[fill=blue]     (M.south)  circle[radius=0.05];
+   \fill[fill=green]    (M.east)   circle[radius=0.05];
+   \fill[fill=green!50] (M.west)   circle[radius=0.05];
+   \fill[fill=blue!50!black] (M.200)   circle[radius=0.05];
+   \fill[fill=green!50!red] (M.north west)   circle[radius=0.05];
+   \coordinate (X0) at (M.north west);
+   \draw[red,<-] (X0) -- ++(-1em,0);
+  % --- Q
+  \bXBloc[3.5]{Q}{$q(t)$}{M};
+  \path (Q.east) ++(0.0,-1.0em) coordinate (Qqm);
+  \path (Q.south west) ++(-0.3,-0.4) coordinate (BLKlb);
+  \bXLink[$x_i(t)$]{M}{Q};
+   \fill[fill=red]      (M-Q)        circle[radius=0.06];
+  % --- F
+  \bXBloc[2.5]{F}{$F(q_o,q_{mi})$}{Q};
+   \fill[fill=red]      (F)        circle[radius=0.05];
+   \fill[fill=green]    (F.west)   circle[radius=0.02];
+  \path (F.west) ++(0.0,-1.0em) coordinate (Fqm);
+   \fill[fill=green]    (Fqm)   circle[radius=0.02];
+  \path (F.west) ++(0.0,+1.0em) coordinate (Fqo);
+  \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
+   \fill[fill=green]    (Fqoi)   circle[radius=0.03];
+  \draw[medlinep] (Fqoi) |- (Fqo);
+  \node[below right] at (Fqoi) {$q_o(t)$};
+  \bXLink[$q_i(t)$]{Qqm}{Fqm};
+  %\draw[medlinep] (Qqm) -- (Fqm);
+  %\fill(Fqm) circle[radius=0.05];
+  % --- P
+  \bXBloc[2]{P}{$P$}{F};
+  \draw[boldline,<->] (P.north) -- +(0,0.8);
+  \path (P.north east) ++(0.1,+0.4) node (BLKrt) {};
+  \bXLink[$F_i(t)$]{F}{P};
+  % -- output
+  \bXOutput[2.5]{Po}{P};
+  \bXLink[$p_i(t)$]{P}{Po};
+  \fill(Po) circle[radius=0.05];
+  \draw[medlinep] (Po) -- +(0.5,0);
+  \bXLineStyle{semiboldline};
+  %\bXReturn{Po}{M.290}{$p_i(t)$};
+  \bXReturn{Po}{M}{$p_i(t)$};
+  % -- block
+  \draw[subelem] (BLKlb) |- (BLKrt) |- (BLKlb);
+  \bXStyleBlocDefault;
+  \bXDefaultLineStyle;
+  %
+\end{tikzpicture}
