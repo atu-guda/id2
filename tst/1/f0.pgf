@@ -3,10 +3,12 @@
   \draw[hair,step=1.0] (0,-3) grid (12.0,3.0);
   \bXStyleBloc{semiboldline,inner sep=2pt};
   \bXLineStyle{medline};
+  % --- U
   \bXInput{U};
-  \bXLinkName[0.5]{U}{$u(t)$};
+  %\bXLinkName[0.5]{U}{$u(t)$};
   % --- M
   \bXBlocL[2.0]{M}{$\mathbf{M}_i$}{U};
+  \bXLink[$u(t)$]{U}{M};
    \fill[fill=red]      (M)        circle[radius=0.05];
    \fill[fill=red]      (M.north)  circle[radius=0.05];
    \fill[fill=blue]     (M.south)  circle[radius=0.05];
@@ -42,16 +44,17 @@
   \path (P.north east) ++(0.1,+0.4) node (BLKrt) {};
   \bXLink[$F_i(t)$]{F}{P};
   % -- output
-  \bXOutput[2.5]{Po}{P};
+  \bXOutput[2.8]{Po}{P};
   \bXLink[$p_i(t)$]{P}{Po};
-  \fill(Po) circle[radius=0.05];
-  \draw[medlinep] (Po) -- +(0.5,0);
+  \bXOutput[1.0]{Por}{P};
+  \fill(Por) circle[radius=0.05];
   \bXLineStyle{semiboldline};
-  %\bXReturn{Po}{M.290}{$p_i(t)$};
-  \bXReturn{Po}{M}{$p_i(t)$};
+  \bXReturn{Por}{M}{$p_i(t)$};
   % -- block
   \draw[subelem] (BLKlb) |- (BLKrt) |- (BLKlb);
   \bXStyleBlocDefault;
   \bXDefaultLineStyle;
+  %
+  \TikzAddPadding
   %
 \end{tikzpicture}

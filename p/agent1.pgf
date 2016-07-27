@@ -2,41 +2,41 @@
 \begin{tikzpicture}
   \bXStyleBloc{semiboldline,inner sep=2pt};
   \bXLineStyle{medline};
+  % --- U
   \bXInput{U};
-  \bXLinkName[0.4]{U}{$u(t)$};
   % --- M
   \bXBlocL[2.0]{M}{$\mathbf{M}_i$}{U};
+  \bXLink[$u(t)$]{U}{M};
   % --- Q
   \bXBloc[3.5]{Q}{$q(t)$}{M};
-  \path (Q.east) ++(-0.2,-0.4) node (Qqm) {};
-  \path (Q.south west) ++(-0.3,-0.4) node (BLKlb) {};
+  \path (Q.east) ++(0.0,-1.0em) coordinate (Qqm);
+  \path (Q.south west) ++(-0.3,-0.4) coordinate (BLKlb);
   \bXLink[$x_i(t)$]{M}{Q};
   % --- F
   \bXBloc[2.5]{F}{$F(q_o,q_{mi})$}{Q};
-  \path (F.west) ++(+0.2,-0.4) node (Fqm) {};
-  \path (F.west) ++(+0.2,+0.4) node (Fqo) {};
-  \path (Fqo) ++(-1.0,+1.2) node (Fqoi) {};  % external input
+  \path (F.west) ++(0.0,-1.0em) coordinate (Fqm);
+  \path (F.west) ++(0.0,+1.0em) coordinate (Fqo);
+  \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
   \draw[medlinep] (Fqoi) |- (Fqo);
-  \draw[boldline,<->] (F.north) -- +(0,0.8);
   \node[below right] at (Fqoi) {$q_o(t)$};
   \bXLink[$q_i(t)$]{Qqm}{Fqm};
-  %\fill(Fqm) circle[radius=0.05];
   % --- P
   \bXBloc[2]{P}{$P$}{F};
+  \draw[boldline,<->] (P.north) -- +(0,0.8);
   \path (P.north east) ++(0.1,+0.4) node (BLKrt) {};
   \bXLink[$F_i(t)$]{F}{P};
   % -- output
-  \bXOutput[2.5]{Po}{P};
+  \bXOutput[2.8]{Po}{P};
   \bXLink[$p_i(t)$]{P}{Po};
-  \fill(Po) circle[radius=0.05];
-  \draw[medlinep] (Po) -- +(0.5,0);
+  \bXOutput[1.0]{Por}{P};
+  \fill(Por) circle[radius=0.05];
   \bXLineStyle{semiboldline};
-  %\bXReturn{Po}{M.290}{$p_i(t)$};
-  \bXReturn{Po}{M}{$p_i(t)$};
-  %\draw[shift=(F.160)] plot[mark=*] coordinates{(0,0)};
+  \bXReturn{Por}{M}{$p_i(t)$};
   % -- block
-  \draw[dashed,line width=0.6pt] (BLKlb) |- (BLKrt) |- (BLKlb);
+  \draw[subelem] (BLKlb) |- (BLKrt) |- (BLKlb);
   \bXStyleBlocDefault;
   \bXDefaultLineStyle;
+  %
+  \TikzAddPadding
   %
 \end{tikzpicture}

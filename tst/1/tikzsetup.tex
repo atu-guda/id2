@@ -5,8 +5,11 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
 %\usepgflibrary{shapes.geometric}
+\usetikzlibrary{external}
+
 
 \definecolor{haircolor}{rgb}{0.7,0.7,1.0}
+\newcommand{\TikzAddPadding}{\path (current bounding box.north east) ++(+0.1,+0.1); \path (current bounding box.south west) ++(-0.1,-0.1);}
 
 \tikzset{
   >=stealth,
