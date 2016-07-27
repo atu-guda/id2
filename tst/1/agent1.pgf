@@ -8,7 +8,7 @@
   \bXBlocL[2.0]{M}{$\mathbf{M}_i$}{U};
   \bXLink[$u(t)$]{U}{M};
   % --- Q
-  \bXBloc[3.5]{Q}{$q(t)$}{M};
+  \bXBloc[3.5]{Q}{$q$}{M};
   \path (Q.east) ++(0.0,-1.0em) coordinate (Qqm);
   \path (Q.south west) ++(-0.3,-0.4) coordinate (BLKlb);
   \bXLink[$x_i(t)$]{M}{Q};
@@ -18,11 +18,11 @@
   \path (F.west) ++(0.0,+1.0em) coordinate (Fqo);
   \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
   \draw[medlinep] (Fqoi) |- (Fqo);
-  \node[below right] at (Fqoi) {$q_o(t)$};
+  \node[below right] at (Fqoi) {$q_o(t) \qquad A_i$};
   \bXLink[$q_i(t)$]{Qqm}{Fqm};
   % --- P
   \bXBloc[2]{P}{$P$}{F};
-  \draw[boldline,<->] (P.north) -- +(0,0.8);
+  \draw[infoline,<->] (P.north) -- +(0,0.8);
   \path (P.north east) ++(0.1,+0.4) node (BLKrt) {};
   \bXLink[$F_i(t)$]{F}{P};
   % -- output
