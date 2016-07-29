@@ -1,10 +1,45 @@
-Major:
-0. More criterions
-1. Better tactics.
-2. Stategy / adoptation
-3. Real objects
+# Major tasks
+ 0. More criterions
+ 1. Better tactics.
+ 2. Strategy / adaptation
+ 3. Real objects
+
+## Definition
+  Compare with classic.
+  Physics.
+
+## Object + criterion properties.
+ * parameter ranges
+ * criterion range
+ * time based values
+ * disturbance: inner, external, (T).
+ * q(p) complexity
+ * q reaction to q(T) shift
+
+### Information
+
+### Better names for methods.
+ * Number of dimensions:
+ * Number models total/per dimension.
+ * Models per agent.
+ * Quality function name.
+ * Agent tactics name.
+ * Adaptation + combine name.
+
+Compare methods: mp5 with u2, x2, genetic ...
+
+### Criterions:
+  Use Sprott A to check x,vy measure methods.
+
+# Real:
+  Colpitts:
+    - need better BJT model;
+    - PCB;
+    - oscill or my probe;
+    - criterion hardware realization
+  Friction: printer based
+  Tank: gyro, accel, compass + external.
+  Vibration - acoustics stand
+  Requirements: my probe, interface (HID-alike, joystick, some existent)
 
 
-Object + criterion properties.
-Better names for methods.
-Compare mp5 with u2, x2.
