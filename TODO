@@ -29,7 +29,10 @@
 Compare methods: mp5 with u2, x2, genetic ...
 
 ### Criterions:
-  Use Sprott A to check x,vy measure methods.
+  Use Sprott A to check x,vy measure methods. -- GOOD.
+  Lorenz - Good,
+  Rossler - near to good (pulses),
+  Colpitts - good,
 
 # Real:
   Colpitts:
@@ -42,4 +45,4 @@ Compare methods: mp5 with u2, x2, genetic ...
   Vibration - acoustics stand
   Requirements: my probe, interface (HID-alike, joystick, some existent)
 
-
+% vim:ft=markdown
