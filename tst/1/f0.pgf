@@ -1,6 +1,6 @@
 % vi:syntax=tex
 \begin{tikzpicture}
-  \draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
+  %\draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
   \bXStyleBloc{semiboldline,inner sep=2pt};
   \bXLineStyle{medline};
   % --- U

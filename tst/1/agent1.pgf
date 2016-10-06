@@ -19,7 +19,7 @@
   \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
   \draw[medlinep] (Fqoi) |- (Fqo);
   \node[below right] at (Fqoi) {$q_o(t) \qquad A_i$};
-  \bXLink[$q_i(t)$]{Qqm}{Fqm};
+  \bXLink[$q_{mi}(t)$]{Qqm}{Fqm};
   % --- P
   \bXBloc[2]{P}{$P$}{F};
   \draw[infoline,<->] (P.north) -- +(0,0.8);
