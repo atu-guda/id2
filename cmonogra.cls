@@ -7,7 +7,7 @@
 % - main packages
 \RequirePackage{cmap}
 \RequirePackage[TS1,T1,T2A]{fontenc}
-\RequirePackage[unicode]{hyperref}
+\RequirePackage[pdftex,unicode,bookmarks]{hyperref}
 \RequirePackage[utf8]{inputenc}
 %
 \newcommand\@ptsize{}
@@ -28,6 +28,9 @@
 \DeclareOption{a5paper}
    {\setlength\paperheight {210mm}%
     \setlength\paperwidth  {148mm}}
+\DeclareOption{b5paper}
+   {\setlength\paperheight {250mm}%
+    \setlength\paperwidth  {176mm}}
 \DeclareOption{letterpaper}
    {\setlength\paperheight {11in}%
     \setlength\paperwidth  {8.5in}}
@@ -96,8 +99,8 @@
 
 \setcounter{topnumber}{3}
 \renewcommand\topfraction{.7}
-\setcounter{bottomnumber}{2}
-\renewcommand\bottomfraction{.6}
+\setcounter{bottomnumber}{3}
+\renewcommand\bottomfraction{.7}
 \setcounter{totalnumber}{7}
 \renewcommand\textfraction{.1}
 \renewcommand\floatpagefraction{.5}
@@ -105,11 +108,11 @@
 \renewcommand\dbltopfraction{.7}
 \renewcommand\dblfloatpagefraction{.6}
 
-\clubpenalty9500
+\clubpenalty9900
 \widowpenalty9900%
 
 \newlength{\TW}
-\setlength{\TW}{0.01\textwidth}
+\setlength{\TW}{0.01\textwidth} % re-set after geometry
 
 
 \def\ps@headings{%
@@ -132,7 +135,7 @@
     \let\chaptermark\@gobble
     \let\sectionmark\@gobble
     }
-% atu: ST header and footer
+% atu: local header and footer
 \def\headtext{}
 \def\stheadrulewidth{0.5pt}
 \def\stheadruleskip{0.8\baselineskip}
@@ -149,18 +152,22 @@
 
 \newcommand*\chaptermark[1]{}
 \setcounter{secnumdepth}{2}
-\newcounter {part}
-\newcounter {chapter}
-\newcounter {section}[chapter]
-\newcounter {subsection}[section]
-\newcounter {subsubsection}[subsection]
-\newcounter {paragraph}[subsubsection]
-\newcounter {subparagraph}[paragraph]
+\newcounter{part}
+\setcounter{part}{0}
+\newcounter{chapter}
+\setcounter{chapter}{0}
+\newcounter{section}[chapter]
+\setcounter{section}{0}
+\newcounter{subsection}[section]
+\newcounter{subsubsection}[subsection]
+\newcounter{paragraph}[subsubsection]
+\newcounter{subparagraph}[paragraph]
 \renewcommand \thepart {\@Roman\c@part}
 \renewcommand \thechapter {\@arabic\c@chapter}
 %\renewcommand \thesection {\thechapter.\@arabic\c@section}
 %\renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}
 \renewcommand \thesection {}
+%\renewcommand \thesection {\@arabic\c@section}
 \renewcommand\thesubsection   {\@arabic\c@subsection}
 \renewcommand\thesubsubsection{\thesubsection .\@arabic\c@subsubsection}
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
@@ -218,7 +225,7 @@
 \renewcommand\p@enumii{\theenumi}
 \renewcommand\p@enumiii{\theenumi(\theenumii)}
 \renewcommand\p@enumiv{\p@enumiii\theenumiii}
-\newcommand\labelitemi{\textbullet}
+\newcommand\labelitemi{\textbullet} % TODO: swap?
 \newcommand\labelitemii{\normalfont\bfseries \textendash}
 \newcommand\labelitemiii{\textasteriskcentered}
 \newcommand\labelitemiv{\textperiodcentered}
@@ -341,30 +348,8 @@
     \@starttoc{toc}%
     }
 
-% between authors and title
-\newlength\authorskip
-\setlength\authorskip{0.4ex plus 0.3ex minus 0.2ex}
 
-% between authors in author list
-\newlength\authorlistskip
-\setlength\authorlistskip{0.8ex plus 0.3ex minus 0.2ex}
 
-% 'chapter' line in contents
-\newcommand*\l@chapter[2]{%
-  \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip\authorskip
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-%      \parindent \z@ \rightskip \@pnumwidth
-%      \parfillskip -\@pnumwidth
-      \leavevmode 
-%      \advance\leftskip\@tempdima
-%      \hskip -\leftskip
-      #1 \hfill \par
-      \penalty\@highpenalty
-    \endgroup
-  \fi}
 
 %\newcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
 \newcommand*\l@section{\@dottedtocline{1}{-\parindent}{2.3em}}
@@ -507,6 +492,17 @@
        {\protected@xdef\@thefnmark{~}%
     \@footnotetext}}
 
+% centering for table cell
+\newcommand{\Ccell}[1]{%
+  \hspace{1pt} \hfill {#1} \hfill \hspace{1pt}
+}
+
+% link to left for table cell
+\newcommand{\Lcell}[1]{%
+  \raggedright #1
+}
+
+
 % make annotation before article: \annota{title}{text}
 \newcommand{\annota}[2]{%
 \begin{quotation}
@@ -531,9 +527,9 @@
   \annota{\CYRA\cyrn\cyro\cyrt\cyra\cyrc\cyrii\cyrya}{#1}
 }
 
-% make English annotation before article: \annotaEn{text}
+% make English annotation before article: \annotaEn{text} TODO: remove from here!
 \newcommand{\annotaEn}[1]{%
-  \annota{Annotation} {#1}
+  \annota{Annotation}{#1}
 }
 
 % make keywords before article: \keywo{title}{text}
@@ -557,7 +553,7 @@
   \keywo{\CYRK\cyrl\cyryu\cyrch\cyro\cyrv\cyrii{} \cyrs\cyrl\cyro\cyrv\cyra}{#1}
 }
 
-% make Ukrainean keywords before article: \keywoEn{text}
+% make English keywords before article: \keywoEn{text}
 \newcommand{\keywoEn}[1]{%
   \keywo{Keywords}{#1}
 }
@@ -581,22 +577,36 @@
 
 \newcommand{\LitXX}{\subsection*{\refname}}
 
+\newcommand{\CurrentTitle}{~}
+\newcommand{\CurrentAuthors}{~}
+
+\newlength{\ArtTOCskip}
+\setlength{\ArtTOCskip}{1.0ex}
+
 % artice head: {key}{Title}{authors}{authorstoc}
 \newcommand{\MonoArticle}[4]{%
   \clearpage
+  ~
+  \vspace{1ex}
   \authors{#3}
-  \label{s:#1}
   \authorstoc{#4}
-  \section*{#2}
+  %\section*{#2}
+  \section{#2}
+  \label{s:#1}
+  %\addtocounter{section}{1}
   \setcounter{figure}{0}
   \setcounter{table}{0}
   \setcounter{equation}{0}
-  \addtocontents{toc}{
-    \noindent{}
-    \protect\parbox[b]{0.93\textwidth}{#2\dotfill}
-    \dotfill\pageref{s:#1}
-    \par
-  }
+  \renewcommand{\CurrentTitle}{#2}
+  \renewcommand{\CurrentAuthors}{#3}
+  % \addtocontents{toc}{
+  %   \vspace{\ArtTOCskip}
+  %   \noindent{}
+  %   \protect\parbox[b]{0.93\textwidth}{#2\dotfill}
+  %   \hspace{-0.02\textwidth}
+  %   \protect\parbox[b]{0.07\textwidth}{\dotfill\pageref{s:#1}}
+  %   \par
+  % }
 }
 
 % misc math commands
@@ -612,6 +622,21 @@
 % for cyrillic chars in formulas
 \newcommand{\Mc}[1]{{\text{\it #1}}}
 
+% double over/under line [+ bold]
+\newcommand{\UUB}[1]{
+  {\underline{\underline{\mathbf{#1}}}}
+}
+\newcommand{\OOB}[1]{
+  {\overline{\overline{\mathbf{#1}}}}
+}
+\newcommand{\UUL}[1]{
+  {\underline{\underline{#1}}}
+}
+\newcommand{\OOV}[1]{
+  {\overline{\overline{#1}}}
+}
+
+
 %\renewcommand{\footnoterule}{}
 
 %\setlength{\topsep}{0.2ex}
@@ -623,6 +648,7 @@
 \if@extrapkg
   \RequirePackage{import}
   \RequirePackage{bropd} % od, pd
+  \RequirePackage{comment}
   %\RequirePackage{commath} % od, pd
   \RequirePackage{indentfirst}
   \RequirePackage{graphicx}
@@ -631,9 +657,14 @@
   \RequirePackage{siunitx}
   \RequirePackage{titling}
   \RequirePackage{mathtools}
+  \RequirePackage{arydshln}
   \RequirePackage[english,ukraineb,russian]{babel}
   \RequirePackage{tikz}
 \fi
+
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
 
 \sloppy
 
