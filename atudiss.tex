@@ -1,8 +1,9 @@
-\documentclass[a4paper,paratype,14pt,fouriernc]{dissatu}
+\documentclass[13pt]{dissatu}
+%\documentclass[a4paper,paratype,14pt,fouriernc]{dissatu}
 % atutext dejavu droid paratype fouriernc
 
 \usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=25mm,lmargin=25mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
-
+\setlength{\TW}{0.01\textwidth} % after geometry!
 
 %\input{commonsetup.tex}
 \usepackage[backend=biber,sorting=none,maxnames=3,bibstyle=gost-numeric]{biblatex}
@@ -11,17 +12,21 @@
 
 \setstretch{1.2}
 
-\input{defs.tex}
+%\input{defs.tex}
+
+\newcommand{\bookname}{``Диссертация''}
+\newcommand{\bookyear}{2016}
+\newcommand{\dissauthor}{Гуда~А.И.}
 
 \title{\bookname}
-\author{Гуда~А.И.}
+\author{\dissauthor}
 
 \addbibresource{atuworks.bib}
 \addbibresource{artrefs.bib}
 
 \hypersetup{
-  pdftitle={\thetitle},
-  pdfauthor={\theauthor},
+  pdftitle={\bookname},
+  pdfauthor={\dissauthor},
   colorlinks=true,
   linkcolor=blue,
   citecolor=brown
@@ -58,7 +63,7 @@
 учитывающего динамику системы и зависящего от идентифицируемых параметров.
 
 
-\section*{Критерии идентификации}
+\section{Критерии идентификации}
 
 Как уже было отмечено, для успешности процесса идентификации требуется
 построение различных интегральных критериев, зависящих,
@@ -81,7 +86,7 @@
 Это далеко не единственный вид определения критерия, но в данной работе предлагается именно он,
 и последующие критерием будут использовать (\ref{atu:eq:q}).
 
-\subsection*{Мультимодельные методы идентификации}
+\section{Мультимодельные методы идентификации}
 
 Процесс поисковой идентификации заключается в настройке параметров одной
 или нескольких моделей, анализу критериев идентификации
@@ -361,7 +366,7 @@ $i_m$ обозначим как $p_{ee}$ и будем считать
 программное средство ``qontrol''.
 
 
-\subsection*{Тестовые хаотические системы }
+\section{Тестовые хаотические системы }
 
 % \input{lor_testsys.tex} % unfilled, but is near to good
 
@@ -387,7 +392,7 @@ $i_m$ обозначим как $p_{ee}$ и будем считать
 
 
 
-\subsection*{Выводы}
+\section{Выводы}
 
 В целом, применение рассмотренных видов критериев, в совокупности
 с мультимодельными (мультиагентными) методами поисковой идентификации

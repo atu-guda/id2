@@ -54,7 +54,7 @@
 \DeclareOption{titlepage}{\@titlepagetrue}
 \DeclareOption{notitlepage}{\@titlepagefalse}
 \DeclareOption{noextra}{\@extrapkgfalse}
-\ExecuteOptions{a4paper,12pt,final}
+\ExecuteOptions{a4paper,paratype,14pt,fouriernc,final}
 \ProcessOptions
 
 \input{ts\@ptsize.clo}
@@ -145,8 +145,8 @@
 \def\ps@stheadings{%
   \def\@oddhead{\hbox to \textwidth{\hfil\headtext\hfil}{\kern-\textwidth}{\hfil \vrule  height -1.5pt depth 2.1pt width 0.998\textwidth}}%
   \def\@evenhead{\hbox to \textwidth{\hfil\headtext\hfil}{\kern-\textwidth}{\hfil \vrule  height -1.5pt depth 2.1pt width 0.998\textwidth}}%
-  \def\@oddfoot{\issn\hfil\thepage}%
-  \def\@evenfoot{\thepage\hfil\issn}%
+  \def\@oddfoot{\hfil\thepage}%
+  \def\@evenfoot{\thepage\hfil}%
 }
 
 
@@ -454,14 +454,9 @@
 \onecolumn
 
 % atu added
-% new article starts with udk, not section
 \newcommand{\udk}[1]{%
-  {%
-    \addcontentsline{toc}{subparagraph}{#1}%
-    \clearpage%
-    \noindent%
-    \flushleft {#1}\par\vspace{-1.6ex}%
-  }%
+  \noindent%
+  \flushleft {#1}\par\vspace{-1.6ex}%
 }
 %
 % udk in referats
@@ -558,56 +553,11 @@
   \keywo{Keywords}{#1}
 }
 
-
-%  authors in top of article
-\newcommand{\authors}[1]{%
-  {\flushright #1\par}%
-  \footnotetextnm{\small\vspace{-5ex}\copyright{}~{#1},~\bookyear}%
-}
-
-% add authors to toc
-\newcommand{\authorstoc}[1]{%
-  \addtocontents{toc}{
-    \vspace{\authorskip}\noindent{}\;
-    \protect\parbox[b]{0.85\textwidth}{\textit{#1}}
-    \par
-    \addpenalty{\@highpenalty}%
-  }
-}
-
-\newcommand{\LitXX}{\subsection*{\refname}}
-
 \newcommand{\CurrentTitle}{~}
 \newcommand{\CurrentAuthors}{~}
 
 \newlength{\ArtTOCskip}
 \setlength{\ArtTOCskip}{1.0ex}
-
-% artice head: {key}{Title}{authors}{authorstoc}
-\newcommand{\MonoArticle}[4]{%
-  \clearpage
-  ~
-  \vspace{1ex}
-  \authors{#3}
-  \authorstoc{#4}
-  %\section*{#2}
-  \section{#2}
-  \label{s:#1}
-  %\addtocounter{section}{1}
-  \setcounter{figure}{0}
-  \setcounter{table}{0}
-  \setcounter{equation}{0}
-  \renewcommand{\CurrentTitle}{#2}
-  \renewcommand{\CurrentAuthors}{#3}
-  % \addtocontents{toc}{
-  %   \vspace{\ArtTOCskip}
-  %   \noindent{}
-  %   \protect\parbox[b]{0.93\textwidth}{#2\dotfill}
-  %   \hspace{-0.02\textwidth}
-  %   \protect\parbox[b]{0.07\textwidth}{\dotfill\pageref{s:#1}}
-  %   \par
-  % }
-}
 
 % misc math commands
 \DeclareMathOperator*{\sign}{sign}
@@ -620,21 +570,7 @@
  }%
 }
 % for cyrillic chars in formulas
-\newcommand{\Mc}[1]{{\text{\it #1}}}
-
-% double over/under line [+ bold]
-\newcommand{\UUB}[1]{
-  {\underline{\underline{\mathbf{#1}}}}
-}
-\newcommand{\OOB}[1]{
-  {\overline{\overline{\mathbf{#1}}}}
-}
-\newcommand{\UUL}[1]{
-  {\underline{\underline{#1}}}
-}
-\newcommand{\OOV}[1]{
-  {\overline{\overline{#1}}}
-}
+%\newcommand{\Mc}[1]{{\text{\it #1}}}
 
 
 %\renewcommand{\footnoterule}{}
@@ -655,9 +591,9 @@
   \RequirePackage[nodisplayskipstretch]{setspace} %setstretch
   \RequirePackage{placeins} % FloatBarrier
   \RequirePackage{siunitx}
-  \RequirePackage{titling}
+  %\RequirePackage{titling}
   \RequirePackage{mathtools}
-  \RequirePackage{arydshln}
+  %\RequirePackage{arydshln}
   \RequirePackage[english,ukraineb,russian]{babel}
   \RequirePackage{tikz}
 \fi
