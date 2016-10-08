@@ -84,3 +84,8 @@
 
 *.zip
 
+# misc
+*.dpth
+*.md5
+*.auxlock
+

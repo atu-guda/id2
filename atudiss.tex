@@ -1,11 +1,11 @@
-\documentclass[a4paper,paratype,13pt,fouriernc]{cmonogra}
+\documentclass[a4paper,paratype,14pt,fouriernc]{dissatu}
 % atutext dejavu droid paratype fouriernc
 
-\usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=25mm,lmargin=20mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
+\usepackage[verbose,dvips,a4paper,tmargin=20mm,bmargin=25mm,lmargin=25mm,rmargin=20mm,headsep=4pt,includeheadfoot]{geometry}
 
 
 %\input{commonsetup.tex}
-\usepackage[backend=biber,sorting=none,maxnames=100,bibstyle=gost-numeric]{biblatex}
+\usepackage[backend=biber,sorting=none,maxnames=3,bibstyle=gost-numeric]{biblatex}
 
 \input{tikzsetup.tex}
 
@@ -42,9 +42,8 @@
 
 
 % ----------------------------------------------------------------------------------------------------
-\MonoArticle{atu}{Оценивание эффективности применения интегральных критериев в задачах параметрической идентификации хаотических систем}{А.И.~Гуда, А.И.~Михалёв}{Гуда~А.И., Михалёв~А.И.}
 
-\subsection*{Введение}
+\section*{Введение}
 
 Синтез систем идентификации для сложных нелинейных динамических систем
 был и остаётся сложной задачей. Невозможность определения
@@ -59,7 +58,7 @@
 учитывающего динамику системы и зависящего от идентифицируемых параметров.
 
 
-\subsection*{Критерии идентификации}
+\section*{Критерии идентификации}
 
 Как уже было отмечено, для успешности процесса идентификации требуется
 построение различных интегральных критериев, зависящих,
@@ -370,21 +369,21 @@ $i_m$ обозначим как $p_{ee}$ и будем считать
 
 \input{chua_testsys.tex} % good
 
-% \input{ross_testsys.tex} % ??
+\input{ross_testsys.tex} % ??
 
-% \input{vdp_testsys.tex} % ??
+\input{vdp_testsys.tex} % ??
 
 \input{colp_testsys.tex} % good
 
-% \input{deadvi_testsys.tex} %
+\input{deadvi_testsys.tex} %
 
 \input{spr_a_testsys.tex} % good
 
 \input{fric_testsys.tex}  % good
 
-% \input{relax_testsys.tex} % no id
+\input{relax_testsys.tex} % no id
 
-% \input{vglass_testsys.tex} %
+\input{vglass_testsys.tex} %
 
 
 
