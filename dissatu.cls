@@ -498,67 +498,6 @@
 }
 
 
-% make annotation before article: \annota{title}{text}
-\newcommand{\annota}[2]{%
-\begin{quotation}
-  { \fontfamily{ofs} \small
-  \textit{#1:} {#2}
-  }
-\end{quotation}
-}
-
-% make current language annotation before article: \annotaXX{text}
-\newcommand{\annotaXX}[1]{%
-  \annota{\abstractname}{#1}
-}
-
-% make russian annotation before article: \annotaRu{text}
-\newcommand{\annotaRu}[1]{%
-  \annota{\CYRA\cyrn\cyrn\cyro\cyrt\cyra\cyrc\cyri\cyrya}{#1}
-}
-
-% make Ukrainean annotation before article: \annotaUk{text}
-\newcommand{\annotaUk}[1]{%
-  \annota{\CYRA\cyrn\cyro\cyrt\cyra\cyrc\cyrii\cyrya}{#1}
-}
-
-% make English annotation before article: \annotaEn{text} TODO: remove from here!
-\newcommand{\annotaEn}[1]{%
-  \annota{Annotation}{#1}
-}
-
-% make keywords before article: \keywo{title}{text}
-\newcommand{\keywo}[2]{%
-\vspace{-2ex}
-\begin{quotation}
-  { \fontfamily{ofs} \small
-  \textit{#1:} {#2}
-  }
-\end{quotation}
-}
-
-
-% make russian keywords before article: \keywoRu{text}
-\newcommand{\keywoRu}[1]{%
-  \keywo{\CYRK\cyrl\cyryu\cyrch\cyre\cyrv\cyrery\cyre{} \cyrs\cyrl\cyro\cyrv\cyra}{#1}
-}
-
-% make Ukrainean keywords before article: \keywoUk{text}
-\newcommand{\keywoUk}[1]{%
-  \keywo{\CYRK\cyrl\cyryu\cyrch\cyro\cyrv\cyrii{} \cyrs\cyrl\cyro\cyrv\cyra}{#1}
-}
-
-% make English keywords before article: \keywoEn{text}
-\newcommand{\keywoEn}[1]{%
-  \keywo{Keywords}{#1}
-}
-
-\newcommand{\CurrentTitle}{~}
-\newcommand{\CurrentAuthors}{~}
-
-\newlength{\ArtTOCskip}
-\setlength{\ArtTOCskip}{1.0ex}
-
 % misc math commands
 \DeclareMathOperator*{\sign}{sign}
 \newcommand\dLsh{\hbox{\raisebox{-1ex}{$\leftarrow$}} \mspace{-4mu}\vert}
@@ -573,12 +512,6 @@
 %\newcommand{\Mc}[1]{{\text{\it #1}}}
 
 
-%\renewcommand{\footnoterule}{}
-
-%\setlength{\topsep}{0.2ex}
-%\renewenvironment{itemize}%
-%        {\begin{list}{$\bullet$}{\setlength{\itemsep}{0cm}%
-%        \setlength{\parsep}{0cm}\setlength{\topsep}{2mm}\item[]}}{\end{list}}
 
 % aux packages 2
 \if@extrapkg
