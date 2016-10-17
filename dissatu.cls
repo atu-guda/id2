@@ -607,5 +607,5 @@
 
 \endinput
 %%
-%% End of file `asau.cls'.
+%% End of file `dissatu.cls'.
 
