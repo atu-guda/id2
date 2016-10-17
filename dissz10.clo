@@ -1,0 +1,144 @@
+%% This is file `dissz10.clo', from bk10.clo
+\ProvidesFile{dissz10.clo}
+              [2016/10/18 v0.1  atu dissatu LaTeX file (size option)]
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize\@xpt\@xiipt
+   \abovedisplayskip 5\p@ \@plus2\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 3\p@ \@plus2\p@ \@minus2\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalsize
+\newcommand\small{%
+   \@setfontsize\small\@ixpt{11}%
+   \abovedisplayskip 4\p@ \@plus2\p@ \@minus3\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 3\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 2\p@ \@plus1\p@ \@minus1\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand\footnotesize{%
+   \@setfontsize\footnotesize\@viiipt{9.5}%
+   \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus\p@
+   \belowdisplayshortskip 2\p@ \@plus\p@ \@minus1\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 2\p@ \@plus\p@ \@minus\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand\scriptsize{\@setfontsize\scriptsize\@viipt\@viiipt}
+\newcommand\tiny{\@setfontsize\tiny\@vpt\@vipt}
+\newcommand\slarge{\@setfontsize\slarge{11}{13}}
+\newcommand\large{\@setfontsize\large\@xiipt{14}}
+\newcommand\Large{\@setfontsize\Large{13}{16}}
+\newcommand\LARGE{\@setfontsize\LARGE\@xviipt{22}}
+\newcommand\huge{\@setfontsize\huge\@xxpt{25}}
+\newcommand\Huge{\@setfontsize\Huge\@xxvpt{30}}
+\setlength\parindent{15\p@}
+\setlength\smallskipamount{2\p@ \@plus 1\p@ \@minus 1\p@}
+\setlength\medskipamount{4\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\bigskipamount{8\p@ \@plus 4\p@ \@minus 4\p@}
+\setlength\headheight{12\p@}
+\setlength\headsep   {.25in}
+\setlength\topskip   {10\p@}
+\setlength\footskip{.35in}
+\setlength\maxdepth{.5\topskip} 
+\setlength\@tempdima{\paperwidth}
+\addtolength\@tempdima{-2in}
+\setlength\@tempdimb{345\p@}
+\ifdim\@tempdima>\@tempdimb\relax
+  \setlength\textwidth{\@tempdimb}
+\else
+  \setlength\textwidth{\@tempdima}
+\fi
+\@settopoint\textwidth
+\setlength\@tempdima{\paperheight}
+\addtolength\@tempdima{-2in}
+\addtolength\@tempdima{-1.5in}
+\divide\@tempdima\baselineskip
+\@tempcnta=\@tempdima
+\setlength\textheight{\@tempcnta\baselineskip}
+\addtolength\textheight{\topskip}
+\if@twocolumn
+ \setlength\marginparsep {10\p@}
+\else
+  \setlength\marginparsep{7\p@}
+\fi
+\setlength\marginparpush{5\p@}
+\setlength\@tempdima        {\paperwidth}
+\addtolength\@tempdima      {-\textwidth}
+\setlength\oddsidemargin    {.5\@tempdima}
+\addtolength\oddsidemargin  {-1in}
+\setlength\marginparwidth   {.5\@tempdima}
+\addtolength\marginparwidth {-\marginparsep}
+\addtolength\marginparwidth {-0.4in}
+\addtolength\marginparwidth {-.4in}
+\ifdim \marginparwidth >2in
+   \setlength\marginparwidth{2in}
+\fi
+\@settopoint\oddsidemargin
+\@settopoint\marginparwidth
+\setlength\evensidemargin  {\paperwidth}
+\addtolength\evensidemargin{-2in}
+\addtolength\evensidemargin{-\textwidth}
+\addtolength\evensidemargin{-\oddsidemargin}
+\@settopoint\evensidemargin
+\setlength\topmargin{\paperheight}
+\addtolength\topmargin{-2in}
+\addtolength\topmargin{-\headheight}
+\addtolength\topmargin{-\headsep}
+\addtolength\topmargin{-\textheight}
+\addtolength\topmargin{-\footskip}     % this might be wrong!
+\addtolength\topmargin{-.5\topmargin}
+\@settopoint\topmargin
+\setlength\footnotesep{6.65\p@}
+\setlength{\skip\footins}{9\p@ \@plus 4\p@ \@minus 2\p@}
+\setlength\floatsep    {6\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\textfloatsep{7\p@ \@plus 3\p@ \@minus 4\p@}
+\setlength\intextsep   {8\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\dblfloatsep    {7\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\dbltextfloatsep{7\p@ \@plus 2\p@ \@minus 3\p@}
+\setlength\@fptop{0\p@ \@plus 1fil}
+\setlength\@fpsep{6\p@ \@plus 2fil}
+\setlength\@fpbot{0\p@ \@plus 1fil}
+\setlength\@dblfptop{0\p@ \@plus 1fil}
+\setlength\@dblfpsep{8\p@ \@plus 2fil}
+\setlength\@dblfpbot{0\p@ \@plus 1fil}
+\setlength\partopsep{1\p@ \@plus 0.5\p@ \@minus 0.5\p@}
+\def\@listi{\leftmargin\leftmargini
+            \parsep 2\p@ \@plus\p@ \@minus\p@
+            \topsep 4\p@ \@plus2\p@ \@minus2\p@
+            \itemsep2\p@ \@plus\p@ \@minus\p@}
+\let\@listI\@listi
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \topsep    3\p@ \@plus\p@ \@minus\p@
+              \parsep    2\p@ \@plus\p@ \@minus\p@
+              \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep
+              \topsep    2\p@ \@plus\p@\@minus\p@
+              \parsep    \z@
+              \partopsep \p@ \@plus\z@ \@minus\p@
+              \itemsep   \topsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+\endinput
+%%
+%% End of file `dissz10.clo'.
+

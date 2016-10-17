@@ -1,5 +1,5 @@
 %%
-%% This is file is based on ``dissatu.cls'', based on many classes
+%% This is file is ``dissatu.cls'', based on many classes
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{dissatu}
               [2016/10/08 v0.1 atu  LaTeX document class for own dissertation]
@@ -14,6 +14,7 @@
 % if-s
 \newif\if@restonecol \@restonecolfalse
 \newif\if@titlepage  \@titlepagefalse
+\newif\if@openright
 \newif\if@atutext    \@atutextfalse
 \newif\if@dejavu     \@dejavufalse
 \newif\if@droid      \@droidfalse
@@ -53,11 +54,12 @@
 \DeclareOption{final}{\setlength\overfullrule{0pt}}
 \DeclareOption{titlepage}{\@titlepagetrue}
 \DeclareOption{notitlepage}{\@titlepagefalse}
+\DeclareOption{openright}{\@openrighttrue}
 \DeclareOption{noextra}{\@extrapkgfalse}
 \ExecuteOptions{a4paper,paratype,14pt,fouriernc,final}
 \ProcessOptions
 
-\input{ts\@ptsize.clo}
+\input{dissz\@ptsize.clo}
 \setlength\lineskip{1\p@}
 \setlength\normallineskip{1\p@}
 \renewcommand\baselinestretch{}
@@ -98,7 +100,7 @@
 
 
 \setcounter{topnumber}{3}
-\renewcommand\topfraction{.7}
+\renewcommand\topfraction{.8}
 \setcounter{bottomnumber}{3}
 \renewcommand\bottomfraction{.7}
 \setcounter{totalnumber}{7}
@@ -164,18 +166,112 @@
 \newcounter{subparagraph}[paragraph]
 \renewcommand \thepart {\@Roman\c@part}
 \renewcommand \thechapter {\@arabic\c@chapter}
-%\renewcommand \thesection {\thechapter.\@arabic\c@section}
-%\renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}
-\renewcommand \thesection {}
+\renewcommand \thesection {\thechapter.\@arabic\c@section}
+\renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}
+%\renewcommand \thesection {}
 %\renewcommand \thesection {\@arabic\c@section}
 \renewcommand\thesubsection   {\@arabic\c@subsection}
 \renewcommand\thesubsubsection{\thesubsection .\@arabic\c@subsubsection}
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
+% atu: TODO: use babel
+\newcommand\atuchapname{\CYRR\cyra\cyrz\cyrd\cyre\cyrl}
+\newcommand\atucontentsname{\CYRS\cyro\cyrd\cyre\cyrr\cyrzh\cyra\cyrn\cyri\cyre}
 \newcommand\@chapapp{\chaptername}
+\newcommand\frontmatter{%
+    \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{roman}}
+\newcommand\mainmatter{%
+    \cleardoublepage
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+\newcommand\backmatter{%
+    \clearpage
+  \@mainmatterfalse}
+\newcommand\part{%
+  \clearpage
+  \thispagestyle{headings}%
+  \@tempswafalse
+  \null\vfil
+  \secdef\@part\@spart}
 
-
-
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    %\markboth{}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \ifnum \c@secnumdepth >-2\relax
+       \large \bfseries \partname.\nobreakspace\thepart
+       \par
+       \vskip 8\p@
+     \fi
+     \large \bfseries #2\par}%
+    \@endpart}
+%    
+\def\@spart#1{%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \large \bfseries #1\par}%
+    \@endpart}
+\def\@endpart{\vfil\newpage}
+%
+\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{headings}%
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                       \if@mainmatter
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                                   {\protect\numberline{\thechapter}#1}%
+                       \else
+                         \addcontentsline{toc}{chapter}{#1}%
+                       \fi
+                    \else
+                      \addcontentsline{toc}{chapter}{#1}%
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+		    \@makechapterhead{#2}%
+		    \@afterheading
+                    }
+\def\@makechapterhead#1{%
+  \vspace*{1ex}%
+  {\parindent \z@ \center \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \normalfont\bfseries \atuchapname\space \thechapter
+        \par\nobreak
+        \vskip 1ex
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \normalfont \bfseries #1\par\nobreak
+    \vskip 1ex
+  }}
+\def\@schapter#1{
+                   \@makeschapterhead{#1}%
+                   \@afterheading
+                 }
+\def\@makeschapterhead#1{%
+  \vspace*{20\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \normalfont \bfseries  #1\par\nobreak
+    \vskip 30\p@
+  }}
 \newcommand\section{\@startsection {section}{1}{\z@}%
                                    {-1ex \@plus -.5ex \@minus -.5ex}%
                                    {2ex \@plus.2ex}%
@@ -214,10 +310,12 @@
 \@beginparpenalty -\@lowpenalty
 \@endparpenalty   -\@lowpenalty
 \@itempenalty     -\@lowpenalty
+%
 \renewcommand\theenumi{\@arabic\c@enumi}
 \renewcommand\theenumii{\@alph\c@enumii}
 \renewcommand\theenumiii{\@roman\c@enumiii}
 \renewcommand\theenumiv{\@Alph\c@enumiv}
+%
 \newcommand\labelenumi{\theenumi.}
 \newcommand\labelenumii{(\theenumii)}
 \newcommand\labelenumiii{\theenumiii.}
@@ -225,6 +323,7 @@
 \renewcommand\p@enumii{\theenumi}
 \renewcommand\p@enumiii{\theenumi(\theenumii)}
 \renewcommand\p@enumiv{\p@enumiii\theenumiii}
+%
 \newcommand\labelitemi{\normalfont\bfseries \textendash}
 \newcommand\labelitemii{\textbullet}
 \newcommand\labelitemiii{\textasteriskcentered}
@@ -255,7 +354,35 @@
                {\list{}{\rightmargin\leftmargin}%
                 \item\relax}
                {\endlist}
-
+\if@compatibility
+\newenvironment{titlepage}
+    {%
+      \cleardoublepage
+      \@restonecolfalse\newpage
+      \thispagestyle{empty}%
+      \setcounter{page}\z@
+    }%
+    {\newpage 
+    }
+\else
+\newenvironment{titlepage}
+    {%
+      \cleardoublepage
+      \@restonecolfalse\newpage
+      \thispagestyle{empty}%
+      \setcounter{page}\@ne
+    }%
+    {\newpage
+     %\if@twoside\else
+        \setcounter{page}\@ne
+     %\fi
+    }
+\fi
+\newcommand\appendix{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\@Alph\c@chapter}}
 %\setlength\arraycolsep{5\p@}
 %\setlength\tabcolsep{6\p@}
 \setlength\arraycolsep{3\p@}
@@ -267,21 +394,12 @@
 \skip\@mpfootins = \skip\footins
 \setlength\fboxsep{3\p@}
 \setlength\fboxrule{.4\p@}
-\@addtoreset{equation}{section}
-
-%\renewcommand\theequation
-%  {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
-
+\@addtoreset {equation}{chapter}
 \renewcommand\theequation
-  {\@arabic\c@equation}
-
-% \newcounter{figure}[chapter]
-\newcounter{figure}[section]
-%\renewcommand \thefigure
-%     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
+  {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
+\newcounter{figure}[chapter]
 \renewcommand \thefigure
-     {\@arabic\c@figure}
-
+     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
 \def\fps@figure{htbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
@@ -292,16 +410,13 @@
 \newenvironment{figure*}
                {\@dblfloat{figure}}
                {\end@dblfloat}
-%\newcounter{table}[chapter]
-\newcounter{table}[section]
-%\renewcommand \thetable
-%     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
+\newcounter{table}[chapter]
 \renewcommand \thetable
-     {\@arabic\c@table}
+     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
 \def\fps@table{htbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
-\def\fnum@table{\tablename~\thetable}
+\def\fnum@table{\tablename\nobreakspace\thetable}
 \newenvironment{table}
                {\@float{table}}
                {\end@float}
@@ -340,19 +455,49 @@
 \setcounter{tocdepth}{1}
 \newcommand\tableofcontents{%
     \@restonecolfalse
-    \clearpage
-%    \chapter*{\contentsname
-%        \@mkboth{%
-%           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-    \section*{\contentsname}
+    \chapter*{{\hfill\atucontentsname\hfill}
+        \@mkboth{%
+           \MakeUppercase\atucontentsname}{\MakeUppercase\atucontentsname}}%
     \@starttoc{toc}%
     }
-
-
-
-
-%\newcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
-\newcommand*\l@section{\@dottedtocline{1}{-\parindent}{2.3em}}
+%  \newcommand\tableofcontents{%
+%      \@restonecolfalse
+%      \chapter*{\atucontentsname
+%          \@mkboth{%
+%             \MakeUppercase\atucontentsname}{\MakeUppercase\atucontentsname}}%
+%      \@starttoc{toc}%
+%      }
+\newcommand*\l@part[2]{%
+  \ifnum \c@tocdepth >-2\relax
+    \addpenalty{-\@highpenalty}%
+    \addvspace{2.25em \@plus\p@}%
+    \setlength\@tempdima{3em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      {\leavevmode
+       \large \bfseries #1\hfil \hb@xt@\@pnumwidth{\hss #2}}\par
+       \nobreak
+         \global\@nobreaktrue
+         \everypar{\global\@nobreakfalse\everypar{}}%
+    \endgroup
+  \fi}
+\newcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\newcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
 \newcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
 \newcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
 \newcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
@@ -416,17 +561,15 @@
 \newcommand\subitem{\@idxitem \hspace*{20\p@}}
 \newcommand\subsubitem{\@idxitem \hspace*{30\p@}}
 \newcommand\indexspace{\par \vskip 10\p@ \@plus5\p@ \@minus3\p@\relax}
-
 \renewcommand\footnoterule{%
   \kern-3\p@
   \hrule\@width.4\columnwidth
   \kern2.6\p@}
-\@addtoreset{footnote}{section}
+\@addtoreset{footnote}{chapter}
 \newcommand\@makefntext[1]{%
     \parindent 1em%
     \noindent
     \hb@xt@1.8em{\hss\@makefnmark}#1}
-
 \newcommand\contentsname{Contents}
 \newcommand\listfigurename{List of Figures}
 \newcommand\listtablename{List of Tables}
@@ -459,13 +602,6 @@
   \flushleft {#1}\par\vspace{-1.6ex}%
 }
 %
-% udk in referats
-\newcommand{\udkr}[1]{%
-  {%
-    \noindent%
-    \flushleft #1 %
-  }%
-}
 
 % atu: special footnote w/o mark for copyright
 \long\def\@footnotetextnm#1{\insert\footins{%
@@ -500,7 +636,7 @@
 
 % misc math commands
 \DeclareMathOperator*{\sign}{sign}
-\newcommand\dLsh{\hbox{\raisebox{-1ex}{$\leftarrow$}} \mspace{-4mu}\vert}
+%\newcommand\dLsh{\hbox{\raisebox{-1ex}{$\leftarrow$}} \mspace{-4mu}\vert}
 
 % circle-alike hat
 \newcommand{\fhat}[1]{%
