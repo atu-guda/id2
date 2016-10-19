@@ -65,18 +65,38 @@
 \DeclareOption{notitlepage}{\@titlepagefalse}
 \DeclareOption{1space}{\@wordlikespacingfalse}
 \DeclareOption{1.5space}{\@wordlikespacingtrue}
+\def\candidata{PhD.}
+\def\doctora{Doctor of science}
+\def\manuscriptright{Manuscript}
+\def\forcontest{Dissertation for contest}
+\def\scienceheadmaster{Science headmaster}
+\def\sciencecons{Science consultant}
+\DeclareOption{ruslang}{%
+  \def\kandidata{\cyrk\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyra}
+  \def\doctora{\cyrd\cyro\cyrk\cyrt\cyro\cyrr\cyra}
+  \def\manuscriptright{\CYRN\cyra{ }\cyrp\cyrr\cyra\cyrv\cyra\cyrh{ }\cyrr\cyru\cyrk\cyro\cyrp\cyri\cyrs\cyri}
+  \def\forcontest{\CYRD\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya{ }\cyrn\cyra{ }\cyrs\cyro\cyri\cyrs\cyrk\cyra\cyrn\cyri\cyre{ }\cyru\cyrch\cyryo\cyrn\cyro\cyrishrt{ }\cyrs\cyrt\cyre\cyrp\cyre\cyrn\cyri}
+  \def\scienceheadmaster{\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt{ }\cyrr\cyru\cyrk\cyro\cyrv\cyro\cyrd\cyri\cyrt\cyre\cyrl\cyrsftsn}
+  \def\sciencecons{\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt{ }\cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
+}
+\DeclareOption{ukrlang}{%
+  \def\kandidata{\cyrk\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyra}
+  \def\doctora{\cyrd\cyro\cyrk\cyrt\cyro\cyrr\cyra}
+  \def\manuscriptright{\CYRN\cyra{ }\cyrp\cyrr\cyra\cyrv\cyra\cyrh{ }\cyrr\cyru\cyrk\cyro\cyrp\cyri\cyrs\cyru}
+  \def\forcontest{\CYRD\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrci\cyrya \cyrn\cyra \cyrz\cyrd\cyro\cyrb\cyru\cyrt\cyrt\cyrya \cyrn\cyra\cyru\cyrk\cyro\cyrv\cyro\cyrg\cyro \cyrs\cyrt\cyru\cyrp\cyre\cyrn\cyrya}
+  \def\scienceheadmaster{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt{ }\cyrk\cyre\cyrr\cyrii\cyrv\cyrn\cyri\cyrk}
+  \def\sciencecons{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt{ }\cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
+}
 \DeclareOption{c}{\@cthesistrue
-  \def\degreename{\cyrk\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt}%
-  \def\onesupervisorname{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt\
-    \cyrk\cyre\cyrr\cyrii\cyrv\cyrn\cyri\cyrk}%
-  \def\manysupervisorsname{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyrii\
-    \cyrk\cyre\cyrr\cyrii\cyrv\cyrn\cyri\cyrk\cyri}}
+  \def\degreename{\kandidata}%
+  \def\onesupervisorname{\scienceheadmaster}%
+  \def\manysupervisorsname{\scienceheadmaster}%
+}
 \DeclareOption{d}{\@cthesisfalse
-  \def\degreename{\cyrd\cyro\cyrk\cyrt\cyro\cyrr}%
-  \def\onesupervisorname{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt\
-    \cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}%
-  \def\manysupervisorsname{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyrii\
-    \cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt\cyri}}
+  \def\degreename{\doctora}%
+  \def\onesupervisorname{\sciencecons}%
+  \def\manysupervisorsname{\sciencecons}%
+}
 \DeclareOption*{\ClassError{\@classname}
   {Option `\CurrentOption' not supported}
   {Do not use option `\CurrentOption' please.}}
@@ -368,29 +388,34 @@
   \vspace{\stretch{3}}%
   \@town\ --- \@year}
 %
+\def\Rada{RadaIndex}
+\def\SekrRadi{Sekretar Radi}
+%
 \def\Xmaketitle{%
-  {\scshape
+  \begin{center}
+    {\scshape
    \@ifundefined{@institution@office}{\relax}{\@institution@office\par}
    \@institution\par}
+  \end{center}
   \vspace{\stretch{3}}%
-  {\raggedleft \@ifundefined{@secret}{}{\@secret\hfill}%
-     \CYRN\cyra\ \cyrp\cyrr\cyra\cyrv\cyra\cyrh\
-     \cyrr\cyru\cyrk\cyro\cyrp\cyri\cyrs\cyru \par}%
+  {\raggedleft \@ifundefined{@secret}{}{\@secret\hfill}\manuscriptright \par%
+  }%
   \vspace{\stretch{2}}%
+  \begin{center}
   {\bfseries\expandafter\emphsurname\@author \par}%
+  \end{center}%
   \vspace{\stretch{2}}%
   {\raggedleft \CYRU\CYRD\CYRK\ \@udc \par}%
   \vspace{\stretch{1}}%
+  \begin{center}
   {\large\bfseries\scshape \@title \par}%
   \vspace{\stretch{2}}%
   \@specialitycode\ --- \@specialityname\par
   \vspace{\stretch{2}}%
-  \CYRD\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyrii\cyrya\
-    \cyrn\cyra\ \cyrz\cyrd\cyro\cyrb\cyru\cyrt\cyrt\cyrya\
-    \cyrn\cyra\cyru\cyrk\cyro\cyrv\cyro\cyrg\cyro\
-    \cyrs\cyrt\cyru\cyrp\cyre\cyrn\cyrya\linebreak[1]%
-    \degreename\cyra\
+    \forcontest\ \linebreak[1]%
+    \degreename\ %
     \@science\par%?\linebreak[1]%
+  \end{center}%
   \vspace{\stretch{2}}%
   {\raggedleft
    \let\\\@format@person
@@ -401,7 +426,31 @@
    \fi
    \par}%
   \vspace{\stretch{3}}%
-  \@town\ --- \@year}
+  \noindent
+  {\scriptsize
+  \parbox[t]{0.45\textwidth}{%
+    \CYRC\cyre\cyrishrt\ \cyrp\cyrr\cyri\cyrm\cyrii\cyrr\cyrn\cyri\cyrk\ %
+    \cyrd\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyrii\cyrishrt\cyrn\cyro\cyryi\ \cyrr\cyro\cyrb\cyro\cyrt\cyri\ %
+    \cyrii\cyrd\cyre\cyrn\cyrt\cyri\cyrch\cyrn\cyri\cyrishrt\ \cyrz\cyra\ \cyrz\cyrm\cyrii\cyrs\cyrt\cyro\cyrm\ %
+    \cyrz\ \cyrii\cyrn\cyrsh\cyri\cyrm\cyri,\ \cyrp\cyro\cyrd\cyra\cyrn\cyri\cyrm\cyri\ %
+    \cyrd\cyro\ \cyrs\cyrp\cyre\cyrc\cyrii\cyra\cyrl\cyrii\cyrz\cyro\cyrv\cyra\cyrn\cyro\cyryi\ %
+    \cyrv\cyrch\cyre\cyrn\cyro\cyryi\ \cyrr\cyra\cyrd\cyri\ \Rada%
+   }%
+  }%
+  \par
+  \vspace{1ex}%
+  \noindent
+  {\scriptsize
+  \CYRV\cyrch\cyre\cyrn\cyri\cyrishrt\ \cyrs\cyre\cyrk\cyrr\cyre\cyrt\cyra\cyrr\ %
+  \cyrs\cyrp\cyre\cyrc\cyrr\cyra\cyrd\cyri\ \Rada%
+  \hfill%
+  \SekrRadi%
+  }
+  \vspace{\stretch{3.0}}%
+  \begin{center}
+  \@town\ --- \@year%
+  \end{center}%
+}
 %
 %
 \def\@supervisors@caption{%
