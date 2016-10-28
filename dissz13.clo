@@ -3,16 +3,16 @@
 \ProvidesFile{dissz13.clo}
               [2016/10/18 v0.1  atu dissatu LaTeX file (size option)]
 \renewcommand\normalsize{%
-   \@setfontsize\normalsize{14}{16}%
-   \abovedisplayskip 10\p@ \@plus5\p@ \@minus7\p@
-   \abovedisplayshortskip \z@ \@plus4\p@
-   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \@setfontsize\normalsize{13}{16}%
+   \abovedisplayskip 12\p@ \@plus7\p@ \@minus7\p@
+   \abovedisplayshortskip 1\p@ \@plus3\p@
+   \belowdisplayshortskip 5\p@ \@plus3\p@ \@minus3\p@
    \belowdisplayskip \abovedisplayskip
    \let\@listi\@listI}
 \normalsize
 \newcommand\small{%
-   \@setfontsize\small{13}{15}%
-   \abovedisplayskip 9\p@ \@plus5\p@ \@minus8\p@
+   \@setfontsize\small{11}{13}%
+   \abovedisplayskip 9\p@ \@plus6\p@ \@minus6\p@
    \abovedisplayshortskip \z@ \@plus3\p@
    \belowdisplayshortskip 5\p@ \@plus4\p@ \@minus4\p@
    \def\@listi{\leftmargin\leftmargini
@@ -22,7 +22,7 @@
    \belowdisplayskip \abovedisplayskip
 }
 \newcommand\footnotesize{%
-   \@setfontsize\footnotesize\@xiipt{14.5}
+   \@setfontsize\footnotesize{10}{12}
    \abovedisplayskip 6\p@ \@plus4\p@ \@minus5\p@
    \abovedisplayshortskip \z@ \@plus3\p@
    \belowdisplayshortskip 5\p@ \@plus3\p@ \@minus3\p@
@@ -32,8 +32,8 @@
                \itemsep \parsep}%
    \belowdisplayskip \abovedisplayskip
 }
-\newcommand\scriptsize{\@setfontsize\scriptsize\@xpt{12}}
-\newcommand\tiny{\@setfontsize\tiny\@viiipt\@xpt}
+\newcommand\scriptsize{\@setfontsize\scriptsize{9}{11}}
+\newcommand\tiny{\@setfontsize\tiny{6}{9}}
 \newcommand\slarge{\@setfontsize\slarge{15}{17}}
 \newcommand\large{\@setfontsize\large{16}{18}}
 \newcommand\Large{\@setfontsize\Large{20}{25}}
@@ -52,7 +52,7 @@
 \setlength\headsep   {.29in}
 \setlength\topskip   {13\p@}
 \setlength\footskip{30\p@}
-\setlength\maxdepth{.5\topskip} 
+\setlength\maxdepth{.5\topskip}
 
 \setlength\@tempdima{\paperwidth}
 \addtolength\@tempdima{-2in}

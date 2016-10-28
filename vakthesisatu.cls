@@ -1,25 +1,6 @@
 %%
 %% This is file `vakthesisatu.cls': mod of vakthesis
 %% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% vakthesis.dtx  (with options: `vakthesis')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from vakthesis.cls.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file vakthesis.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{vakthesisatu}
   [2016/10/19 v0.08
@@ -47,16 +28,12 @@
    {\setlength\@tempdima   {\paperheight}%
     \setlength\paperheight {\paperwidth}%
     \setlength\paperwidth  {\@tempdima}}
-\DeclareOption{10pt}{\renewcommand\@ptsize{0}}
-\DeclareOption{11pt}{\renewcommand\@ptsize{1}}
-\DeclareOption{12pt}{\renewcommand\@ptsize{2}}
-\DeclareOption{14pt}{\IfFileExists{size14.clo}%
-  {\renewcommand\@ptsize{4}}%
-  {\renewcommand\@ptsize{2}%
-   \ClassError{\@classname}{You cannot use option `14pt'}%
-     {File `size14.clo' not found.
-      LaTeX package `extsizes' is not installed^^J%
-      properly in your system.}}}
+\DeclareOption{9pt}{\renewcommand\@ptsize{9}}
+\DeclareOption{10pt}{\renewcommand\@ptsize{10}}
+\DeclareOption{11pt}{\renewcommand\@ptsize{11}}
+\DeclareOption{12pt}{\renewcommand\@ptsize{12}}
+\DeclareOption{13pt}{\renewcommand\@ptsize{13}}
+\DeclareOption{14pt}{\renewcommand\@ptsize{14}}
 \DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
 \DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
 \DeclareOption{draft}{\@draftmodetrue\setlength\overfullrule{5pt}}
@@ -100,9 +77,11 @@
 \DeclareOption*{\ClassError{\@classname}
   {Option `\CurrentOption' not supported}
   {Do not use option `\CurrentOption' please.}}
+%
+%
 \ExecuteOptions{a4paper,14pt,1.5space,oneside,final,c}
 \ProcessOptions
-\input{size1\@ptsize.clo}
+\input{dissz\@ptsize.clo}
 \RequirePackage{ifthen}
 \RequirePackage{indentfirst}
 \RequirePackage{verbatim}
@@ -334,25 +313,6 @@
 \def\date#1{\def\@year{#1}}
 \def\@year{\the\year}
 \newcommand\secret[1]{\def\@secret{#1}}
-% atu: hide2
-% \newcommand\maketitle{\begin{titlepage}%
-%   \let\footnotesize\small
-%   \let\footnoterule\relax
-%   \let \footnote \thanks
-%   \@maketitle
-%   \end{titlepage}%
-%   \setcounter{footnote}{0}%
-%   \global\let\thanks\relax
-%   \global\let\maketitle\relax
-%   \global\let\@thanks\@empty
-%   \global\let\@author\@empty
-%   \global\let\@date\@empty
-%   \global\let\@title\@empty
-%   \global\let\title\relax
-%   \global\let\author\relax
-%   \global\let\date\relax
-%   \global\let\and\relax
-% }
 \def\@maketitle{%
   {\scshape
    \@ifundefined{@institution@office}{\relax}{\@institution@office\par}
