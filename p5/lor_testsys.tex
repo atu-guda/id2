@@ -35,11 +35,41 @@ $\overline{x^2}$
 % Остальные параметры:
 % $b = 2.66667$, $\sigma = 10$.
 
-
-\begin{figure}[htb!]
-\centerline{\includegraphics[width=0.5\textwidth]{p/cha/lor_phase3.pdf} }
-\caption{Аттрактор системы Лоренца (\ref{atu:eq:lor})}
-\label{atu:f:lor_phase}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=0.45\textwidth]{p/cha/lor/lor0-p_xyz_r=28.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{p/cha/lor/lor0_fft-p_f_r=28.png}
+\end{center}
+\caption{Аттрактор и спектр системы Лоренца (\ref{atu:eq:lor}) в хаотическом режиме}
+\label{atu:f:lor_attractor_phase_chaos}
 \end{figure}
+
+\begin{figure}[h!]
+  \centerline{\includegraphics[width=0.7\textwidth]{p/cha/lor/lor_q-p_r.png} }
+  \caption{Рассматриваемые критерии для системы Лоренца}
+  \label{atu:f:lor_q}
+\end{figure}
+
+\begin{figure}[h!]
+  \centerline{\includegraphics[width=0.7\textwidth]{p/cha/lor/lor_m5pf-pl_n_sign.png} }
+  \caption{Процесс идентификации параметра ``$r$'' системы Лоренца}
+  \label{atu:f:lor_id_mp5_sign}
+\end{figure}
+
+\[
+  r_o(t) = p_o(t) = p_0 +  U_{p} \sign \sin( \omega_{p} t ),
+\]
+
+
+\begin{figure}[h!]
+  \centerline{\includegraphics[width=0.7\textwidth]{p/cha/lor/lor_m5pf-pl_n_sin.png} }
+  \caption{Процесс идентификации параметра ``$r$'' системы Лоренца}
+  \label{atu:f:lor_id_mp5_sin}
+\end{figure}
+
+\[
+  r_o(t) = p_o(t) = p_0 +  U_{p} \sin( \omega_{p} t ),
+\]
 
 
