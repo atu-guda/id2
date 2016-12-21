@@ -532,6 +532,7 @@
   \@ifstar
     {\@ssect{#1}{#3}{#4}{#5}{#6}}%
     {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+%
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \ifnum #2>\c@secnumdepth
     \let\@svsec\@empty
@@ -564,7 +565,9 @@
         #7}}%
   \fi
   \@xsect{#5}}
+%
 \def\@seccntformat#1{\csname the#1\endcsname.\enskip}
+%
 \def\@ssect#1#2#3#4#5#6{%
   \@tempskipa #4\relax
   \ifdim \@tempskipa>\z@
@@ -581,7 +584,9 @@
       \addcontentsline{toc}{#1}{#6}}%
   \fi
   \@xsect{#4}}
+%
 \def\@nopunctnoskip#1{\ifnum\spacefactor=1007 \ \hskip#1\fi}
+%
 \AtBeginDocument{%
   \setlength\labelsep{.5em}%
   \setcounter{enumi}{88}%    88.
