@@ -1,15 +1,22 @@
 
 \FloatBarrier
-\subsection{Система Дуффинга} % _DUFF_
+\section{Система Дуффинга} % _DUFF_
 
 \LinkRef{
  duff: ASAU-12, 15. APIR-2009. DSMP-2016
+  % ~/doc/tex/asau/asau12/atu/atu.tex
+  % ~/doc/tex/asau/asau15/atu/atu.tex
 }
+
+
+Рассмотрим нелинейную динамическую систему Дуффинга~\cite{magni_theory_dyn_chaos}:
 
 \begin{equation}
  \ddot{x} + c_0 \dot{x} + \alpha x + \beta x^3 = u(t) ,
 \label{atu:eq:duff}
 \end{equation}
+%
+или её же с сохранением физических размерностей:
 %
 \begin{equation}
  m \ddot{x} + \nu \dot{x} + k_1 x + k_3 x^3 = F(t) ,
