@@ -4,9 +4,9 @@
               [2016/10/18 v0.1  atu dissatu LaTeX file (size option)]
 \renewcommand\normalsize{%
    \@setfontsize\normalsize{13}{16}%
-   \abovedisplayskip 12\p@ \@plus7\p@ \@minus7\p@
-   \abovedisplayshortskip 1\p@ \@plus3\p@
-   \belowdisplayshortskip 5\p@ \@plus3\p@ \@minus3\p@
+   \abovedisplayskip 12\p@ \@plus9\p@ \@minus5\p@
+   \abovedisplayshortskip 2\p@ \@plus4\p@
+   \belowdisplayshortskip 6\p@ \@plus4\p@ \@minus3\p@
    \belowdisplayskip \abovedisplayskip
    \let\@listi\@listI}
 \normalsize
@@ -123,11 +123,11 @@
 \@settopoint\topmargin
 \setlength\footnotesep{8.4\p@}
 \setlength{\skip\footins}{10.8\p@ \@plus 4\p@ \@minus 2\p@}
-\setlength\floatsep    {10\p@ \@plus 2\p@ \@minus 4\p@}
-\setlength\textfloatsep{10\p@ \@plus 5\p@ \@minus 5\p@}
-\setlength\intextsep   {10\p@ \@plus 4\p@ \@minus 4\p@}
-\setlength\dblfloatsep    {10\p@ \@plus 5\p@ \@minus 5\p@}
-\setlength\dbltextfloatsep{10\p@ \@plus 5\p@ \@minus 5\p@}
+\setlength\floatsep    {14\p@ \@plus 3\p@ \@minus 4\p@}
+\setlength\textfloatsep{14\p@ \@plus 6\p@ \@minus 5\p@}
+\setlength\intextsep   {14\p@ \@plus 6\p@ \@minus 4\p@}
+\setlength\dblfloatsep    {14\p@ \@plus 6\p@ \@minus 5\p@}
+\setlength\dbltextfloatsep{14\p@ \@plus 6\p@ \@minus 5\p@}
 \setlength\@fptop{0\p@ \@plus 1fil}
 \setlength\@fpsep{10\p@ \@plus 2fil}
 \setlength\@fpbot{0\p@ \@plus 1fil}
