@@ -501,7 +501,7 @@
                                     \rightskip\@flushglue}}
 \newcommand\subsection{\@startsection{subsection}{2}{\parindent}%
                                      {2.3ex\@plus 1ex \@minus .2ex}%
-                                     {-1em}%
+                                     {1em}%
                                      {\normalfont\normalsize\bfseries}}
 \newcommand\subsubsection{\@startsection{subsubsection}{3}{\parindent}%
                                      {1.5ex\@plus 1ex \@minus .2ex}%
