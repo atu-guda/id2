@@ -1,0 +1,51 @@
+% vi:syntax=tex
+\begin{tikzpicture}
+  %\draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  % --- U
+  \bXInput{U};
+  \path (U.center) ++(2.5em,0.0em) coordinate (UxM);
+  \draw (U.center) -- (UxM);
+  \fill (UxM) circle[radius=0.05];
+  \node[above right] at(U) {$u(t)$};
+  % --- M0
+  \bXBranchy[2]{UxM}{U0};
+  %\fill[red](U0) circle[radius=0.05];
+  \bXBlocL[2.0]{M0}{$\mathbf{M}_{i0}$}{U0};
+  \bXLinkyx{UxM}{M0};
+  % --- M1
+  \bXBranchy[-2]{UxM}{U1};
+  %\fill[green](U1) circle[radius=0.05];
+  \bXBlocL[2.0]{M1}{$\mathbf{M}_{i1}$}{U1};
+  \bXLinkyx{UxM}{M1};
+  % --- A
+  \path (M0.east) ++(3.1em,0.0em) coordinate (X0);
+  \path (X0) ++(4.0em,0.0em) coordinate (P0S);
+  \path (X0) ++(0.0em,-2.0em) coordinate (Alb);
+  %\fill[red](Alb) circle[radius=0.05];
+  \path (M1.east) ++(3.1em,0.0em) coordinate (X1);
+  \path (X1) ++(4.0em,0.0em) coordinate (P1S);
+  \path (X1) ++(0.0em,2.0em) coordinate (Alt);
+  \path ( $0.5*(P0S) + 0.5*(P1S)$ ) coordinate(PS);
+  \path ( $0.5*(X0) + 0.5*(X1)$ ) coordinate(QO);
+  \draw[medlinep] (QO) ++(-3.2em,0em) -- (QO);
+  \node[above left] at(QO) {$q_{o}(t)$};
+  %\fill[green](Alt) circle[radius=0.05];
+  \draw[boldline] (Alb) -- ++(4.0em,0.0em) |- (Alt) -- cycle; % ----- MAIN block
+  \draw[medlinep] (M0.east) -- (X0); // % inputs: x_ix(t)
+  \node[above right] at(M0.east) {$x_{i0}(t)$};
+  \draw[medlinep] (M1.east) -- (X1);
+  \node[above right] at(M1.east) {$x_{i1}(t)$};
+  \draw[semiboldlinep] (P0S) -- ++(3.0em,0em) -- ++(0em,-3.0em) -| (M0.south); % -- out params
+  \node[above right] at(P0S) {$p_{i0}(t)$};
+  \draw[semiboldlinep] (P1S) -- ++(3.0em,0em) -- ++(0em,+3.0em) -| (M1.north);
+  \node[above right] at(P1S) {$p_{i1}(t)$};
+  \draw[medlinep] (PS) -- ++(4.0em,0em);
+  \node[above right] at(PS) {$p_{i}(t)$};
+  \path (PS) ++(-2.1em,0.0em) coordinate (AI);
+  \node at(AI) {$\mathbf{A}_{i}$};
+  %
+  \TikzAddPadding
+  %
+\end{tikzpicture}

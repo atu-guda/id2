@@ -12,19 +12,17 @@
   \path (Q.east) ++(0.0,-1.0em) coordinate (Qqm);
   \path (Q.south west) ++(-0.3,-0.4) coordinate (BLKlb);
   \bXLink[$x_i(t)$]{M}{Q};
-  % --- F
-  \bXBloc[2.5]{F}{$F(q_o,q_{i})$}{Q};
-  \path (F.west) ++(0.0,-1.0em) coordinate (Fqm);
-  \path (F.west) ++(0.0,+1.0em) coordinate (Fqo);
-  \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
-  \draw[medlinep] (Fqoi) |- (Fqo);
-  \node[below right] at (Fqoi) {$q_o(t) \qquad A_i$};
-  \bXLink[$q_{i}(t)$]{Qqm}{Fqm};
   % --- P
-  \bXBloc[2]{P}{$P$}{F};
+  \bXBloc[2]{P}{$P$}{Q};
   \draw[infoline,<->] (P.north) -- +(0,0.8);
+  \path (P.west) ++(0.0,-1.0em) coordinate (Pqm);
+  \path (P.west) ++(0.0,+1.0em) coordinate (Pqo);
+  \path (Pqo) ++(-1.6em,+2.8em) coordinate (Pqoi) {};  % external input
   \path (P.north east) ++(0.1,+0.4) node (BLKrt) {};
-  \bXLink[$F_i(t)$]{F}{P};
+  \bXLink[$q_{i}(t)$]{Qqm}{Pqm};
+  \draw[medlinep] (Pqoi) |- (Pqo);
+  \node[below right] at (Pqoi) {$q_o(t) \qquad A_i$};
+  %\bXLink[$F_i(t)$]{F}{P};
   % -- output
   \bXOutput[2.8]{Po}{P};
   \bXLink[$p_i(t)$]{P}{Po};

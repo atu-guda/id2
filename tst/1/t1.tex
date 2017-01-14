@@ -38,7 +38,7 @@
 \title{Tikz figures test}
 \author{А.И.~Гуда}
 
-\tikzexternalize % requires pdflatex -shell-escape
+%\tikzexternalize % requires pdflatex -shell-escape
 
 \begin{document}
 
@@ -62,8 +62,26 @@
 \begin{center}
 \input{agent1.pgf}
 \end{center}
-\caption{Поисковый агент, настраивающий параметр одной модели}
+\caption{Поисковый агент, настраивающий параметр одной модели, использующий функцию качества $F$}
 \label{atu:f:agent1}
+\end{figure}
+
+
+\begin{figure}[htb!]
+\begin{center}
+\input{agent1q.pgf}
+\end{center}
+\caption{Поисковый агент, настраивающий параметр одной модели, использующий критерий  $q$}
+\label{atu:f:agent1q}
+\end{figure}
+
+
+\begin{figure}[htb!]
+\begin{center}
+\input{agent2.pgf}
+\end{center}
+\caption{Поисковый агент, настраивающий параметры двух моделей}
+\label{atu:f:agent2}
 \end{figure}
 
 

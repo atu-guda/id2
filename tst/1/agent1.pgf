@@ -13,13 +13,13 @@
   \path (Q.south west) ++(-0.3,-0.4) coordinate (BLKlb);
   \bXLink[$x_i(t)$]{M}{Q};
   % --- F
-  \bXBloc[2.5]{F}{$F(q_o,q_{mi})$}{Q};
+  \bXBloc[2.5]{F}{$F(q_o,q_{i})$}{Q};
   \path (F.west) ++(0.0,-1.0em) coordinate (Fqm);
   \path (F.west) ++(0.0,+1.0em) coordinate (Fqo);
   \path (Fqo) ++(-1.6em,+2.8em) coordinate (Fqoi) {};  % external input
   \draw[medlinep] (Fqoi) |- (Fqo);
   \node[below right] at (Fqoi) {$q_o(t) \qquad A_i$};
-  \bXLink[$q_{mi}(t)$]{Qqm}{Fqm};
+  \bXLink[$q_{i}(t)$]{Qqm}{Fqm};
   % --- P
   \bXBloc[2]{P}{$P$}{F};
   \draw[infoline,<->] (P.north) -- +(0,0.8);

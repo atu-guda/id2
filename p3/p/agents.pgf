@@ -1,0 +1,91 @@
+% vi:syntax=tex
+\begin{tikzpicture}
+  %\draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  % --- U
+  \bXInput{U};
+  \path (U.center) ++(0.9em,0.0em) coordinate (UxM);
+  \fill (UxM) circle[radius=0.05];
+  %\bXLinkName[0.5]{U}{$u(t)$};
+  % --- M1
+  \bXBlocL[3.0]{M1}{$\mathbf{M}_1$}{U};
+  \bXLink[$u(t)$]{U}{M1}; %% node 'U-M1' is here
+  \path (M1.east) ++(0.0,-1.0em) coordinate (Mxm1);
+  % --- A1
+  \bXBloc[10.0]{A1}{$A_{1}$}{M1};
+  \path (A1.west) ++(0.0,-1.0em) coordinate (Axm1);
+  \path (A1.west) ++(0.0,+1.0em) coordinate (Aqo1);
+  \path (Aqo1) ++(-1.0em,0.0em) coordinate (Aqoi1) {};  % external input
+  \draw[medlinep] (Aqoi1) -- (Aqo1);
+  \fill (Aqoi1) circle[radius=0.05];
+  \bXLink[$x_{1}(t)$]{Mxm1}{Axm1};
+  \draw[infoline,<->] (A1.40) -- ++(3.0em,0.0em);
+  \draw[medlinep] (A1.east) -- ++(3.0em,0.0em);
+  \node[above right] at(A1.east) {$p_1(t)$};
+  \draw[medlinep] (A1.east) -- ++(0.5em,0.0em) -- ++(0.0em,-2.0em) -| (M1.south);
+  \draw[infoline,->] (A1.south) -- ++(0.0em,-0.8em);
+  \path (A1.east)  ++(6.0em,-1.0em) coordinate (Pout);
+  \draw[medlinep] (Pout) -- ++(2.0em,0.0em);
+  \node[above right] at (Pout) {$p_{\mathrm{id}}(t)$};
+  % --- M0
+  \bXBranchy[-4]{UxM}{U0};
+  \bXBloc[2.1]{M0}{$\mathbf{M}_0$}{U0};
+  \path (M0.east) ++(0.0,-1.0em) coordinate (Mxm0);
+  \bXLinkyx{UxM}{M0};
+  % --- A0
+  \bXBloc[10.0]{A0}{$A_{0}$}{M0};
+  \path (A0.west) ++(0.0,-1.0em) coordinate (Axm0);
+  \path (A0.west) ++(0.0,+1.0em) coordinate (Aqo0);
+  \path (Aqo0) ++(-1.0em,0.0em)  coordinate (Aqoi0) {};  % external input
+  \fill (Aqoi0) circle[radius=0.05];
+  \draw[medlinep] (Aqoi0) -- (Aqo0);
+  \bXLink[$x_{0}(t)$]{Mxm0}{Axm0};
+  \path (A0.north east)        ++(3.0em,0.0em) coordinate (AAlt);
+  \draw[infoline,<->] (A0.40) -- ++(3.0em,0.0em);
+  \draw[medlinep] (A0.east) -- ++(3.0em,0.0em);
+  \node[above right] at(A0.east) {$p_0(t)$};
+  \draw[medlinep] (A0.east) -- ++(0.5em,0.0em) -- ++(0.0em,-2.0em) -| (M0.south);
+  \draw[infoline,<->] (A0.south) -- (A1.north);
+  % --- Obj
+  \bXBranchy[-8]{UxM}{UO};
+  \bXBloc[2.1]{Obj}{$\mathbf{O}$}{UO};
+  \bXLinkyx{UxM}{Obj};
+  \bXCompSum[3.0]{W}{Obj}{}{}{}{};
+  \bXLink{Obj}{W};
+  \draw[medline,<-] (W.north) -- ++(0.0em,1.0em) node[right] {$w(t)$};
+  \bXBloc[2.5]{Qo}{$q$}{W};
+  \bXLink[$x_o(t)$]{W}{Qo};
+  \node[above right] at (Qo.east) {$q_o(t)$};
+  %
+  % --- Mn
+  \bXBranchy[6]{UxM}{Un};
+  \bXBloc[2.1]{Mn}{$\mathbf{M}_{n-1}$}{Un};
+  \path (Mn.east) ++(0.0,-1.0em) coordinate (Mxmn);
+  \bXLinkyx{UxM}{Mn};
+  \draw[dotted,boldline] (M1.south) ++(0.0em,-1.0em) -- (Mn.north);
+  % --- An
+  \bXBloc[10.0]{An}{$A_{n-1}$}{Mn};
+  \path (An.west) ++(0.0,-1.0em) coordinate (Axmn);
+  \path (An.west) ++(0.0,+1.0em) coordinate (Aqon);
+  \path (Aqon) ++(-1.0em,+0.0em) coordinate (Aqoin) {};  % external input
+  \draw[medlinep] (Aqoin) -- (Aqon);
+  \draw[medline] (Qo) -| (Aqoin);
+  \bXLink[$x_{n-1}(t)$]{Mxmn}{Axmn};
+  \path (An.south east) ++(6.0em,0.0em) coordinate (AArb);
+  \draw[infoline,<->] (An.40) -- ++(3.0em,0.0em);
+  \draw[medlinep] (An.east) -- ++(3.0em,0.0em);
+  \node[above right] at(An.east) {$p_{n-1}$};
+  \draw[medlinep] (An.east) -- ++(0.5em,0.0em) -- ++(0.0em,-2.0em) -| (Mn.south);
+  \draw[infoline,->] (An.north) -- ++(0.0em,0.5em);
+  %
+  \draw[semiboldline] (AAlt) rectangle (AArb);
+  %
+  \draw[white,dotted,line width=3.0pt] (UxM) ++(0.0em,-1.0em) -- ++(0.0em,-4.0em);
+  %
+  \bXStyleBlocDefault;
+  \bXDefaultLineStyle;
+  %
+  \TikzAddPadding
+  %
+\end{tikzpicture}
