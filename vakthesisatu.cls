@@ -120,6 +120,7 @@
 \@lowpenalty   51
 \@medpenalty  151
 \@highpenalty 301
+\finalhyphendemerits=50000000
 \setcounter{topnumber}{2}
 \renewcommand\topfraction{.7}
 \setcounter{bottomnumber}{1}
