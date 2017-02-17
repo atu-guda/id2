@@ -354,9 +354,7 @@
 %
 \def\Xmaketitle{%
   \begin{center}
-    {\scshape
-   \@ifundefined{@institution@office}{\relax}{\@institution@office\par}
-   \@institution\par}
+    {\scshape\relax\institutionMain\par\belongMain\par}
   \end{center}
   \vspace{\stretch{3}}%
   {\raggedleft \@ifundefined{@secret}{}{\@secret\hfill}\manuscriptright \par%
@@ -366,30 +364,31 @@
   {\bfseries\expandafter\emphsurname\@author \par}%
   \end{center}%
   \vspace{\stretch{2}}%
-  {\raggedleft \CYRU\CYRD\CYRK\ \@udc \par}%
+  {\raggedleft \CYRU\CYRD\CYRK\ \UDC \par}%
   \vspace{\stretch{1}}%
   \begin{center}
   {\large\bfseries\scshape \@title \par}%
   \vspace{\stretch{2}}%
-  \@specialitycode\ --- \@specialityname\par
+  \dissSpecId\ --- \dissSpecMain\par
   \vspace{\stretch{2}}%
     \forcontest\ \linebreak[1]%
     \degreename\ %
-    \@science\par%?\linebreak[1]%
+    \dissScopeMain
   \end{center}%
   \vspace{\stretch{2}}%
   {\raggedleft
    \let\\\@format@person
-   \ifx\@supervisors\@empty
-     \hbox{}\hbox{}\hbox{}
-   \else
-     \@supervisors@caption\@supervisors\relax
-   \fi
+   % \ifx\@supervisors\@empty
+   %   \hbox{}\hbox{}\hbox{}
+   % \else
+   %   \@supervisors@caption\@supervisors\relax
+   % \fi
+   \@supervisors@caption\@supervisors\relax
    \par}%
   \vspace{\stretch{3}}%
   \noindent
   {\scriptsize
-  \parbox[t]{0.45\textwidth}{%
+  \parbox[t]{0.47\textwidth}{%
     \CYRC\cyre\cyrishrt\ \cyrp\cyrr\cyri\cyrm\cyrii\cyrr\cyrn\cyri\cyrk\ %
     \cyrd\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyrii\cyrishrt\cyrn\cyro\cyryi\ \cyrr\cyro\cyrb\cyro\cyrt\cyri\ %
     \cyrii\cyrd\cyre\cyrn\cyrt\cyri\cyrch\cyrn\cyri\cyrishrt\ \cyrz\cyra\ \cyrz\cyrm\cyrii\cyrs\cyrt\cyro\cyrm\ %
@@ -409,7 +408,7 @@
   }
   \vspace{\stretch{3.0}}%
   \begin{center}
-  \@town\ --- \@year%
+  \cityMain\ --- \@year%
   \end{center}%
 }
 %

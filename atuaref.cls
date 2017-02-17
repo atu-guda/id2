@@ -685,6 +685,11 @@
 \fi
 \onecolumn
 
+% atu: to use common defs with vakthesisatu.cls
+\newcommand\supervisor[2]{}
+\newcommand{\Rada}{radaPlaceHolder}
+\newcommand{\SekrRadi}{SekrRadiPLaceHolder}
+
 \endinput
 %%
 %% End of file `atuthes.cls'.

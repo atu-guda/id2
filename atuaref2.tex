@@ -13,6 +13,12 @@
 %\usepackage[english,russian,ukraineb]{babel}
 \usepackage[english,ukraineb,russian]{babel}
 
+\usepackage[backend=biber,language=russian,sorting=none,maxnames=3,bibstyle=gost-numeric]{biblatex}
+
+\input{defs.tex}
+
+\addbibresource{atuworks.bib}
+
 \DeclareMathOperator*{\sign}{sign}
 
 \newcommand{\TermDef}[1]{\textit{\textbf{#1}}}
@@ -310,15 +316,11 @@ XXX
 
 \xsect{СПИСОК ОПУБЛІКОВАНИХ ПРАЦЬ ЗА ТЕМОЮ ДИСЕРТАЦІЇ}
 
-\begin{enumerate}
+\nocite{*}
 
-\item Михалев~А.И., Гуда~А.И.
-Идентификация  гистерезисных систем машиностроительного производства
-// Системные технологии. Компьютерная обработка экспериментальных
-данных: Регион. межвуз. сб. научн. тр. -- Днепропетровск:
-``Системные технологии'', 1998. -- \No~2 С.~60-67.
+\printbibliography
 
-\end{enumerate}
+
 
 
 \xsect{АННОТАЦИЯ}
