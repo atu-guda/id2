@@ -690,6 +690,7 @@
 \newcommand{\Rada}{radaPlaceHolder}
 \newcommand{\SekrRadi}{SekrRadiPLaceHolder}
 
+
 \endinput
 %%
 %% End of file `atuthes.cls'.
