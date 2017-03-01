@@ -361,7 +361,8 @@
   }%
   \vspace{\stretch{2}}%
   \begin{center}
-  {\bfseries\expandafter\emphsurname\@author \par}%
+  %{\bfseries\expandafter\emphsurname\@author \par}%
+  {\bfseries\dissauthorFullMain \par}%
   \end{center}%
   \vspace{\stretch{2}}%
   {\raggedleft \CYRU\CYRD\CYRK\ \UDC \par}%
