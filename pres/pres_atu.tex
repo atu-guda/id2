@@ -22,11 +22,17 @@
 
 \DeclareMathOperator*{\sign}{sign}
 
+\input{../tikzsetup.tex}
 \input{defs.tex}
 
 \author{\dissauthorRu}
 
 \title[Семинар -- 2017]{\booknameRu}
+
+\newlength\TW
+\setlength{\TW}{0.01\textwidth} % after geometry!
+\newlength\DDW
+\setlength{\DDW}{0.36\textwidth}
 
 \begin{document}
 
@@ -264,9 +270,51 @@
 
 
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Безразмерный вид критерия и функции качества}
   %\framesubtitle{}
+
+  Критерий, основанных на физических принципах -- чаще всего размерная величина.
+  Используются 2 способа обезразмеривания: деление
+  на какую-либо характерную величину той же размерности,
+  использование функции качества.
+
+  \begin{tabular}{p{45\TW}|p{52\TW}}
+  \[
+      q_r = \frac{q_o - q_m}{q_\gamma},
+  \]
+  \begin{equation}
+    F_{\mathrm{gauss}} = \exp( - q_r^2 ),
+  \label{atu:eq:F_gauss}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{parabolic}} = 1 - q_r^2 \left( 1 - \frac{1}{e} \right),
+  \label{atu:eq:F_parabolic}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{triangle}} = 1 - |q_r| \left( 1 - \frac{1}{e} \right),
+  \label{atu:eq:F_triangle}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{hyper}} = \frac{1}{ 1 + |q_r| \left( 1 - \frac{1}{e} \right)},
+  \label{atu:eq:F_hyper}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{log}} = 1 - \ln \left( 1 + |q_r| \right) \frac{1-1/e}{\ln(2)}.
+  \label{atu:eq:F_log}
+  \end{equation}
+ &
+  \begin{figure}[htb!]
+    \centerline{\includegraphics[width=0.45\textwidth]{p/F_types.png} }
+    \caption{Функции качества идентификации (\ref{atu:eq:F_gauss})--(\ref{atu:eq:F_log})}
+    \label{atu:f:F_types}
+  \end{figure}
+  \end{tabular}
+
 
 
 \end{frame}
@@ -278,6 +326,19 @@
   \frametitle{Элементы системы идентификации: определения}
   %\framesubtitle{}
 
+  Определение: \textbf{поисковый агент} -- это динамическая система, получающая выходной ($x(t)$),
+  и, при необходимости входной сигнал ($u(t)$) от одной или нескольких моделей,
+  величину оцкнци состояния объекта по критерию идентификации $q_o(t)$,
+  может быть обмениваясь информацией с другими элементами поисковой системы,
+  на основании значения критерия идентификации
+  реализующая алгоритм настройки параметра модели (моделей)
+  таким образом, чтобы обеспечить идентификацию заданного параметра.
+
+  Определение: \textbf{координатор поиска} -- это динамическая система, получающая информацию
+  от поисковых агентов, и на основании этой информации определяющая
+  $p_{\mathrm{id}}(t)$ -- искомую величину идентифицируемого параметра.
+  Помимо этого, координатор может, на основании этой же информации,
+  управлять процессом адаптации всей поисковой системы.
 
 \end{frame}
 
@@ -285,10 +346,17 @@
 
 % -----------------------------------------------------------------------
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Плоская структура мультиагентной системы}
   %\framesubtitle{}
 
+  \begin{figure}[ht!]
+  \begin{center}
+  \input{p/agents.pgf}
+  \end{center}
+  \caption{Мультиагентная система идентификации с плоской структурой}
+  \label{atu:f:agents_flat}
+  \end{figure}
 
 \end{frame}
 
@@ -300,6 +368,32 @@
   \frametitle{Виды мультиагентных систем идентификации}
   %\framesubtitle{}
 
+  \begin{description}
+    \item[Рой]
+      --- множество агентов, обеспечивающее идентификацию за счёт
+      сосредоточения максимального количества агентов
+      в области предполагаемого максимума функции качества или же
+      заданного значения критерия.
+      Обычно -- три составляющие поведения
+      (движение о оцениваемому локальному экстремуму, -- к глобальному, случайная составляющая).
+
+    \item[Строй]
+      --- множество агентов, расположение которых,
+      и если необходимо, смещение, задаётся
+      единообразным образом.
+      Отсутствует индивидуальная динамика каждого агента.
+      Неподвижный строй образует \textbf{сетку},
+      как равномерно распределённую по пространству параметров,
+      так и нет.
+
+    \item[Ансамбль]
+      --- множество агентов, обеспечивающее идентификацию за счёт
+      распределения агентов таким образом, который обеспечивает как
+      точность идентификации за счёт ограниченного скопления агентов
+      в областях предполагаемых максимумов, так и оперативное переключение
+      на другие области при изменении параметров за счёт недопущения
+      неоправданной скученности агентов.
+   \end{description}
 
 \end{frame}
 
@@ -310,6 +404,42 @@
 \begin{frame}
   \frametitle{Виды и задачи поисковых агентов}
   %\framesubtitle{}
+
+  Один поисковый агент может управлять как одной моделью (рис.~\ref{atu:f:agent1}, \ref{atu:f:agent1q}),
+  так и несколькими (рис.~\ref{atu:f:agent2}).
+  При этом он может использовать информацию,
+  как полученную непосредственно от других агентов,
+  так и вычисленную в результате обработки данных на других уровнях системы идентификации.
+
+  Группировки агентов: пары (``l'', ``r''), триплеты (``l'', ``c'', ``r'').
+  Группы могут быть независимы или же пересекаться.
+
+
+  Выходные сигналы агента: \\
+  $p_c(t)$ --- текущее значение параметра (центр), \\
+  $F_c(t)$ --- значение функции качества, \\
+  $q_c(t)$ --- значение критерия качества, \\
+  $p_e(t)$ --- оценка идентифицируемого параметра текущим агентом, \\
+  $S_e(t)$ --- степень ``уверенности'' агента в полученном значении.
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Один агент --- несколько моделей}
+  %\framesubtitle{}
+
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \input{p/agent2.pgf}
+    \end{center}
+    \caption{Поисковый агент, настраивающий параметры двух моделей}
+    \label{atu:f:agent2}
+  \end{figure}
 
 
 \end{frame}
@@ -322,6 +452,14 @@
   \frametitle{Методы агентов, использующих значения критерия}
   %\framesubtitle{}
 
+  \begin{figure}[htb!]
+  \begin{center}
+  \input{p/agent1q.pgf}
+  \end{center}
+  \caption{Поисковый агент, использующий критерий $q$, и настраивающий параметр одной модели}
+  \label{atu:f:agent1q}
+  \end{figure}
+
 
 \end{frame}
 
@@ -331,6 +469,14 @@
 \begin{frame}
   \frametitle{Методы агентов, использующих значения функции качества}
   %\framesubtitle{}
+
+  \begin{figure}[htb!]
+  \begin{center}
+  \input{p/agent1.pgf}
+  \end{center}
+  \caption{Поисковый агент, использующий функцию качества $F$, и настраивающий параметр одной модели}
+  \label{atu:f:agent1}
+  \end{figure}
 
 
 \end{frame}
@@ -352,9 +498,90 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
+  \frametitle{Классификация и обозначения систем идентификации}
+  %\framesubtitle{}
+
+  \begin{center}
+    \textbf{[qFx][bglex][clsu][zvbs][ntdsr]N.M[zra].\{crit\}}
+  \end{center}
+
+  Первый символ --- какая величина используется агентом для определения $p_e$.
+  Второй --- способ определения $p_\mathrm{id}$ по всем агентам.
+  Третий --- зависимость $f_e(p_e)$.
+  Четвёртый --- как $f_t$ (или её эквивалент) влияет на динамику агента.
+  Пятый --- поисковое движение.
+  N --- количество и конфигурация агентов.
+  M --- количество агентов в группе.
+  [zra] --- вид модели на границе.
+  \{crit\} --- критерий.
+
+  \textbf{``Fglv5.3z.$q_{x^2}$''} -- Метод, использующий 5 подвижных (3 триплета) и 2 ``fake'' модели,
+  ``global COG'' для результирующего значения параметра
+  для оценивания величины $p_e$ используется функция качества,
+  зависимость $f_e$ от $p_e$ -- линейная, ``вязкая'' динамика, критерий ``$q_{x^2}$''.
+
+  \textbf{``xblst1''} -- Оригинальный адаптивно-поисковый метод.
+
+  \textbf{``xblvd1.2''} -- Адаптивно-поисковый метод с двумя моделями и двумя УГПК с общим сбросом
+    и непосредственным использованием выходов объекта и моделей.
+
+  \textbf{``Fblvd1.2.$q_{x^2}$''} -- Адаптивно-поисковый метод с двумя моделями и двумя УГПК с общим сбросом,
+   использующий функцию качества применительно к критерию $q_{x^2}$.
+\end{frame}
+
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
   \frametitle{Ошибки и качество идентификации}
   %\framesubtitle{}
 
+  Два подхода --- по критерию и по ошибке идентификации $e(t)=p_o(t)-p_\mathrm{id}(t)$.
+  %
+  \[
+    \overline{e} = \mu( p_o(t), p_\mathrm{id}(t) ),
+    \quad
+    t \in [0;T].
+  \]
+  %
+  \begin{equation}
+    \overline{e_c}(p_o(t),p_\mathrm{id}(t))
+    =
+    \max \big| p_o(t)-p_\mathrm{id}(t) \big|,
+    \quad
+    t \in [0;T].
+    \label{atu:eq:e_c}
+  \end{equation}
+  %
+  \begin{equation}
+    \overline{e_2}(p_o(t),p_\mathrm{id}(t))
+    =
+    \sqrt{ \frac{1}{T} \int\limits_{0}^{T} \big( p_o(t)-p_\mathrm{id}(t) \big)^2 \, \mathrm{d}t },
+    \label{atu:eq:e_2}
+  \end{equation}
+
+  Нормированные величины ошибок ( $p_{00}$ -- центр $\mathcal{P}$
+  $ \overline{e}_{00}  = \overline{e}(p_o(t),p_{00})$ ):
+  %
+  \begin{equation}
+    \overline{e}_{rge} = \frac{\overline{e}_{ge}}{\overline{e}_{00}}, \;
+    \overline{e}_{rle} = \frac{\overline{e}_{le}}{\overline{e}_{00}}, \;
+    \overline{e}_{xee} = \frac{\overline{e}_{xe}}{\overline{e}_{00}}, \;
+    \overline{e}_{ree} = \frac{\overline{e}_{ee}}{\overline{e}_{00}}.
+    \label{atu:eq:e_rxx}
+  \end{equation}
+
+  $p_{bm}(t)$ --- значение $p_c(t)$ лучшего агента (fixed).
+  $\overline{e}_{bm}$ --- соответствующая ошибка.
+  $p_{ba}(t)$ --- $p_e(t)$ лучшего агента.
+  $\overline{e}_{ba}$ --- аналогично.
+  $\overline{e}_{gebm} = \frac{\overline{e}_{ge}}{\overline{e}_{bm}}$,
+  $\overline{e}_{geba} = \frac{\overline{e}_{ge}}{\overline{e}_{ba}}$ \ldots
+
+ $\overline{e}_{bm} / \overline{e}_{ba}$ ---
+ характеризует аппроксимирующую способность агентов.
 
 \end{frame}
 
@@ -365,9 +592,56 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{Классификация и обозначения систем идентификации}
+  \frametitle{Ошибки идентификации: фиксированная группа}
   %\framesubtitle{}
 
+  \begin{figure}[htb!]
+    \begin{center}
+      \includegraphics[width=32\TW]{p/lar_e-0-p_ele_A_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lar_e-0-p_eee_A_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lar_e-0-p_exe_A_qg.png}
+    \end{center}
+    \begin{center}
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_ege_A_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_eee_A_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_exe_A_qg.png}
+    \end{center}
+    \caption{Зависимости $\overline{e}_{*}(A,q_\gamma) $ для модели $ \Delta q = a_l \Delta p + a_a |\Delta p| + w $ и системы Лоренца}
+    \label{atu:f:iderr_Aqg}
+  \end{figure}
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Ошибки идентификации: фиксированная группа (2)}
+  %\framesubtitle{}
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \includegraphics[width=32\TW]{p/lar_e-0-p_ele_po0_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lar_e-0-p_eee_po0_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lar_e-0-p_exe_po0_qg.png}
+    \end{center}
+    \begin{center}
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_ege_po0_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_eee_po0_qg.png}
+      \hfill
+      \includegraphics[width=32\TW]{p/lor_e-x1-p_exe_po0_qg.png}
+    \end{center}
+    \caption{Зависимости $\overline{e}_{*}(p_{o0},q_\gamma) $ для модели $ \Delta q = a_l \Delta p + a_a |\Delta p| + w $ и системы Лоренца}
+    \label{atu:f:iderr_po0qg}
+  \end{figure}
 
 \end{frame}
 
@@ -375,6 +649,7 @@
 
 
 
+% -----------------------------------------------------------------------
 % ------------------------------- P4 ----------------------------------------
 
 \begin{frame}
@@ -449,6 +724,36 @@
   \frametitle{Система Лоренца}
   \framesubtitle{Определение}
 
+Задача о тепловой конвекции жидкости в плоском слое. Исходная система уравнений:
+%
+  \begin{equation}
+  \begin{cases}
+    \pd{\vec{v}}{t} + ( \vec{v} \nabla ) \vec{v} = - \frac{\nabla p}{\rho} + \nu \Delta \vec{v} + \vec{g}, \\
+    \pd{\rho}{t} + \nabla ( \rho \vec{v} ) = 0 , \\
+    \pd{T}{t} +\nabla ( T \vec{v} ) = \chi \Delta T , \\
+    \rho = \rho_0 \left( 1 - \gamma (T - T_0) \right) .
+  \end{cases}
+  \label{atu:eq:lor_gidro}
+  \end{equation}
+  %
+  где
+  $\vec{v} $   -- поле скоростей,
+  $T$ -- поле температуры,
+  $T_0$ и $T_0+\Delta T$   -- температуры на верхней и нижней границе соответственно,
+  $\rho$ и $p$ -- поля плотности и давления,
+  $g$ -- ускорение свободного падения,
+  $\nu$, $\chi$, $\gamma$  -- коэффициенты кинематической вязкости, температуропроводности и
+  теплового расширения соответственно.
+
+%
+  \begin{equation}
+  \begin{cases}
+    \dot{x} = \sigma (y-x ) , \\
+    \dot{y} = x (r-z) - y , \\
+    \dot{z} = x y - b z .
+  \end{cases}
+  \label{atu:eq:lor}
+  \end{equation}
 
 \end{frame}
 
@@ -460,6 +765,17 @@
   \frametitle{Система Лоренца}
   \frametitle{Свойства}
 
+  Демонстрирует затухающую, хаотическую и сложно-периодическую динамику.
+
+  \begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.49\textwidth]{p/lor/lor0-p_xyz_r=028.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/lor/lor0_fft-p_f_r=028.png}
+  \end{center}
+    \caption{Аттрактор и спектр системы Лоренца (\ref{atu:eq:lor}) в хаотическом режиме ($r=28$)}
+  \label{atu:f:lor_attractor_phase_chaos28}
+  \end{figure}
 
 \end{frame}
 
@@ -472,6 +788,16 @@
   \framesubtitle{Анализ критериев}
 
 
+  \begin{figure}[h!]
+    \centerline{\includegraphics[width=54\TW]{p/lor/lor_q-p_q_r.png} }
+    \caption{Рассматриваемые критерии для системы Лоренца}
+    \label{atu:f:lor_q}
+  \end{figure}
+
+В дальнейших исследованиях ограничимся
+критериями
+  $q_{x^2}$, ${q_{x}}$ и $q_{y^2}$.
+
 \end{frame}
 
 
@@ -480,8 +806,35 @@
 
 \begin{frame}
   \frametitle{Система Лоренца}
-  \framesubtitle{Тестовая задача}
+  \framesubtitle{Зависимости $\sigma_{q}(\ldots)$ и тестовая задача}
+  \begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.49\textwidth]{p/lor/lor_qx2_tau-p_aq_sd.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/lor/lor_qx2_tau-p_tau_sd.png}
+  \end{center}
+  \caption{Зависимости $\sigma_{q}(a_q)$ и $\sigma_{q}(\tau_q)$ для системы Лоренца, критерий $q_{x^2}$}
+  \label{atu:f:lor_qx2_tau}
+  \end{figure}
 
+  \vspace{-3ex}
+  \[
+    p(t) \in [20, 60],
+  \]
+  %
+  \begin{equation}
+    r_o(t) = p_o(t) = p_0 +  U_{p} \sign \sin( \omega_{p} t ),
+    \label{atu:eq:lor_po_t_sign}
+  \end{equation}
+  %
+  %
+  \begin{equation}
+    r_o(t) = p_o(t) = p_0 +  U_{p} \sin( \omega_{p} t ),
+    \label{atu:eq:lor_po_t_sin}
+  \end{equation}
+  %
+  где:
+  $p_0 = 37$, $U_p=12$, $\omega_p=0.09$.
 
 \end{frame}
 
@@ -494,6 +847,16 @@
   \framesubtitle{Идентификация методом  Fblvd1.2.$q_{x2}$ }
 
 
+\begin{figure}[h!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/lor/Fblvd1_2-p_xz_1_wp009.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/lor/Fblvd1_2-p_xz_0_wp009.png}
+  }
+  \caption{Процесс идентификации параметра ``$r$'' системы Лоренца методом Fblvd1.2.$q_{x^2}$ при условиях~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+  \label{atu:f:lor_id_Fblvd1}
+\end{figure}
+
 \end{frame}
 
 
@@ -504,6 +867,16 @@
   \frametitle{Система Лоренца}
   \framesubtitle{Идентификация методом qAuv5.3r.$q_{x2}$}
 
+
+  \begin{figure}[h!]
+    \centerline{
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_qAuv5_3r_qx2-p_t_pi_sign.png}
+      \hfill
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_qAuv5_3r_qx2-p_t_pi_sin.png}
+    }
+    \caption{Процесс идентификации параметра ``$r$'' системы Лоренца методом qAuv5.3r.$q_{x^2}$ при условии~(\ref{atu:eq:lor_po_t_sign})}
+    \label{atu:f:lor_id_qAuv5.3r.q_x2_sign}
+  \end{figure}
 
 \end{frame}
 
@@ -516,6 +889,17 @@
   \framesubtitle{Идентификация методом FAlv5.3z.$q_{x2}$}
 
 
+  \begin{figure}[h!]
+    \centerline{
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlv5_3z_qx2-pl_n_sign.png}
+      \hfill
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlv5_3z_qx2-p_p_sin.png}
+    }
+    \caption{Процесс идентификации параметра ``$r$'' системы Лоренца методом FAlv5.3z.$q_{x^2}$ при условии~(\ref{atu:eq:lor_po_t_sign})}
+    \label{atu:f:lor_id_FAlv5.3z.q_x2_sign}
+  \end{figure}
+
+
 \end{frame}
 
 
@@ -525,6 +909,26 @@
 \begin{frame}
   \frametitle{Система Лоренца}
   \framesubtitle{Зависимости $\overline{e}(a_q)$}
+
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_a_q_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_a_q_e_sin.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_a_q_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_a_q_e_sin.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $\overline{e}_{r*}(a_q)$ при идентификации системы Лоренца методами qAuv5.3r.$q_{x^2}$ и FAlv5.3z.$q_{x^2}$
+     при~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+    \label{atu:f:lor_a_q_Fq.q_x2}
+  \end{figure}
 
 
 \end{frame}
@@ -537,6 +941,28 @@
   \frametitle{Система Лоренца}
   \framesubtitle{Зависимости $\overline{e}(q_\gamma)$}
 
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_qgamma_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_qgamma_e_sin.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_qg_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_qg_e_sin.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $\overline{e}_{r*}(q_\gamma)$
+     при идентификации системы Лоренца методами qAuv5.3r.$q_{x^2}$ и FAlv5.3z.$q_{x^2}$
+     при~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+    \label{atu:f:lor_qgamma_Fq.q_x2}
+  \end{figure}
+
+
 
 \end{frame}
 
@@ -545,6 +971,28 @@
 \begin{frame}
   \frametitle{Система Лоренца}
   \framesubtitle{Зависимости $\overline{e}(v_f)$}
+
+
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_v_f_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qAuv5_3r_qx2-p_v_f_e_sin.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_v_f_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_FAlv5_3z_qx2-p_v_f_e_sin.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $\overline{e}_{r*}(v_f)$
+     при идентификации системы Лоренца методами qAuv5.3r.$q_{x^2}$ и FAlv5.3z.$q_{x^2}$
+     при~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+    \label{atu:f:lor_vf_Fq.q_x2}
+  \end{figure}
 
 
 \end{frame}
@@ -556,6 +1004,16 @@
   \frametitle{Система Лоренца}
   \framesubtitle{Влияние вида функции качества на процесс идентификации}
 
+  \begin{figure}[h!]
+    \centerline{
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlv5_3z_qx2_Ft-p_qg_e_all_sign_rge.png}
+      \hfill
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlv5_3z_qx2_Ft-p_qg_e_all_sin_rge.png}
+    }
+    \caption{Семейства зависимостей $\overline{e}_{rge}(q_\gamma)$ для различных видов функций качества при идентификации системы Лоренца методом FAlv5.3z.$q_{x^2}$
+     при~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+    \label{atu:f:lor_ftype_rge}
+  \end{figure}
 
 \end{frame}
 
@@ -565,6 +1023,48 @@
 \begin{frame}
   \frametitle{Система Лоренца}
   \framesubtitle{Влияние количества поисковых агентов на процесс идентификации}
+
+
+  \begin{figure}[h!]
+    \centerline{
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlvN_3z_qx2_p_qg_e_rge_sign.png}
+      \hfill
+      \includegraphics[width=0.49\textwidth]{p/lor/lor_FAlvN_3z_qx2_p_qg_e_rge_sin.png}
+    }
+    \caption{Семейства зависимостей $\overline{e}_{rge}(q_\gamma)$ для различных значений $N$ при идентификации системы Лоренца методом FAlv5.3r.$q_{x^2}$
+     при~(\ref{atu:eq:lor_po_t_sign}) и (\ref{atu:eq:lor_po_t_sin})}
+    \label{atu:f:lor_N_rge}
+  \end{figure}
+
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Система Лоренца}
+  \framesubtitle{Зависимости критерив от двух параметров}
+
+
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qx2_r_b.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qy2_r_b.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qz2_r_b.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/lor/lor_qxmy2_r_b.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $q_{*}(r,b)$ для системы Лоренца }
+    \label{atu:f:lor_qrb}
+  \end{figure}
 
 
 \end{frame}
@@ -578,8 +1078,33 @@
   \frametitle{Система Sprott A}
   \framesubtitle{Определение}
 
+  Задаётся системой уравнений:
+  %
+  \begin{equation}
+    \begin{cases}
+      \dot{x} =  y, \\
+      \dot{y} = -x + yz, \\
+      \dot{z} =  1 - y^2.
+    \end{cases}
+    \label{atu:eq:spr_a_orig}
+  \end{equation}
 
-\end{frame}
+  Отличительной особенностью
+  этой системы является отсутствие положений равновесия, что делает
+  невозможным применение многих известных методов анализа, основанных на
+  каком-либо разложении в окрестностях точек равновесия.
+
+  Вводим параметр $c_{x_y}$, не изменяя структуры уравнения:
+  %
+  \begin{equation}
+    \begin{cases}
+      \dot{x} =  c_{x_y} y, \\
+      \dot{y} = -x + yz, \\
+      \dot{z} =  1 - y^2.
+    \end{cases}
+    \label{atu:eq:spr_a}
+  \end{equation}
+  \end{frame}
 
 % -----------------------------------------------------------------------
 
@@ -587,8 +1112,48 @@
   \frametitle{Система Sprott A}
   \framesubtitle{Свойства}
 
+  В диапазоне $c_{x_y} \in [0.1 ; 0.7] $
+  наблюдаются перестройки структуры аттрактора, а при относительно больших
+  значениях данного параметра аттрактор представляет собой полый тор.
+
+  \begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a-p_xyz_cx_y=0x610.png}
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a_f-p_f_cx_y=0x610.png}
+  }
+  \caption{Аттрактор и спектр системы (\ref{atu:eq:spr_a}) при $ c_{x_y} =0.610 $.
+    Хаотический режим
+  }
+  \label{atu:f:spr_a_p_0610}
+  \end{figure}
 
 \end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Система Sprott A}
+  \framesubtitle{Критерии}
+
+
+  \begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.50\textwidth]{p/spr_a/sprott_a_q-p_c_x_y.png}
+  }
+  \caption{Зависимости $q_{*}(c_{x_y})$ для системы (\ref{atu:eq:spr_a}) }
+  \label{atu:f:spr_a_q}
+  \end{figure}
+
+  \vspace{-4ex}
+  Однозначный ответ о возможном виде критерия -- $q_{x^2}$.
+
+  В начальной области
+  $q_{x^2}(c_{x_y}) $, а именно там, где происходят постоянные
+  перестройки структуры аттрактора, ни один из рассматриваемых критериев
+  не имеет достаточной монотонности.
+\end{frame}
+
 
 
 % -----------------------------------------------------------------------
@@ -598,6 +1163,16 @@
   \framesubtitle{Идентификация методом qAuv5.3r.$q_{x2}$}
 
 
+\begin{figure}[h!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_t_pz_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_t_pz_sin.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A методом qAuv5.3r.$q_{x^2}$}
+  \label{atu:f:spr_a_id_qAuv5.3r.q_x2_sign}
+\end{figure}
+
 \end{frame}
 
 
@@ -605,8 +1180,18 @@
 
 \begin{frame}
   \frametitle{Система Sprott A}
-  \framesubtitle{Идентификация методом FAlv5.3z.$q_{x2}$}
+  \framesubtitle{Идентификация методом FAlv5.3r.$q_{x2}$}
 
+
+\begin{figure}[h!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a_FAlv5x3r-p_p_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/spr_a/sprott_a_FAlv5x3r-p_p_sin.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A методом FAlv5.3r.$q_{x^2}$}
+  \label{atu:f:spr_a_id_FAlv5.3r.q_x2_sign}
+\end{figure}
 
 \end{frame}
 
@@ -618,6 +1203,25 @@
   \frametitle{Система Sprott A}
   \framesubtitle{Зависимости $\overline{e}(a_q)$}
 
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_a_q_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_a_q_e_sin.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_FAlv5x3r-p_a_q_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_FAlv5x3r-p_a_q_e_sin.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $\overline{e}_{r*}(a_q)$ при идентификации системы Sprott A методоми  qAuv5.3r.$q_{x^2}$ и  FAlv5.3r.$q_{x^2}$ }
+    \label{atu:f:spr_a_a_q_qF.q_x2}
+  \end{figure}
+
 
 \end{frame}
 
@@ -627,6 +1231,26 @@
 \begin{frame}
   \frametitle{Система Sprott A}
   \framesubtitle{Зависимости $\overline{e}(q_\gamma)$}
+
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_qgamma_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_qAuv5_3r_qx2-p_qgamma_e_sin.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_FAlv5x3r-p_qg_e_sign.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/spr_a/sprott_a_FAlv5x3r-p_qg_e_sin.png}
+      \hfill{~}
+    }
+    \caption{Зависимости $\overline{e}_{r*}(q_\gamma)$ при идентификации системы Sprott A методоми  qAuv5.3r.$q_{x^2}$ и  FAlv5.3r.$q_{x^2}$ }
+    \label{atu:f:spr_a_qg_qF.q_x2}
+  \end{figure}
+
 
 
 \end{frame}
@@ -784,7 +1408,7 @@
   %\framesubtitle{}
 
   Были расмотрены системы Дуффинга, Рёсслера, Ван-дер-Поля,
-  еолебательная система с нечувствительностью в возвращающей силе.
+  колебательная система с нечувствительностью в возвращающей силе.
 
   Для всех этих систем на основе предложенных критериев были
   созданы системы идентификации, показана их работоспособность
