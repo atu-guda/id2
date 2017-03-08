@@ -4,9 +4,10 @@
 \usepackage[T1,T2A]{fontenc}
 \usefonttheme[onlymath]{serif}
 \usepackage{paratype}
-\usepackage {latexsym}
-%\usepackage {fancybox}
-\usepackage {fouriernc}
+\usepackage{latexsym}
+%\usepackage{fancybox}
+\usepackage{fouriernc}
+\usepackage{mathtools}
 
 \usepackage{caption}
 \setbeamertemplate{caption}[numbered]
@@ -33,6 +34,8 @@
 \setlength{\TW}{0.01\textwidth} % after geometry!
 \newlength\DDW
 \setlength{\DDW}{0.36\textwidth}
+\newlength\DDT
+\setlength{\DDT}{0.32\textwidth}
 
 \begin{document}
 
@@ -43,11 +46,15 @@
 
     \vfill
 
+    {\dissSpecId --- \dissSpecRu}
+
+    \vfill
+
     {\large \dissauthorMain}
 
     \vfill
 
-    Научный консультант -- д.т.н., проф. \superRu
+    Научный консультант --- д.т.н., проф. \superRu
 
     \vfill
 
@@ -163,7 +170,45 @@
   \frametitle{Прототипы}
   %\framesubtitle{}
 
-  Кто занимался и какие методы.
+  Вопросами идентификации динамических систем занимались
+  Л.~Заде,
+  П.~Эйкхофф,
+  Д.~Гропп,
+  Л.~Льюнг,
+  Л.А.~Растригин,
+  Я.З.~Цыпкин,
+  Г.Е.~Пухов,
+  Ц.С.~Хатиашвили,
+
+
+  Созданием и разработкой систем поисковой и адаптивно-поисковой идентификации занимались
+  М.М.~Ивахненко,
+  А.А.~Красовский,
+  Н.Н.~Карабутов,
+  А.И.~Михалёв,
+  Э.Е.~Гачинский,
+  А.И.~Дроздов,
+  Л.Н.~Фицнер,
+  Л.Ф.~Иванов,
+
+  Вопросам моделирования систем динамического хаоса, в том числе идентификации уделяли внимание
+Ф.~Мун,
+M.P.~Kennedy,
+J.C.~Sprott,
+В.С.~Анищенко,
+В.В.~Астахов,
+Т.Е.~Вадивасова,
+А.Б.~Нейман,
+Н.А.~Магницкий,
+А.С.~Дмитриев,
+Е.В.~Ефремова,
+С.П.~Кузнецов,
+В.Я.~Данилов.
+
+
+
+
+
 
 
 \end{frame}
@@ -184,31 +229,48 @@
   \framesubtitle{Влияние малых возмущений}
 
 
-\end{frame}
+  \begin{figure}[h!]
+    \centerline{
+      \includegraphics[width=49\TW]{p/lor_diff-p_xx_x0.png}
+      \hfill
+      \includegraphics[width=49\TW]{p/lor_diff-p_dx_x0.png}
+    }
+    \caption{Различие в поведение системы Лоренца при малом возмущении начальных условий}
+    \label{atu:f:lor_diff_x0}
+  \end{figure}
 
+  \vspace{-5ex}
 
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Определения идентификации}
-  %\framesubtitle{}
-
-  Заде -- Райбман, \ldots
-
-
-\end{frame}
-
-% -----------------------------------------------------------------------
-
-
-\begin{frame}
-  \frametitle{Критерии идентификации: требования}
-  %\framesubtitle{}
-
+  Для синтеза системы идентификации необходимо существование
+  заданного скалярного критерия $q(x(t))$, близость величин
+  которых для объекта и модели (в смысле какой-либо меры)
+  и позволяет говорить о достижении цели идентификации.
 
 \end{frame}
 
+
+
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Определения идентификации}
+%   %\framesubtitle{}
+%
+%   Заде -- Райбман, \ldots
+%
+%
+% \end{frame}
+
+% % -----------------------------------------------------------------------
+%
+%
+% \begin{frame}
+%   \frametitle{Критерии идентификации: требования}
+%   %\framesubtitle{}
+%
+%
+% \end{frame}
+%
 
 
 % -----------------------------------------------------------------------
@@ -217,6 +279,48 @@
   \frametitle{Критерии идентификации: энергетические основы}
   %\framesubtitle{}
 
+Основные способы представления энергии:
+%
+\begin{equation}
+  E_k = \frac{mv^2}{2} = \frac{m}{2} \left( \od{x}{t} \right)^2.
+  \label{atu:eq:Ek_v}
+\end{equation}
+%
+%
+\begin{equation}
+  E_p = m g x .
+  \label{atu:eq:Ep_g}
+\end{equation}
+%
+\begin{equation}
+  E_p = k \frac{x^2}{2} .
+  \label{atu:eq:Ep_spring}
+\end{equation}
+%
+\begin{equation}
+  E_k = J \frac{\omega^2}{2} = \frac{J}{2} \left( \od{\varphi}{t} \right)^2 .
+  \label{atu:eq:Ek_spin}
+\end{equation}
+%
+\begin{equation}
+  E_t = \frac{im}{2M} RT.
+  \label{atu:eq:Et}
+\end{equation}
+%
+\begin{equation}
+  E_c = \frac{C U^2}{2}.
+  \label{atu:eq:Ec}
+\end{equation}
+%
+\begin{equation}
+  E_l = \frac{L I^2}{2} = \frac{L}{2} \left( \od{Q}{t}\right)^2 .
+  \label{atu:eq:El}
+\end{equation}
+%
+\begin{equation}
+  E_r = U I = I^2 R = \frac{U^2}{R} = U \od{Q}{t} .
+  \label{atu:eq:Er}
+\end{equation}
 
 \end{frame}
 
@@ -225,9 +329,40 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{Критерии идентификации: предлагаемый набор величин}
-  %\framesubtitle{}
+  \frametitle{Критерии идентификации}
+  \framesubtitle{предлагаемый набор величин}
 
+Количество способов
+представления энергии (рассматриваем сосредоточенные параметры)
+ограничено. Основные виды зависимостей:
+
+\begin{itemize}
+
+  \item
+    Квадратичная зависимость от координаты: $E \sim x^2$.
+
+  \item
+    Линейная зависимость от координаты: $E \sim x$.
+
+  \item
+    Квадратичная зависимость от производной координаты по времени: $E \sim \left( \od{x}{t}\right)^2$.
+
+  \item
+    Линейная зависимость от произведений координат: $E \sim x \cdot y$.
+
+  \item
+    Линейная зависимость от произведений одной координаты на производную другой: $E \sim x \cdot \od{y}{t}$.
+
+  \item
+    Максимум величины на заданном интервале времени.
+
+ \end{itemize}
+
+  Следствием невозможности непосредственного использования выходных
+  сигналов объекта и моделей в качестве критерия идентификации, а также
+  требование физической измеримости критерия является
+  тот факт, что для получения оценки критерия, как правило,
+  требуется значительное время.
 
 \end{frame}
 
@@ -239,31 +374,49 @@
   \frametitle{Отличие задачи идентификации}
   %\framesubtitle{}
 
+  На первый взгляд, при заданном критерии идентификации, задача идентификации
+  сводится к классической задаче решения нелинейного уравнения: надо найти такие значения
+  параметров $p$, при которых критерий модели (или какой-либо из моделей)
+  $q_m$ принимает значение, наиболее близкое к значению критерия объекта $q_o$:
 
+  \[
+    \mu( q_o, q_m(p) ) \to \min. \;
+    \text{ или }
+    \overline{F}( q_o, q_m(p) ) \to \max.
+  \]
+
+  Это не так:
+  задача идентификации -- динамическая, т.е.
+  значение критерия, даже после какого-либо усреднения на конечном
+  интервале времени, есть величина динамическая, причём динамика определяется
+  не только параметрами системы, но и свойствами самой системы измерения,
+  а также процессом взаимодействия системы измерения с моделями.
+
+  Существенную роль играют шумы измерения, особенно при измерении производных.
 \end{frame}
 
 
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Динамические характеристики критериев}
-  %\framesubtitle{}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Выводы?}
-  %\framesubtitle{}
-
-
-\end{frame}
-
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Динамические характеристики критериев}
+%   %\framesubtitle{}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Выводы?}
+%   %\framesubtitle{}
+%
+%
+% \end{frame}
+%
 
 
 % --------------------------- P3 --------------------------------------------
@@ -460,6 +613,11 @@
   \label{atu:f:agent1q}
   \end{figure}
 
+  \vspace{-3ex}
+  1 модель: используем историю. \\
+  2 модели: можем оценить $p_e$ по линейному приближению. \\
+  3 модели: можем оценить $p_e$ + ``уверенность'' $S_e$ в этом приближении.
+
 
 \end{frame}
 
@@ -471,12 +629,112 @@
   %\framesubtitle{}
 
   \begin{figure}[htb!]
-  \begin{center}
-  \input{p/agent1.pgf}
-  \end{center}
-  \caption{Поисковый агент, использующий функцию качества $F$, и настраивающий параметр одной модели}
-  \label{atu:f:agent1}
+    \begin{center}
+      \input{p/agent1.pgf}
+    \end{center}
+    \caption{Поисковый агент, использующий функцию качества $F$, и настраивающий параметр одной модели}
+    \label{atu:f:agent1}
   \end{figure}
+
+  \vspace{-4ex}
+  3 основных способа: использование истории или аппроксимация по двум--трём моделям.
+
+  \[
+    a_1 = \frac{\tilde{F}_r \tilde{p}_l^2 - \tilde{F}_l \tilde{p}_r^2 }
+             { \tilde{p}_l^2 \tilde{p}_r  + \tilde{p}_l \tilde{p}_r^2 }.
+    \;
+  a_2 = \frac{\tilde{F}_r \tilde{p}_l - \tilde{F}_l \tilde{p}_r }
+             { \tilde{p}_l^2 \tilde{p}_r  + \tilde{p}_l \tilde{p}_r^2 }.
+  \]
+
+\begin{equation}
+  \tilde{p}_e = - \frac{a_1}{2 a_2};
+  \;
+  p_e = p_c -- \frac{a_1}{2 a_2}.
+  \label{atu:eq:p_F_e}
+\end{equation}
+
+\end{frame}
+
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Динамика поисковых агентов}
+  \framesubtitle{Определение ``сил''}
+
+  Способы определения основных действующих ``сил'':
+
+$f_e$ -- ``сила притяжения'' к локальной оценке $p_e$, например:
+%
+\begin{equation}
+  f_e(t) = - k_e ( p_c(t) - p_e(t) ) ,
+  \label{atu:eq:f_e_lin}
+\end{equation}
+%
+\begin{equation}
+  f_e(t) = - k_e \sign( p_c(t) - p_e(t) ) ,
+  \label{atu:eq:f_e_sign}
+\end{equation}
+
+$f_n$, --- ''сила'' взаимодействие агента с ближайшими соседями
+%
+\begin{equation}
+  f_n = k_n ( p_r - 2 p_c + p_l ),
+  \label{atu:eq:f_n_lin}
+\end{equation}
+
+$f_c$  -- ``сила притяжения'' к начальному значению
+параметра ($p_{c}(0)$)
+для данной модели. В линейной постановке эта сила определяется как
+%
+\begin{equation}
+  f_c = -k_c (p_c - p_{c}(0)) ,
+  \label{atu:eq:f_c}
+\end{equation}
+
+  Оправданы ограничения в виде ``барьеров'' (или алгоритмические).
+
+  \begin{equation}
+  f_t = f_c + f_n + f_e .
+  \label{atu:eq:f_t}
+\end{equation}
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Динамика поисковых агентов}
+  \framesubtitle{Подходы к определению динамики}
+
+Метод ``тяжёлого шарика'':
+%
+\begin{equation}
+  m \ddot{p}_c + \nu \dot{p}_c = f_t(t),
+  \label{atu:eq:heavy_ball}
+\end{equation}
+%
+где $m$ -- эквивалент массы шарика,
+$\nu$ -- коэффициент условной вязкости.
+
+Метод ``вязкой динамики'':
+%
+  \begin{equation}
+  \od{p_c}{t} = v_f f_t(t),
+  \label{atu:eq:v_f}
+\end{equation}
+%
+\noindent
+$v_f = 1/\nu$ -- коэффициент пропорциональности.
+
+\smallskip
+
+Многие методы задают динамику не виде сил,
+а в в виде алгоритмов поиска.
 
 
 \end{frame}
@@ -490,6 +748,58 @@
   \frametitle{Методы, параметры и алгоритмы работы поисковых координаторов }
   %\framesubtitle{}
 
+  Способы определения $p_\mathrm{id}$ ($p_{bm}: p_{c,i}; \; i : F_i = \max{F_j}, \, j=0 \ldots N-1 )$:
+
+  \begin{tabular}{p{40\TW}|p{58\TW}}
+  %
+  \begin{equation}
+    p_{ge}
+    =
+    \frac{\sum\limits_{i=0}^{N-1} F_{i} p_{i}}
+         {\sum\limits_{i=0}^{N-1} F_{i} }
+    .
+    \label{atu:eq:p_ge}
+  \end{equation}
+  %
+  \begin{equation}
+    p_{xe}
+    =
+    \frac{\sum\limits_{i=0}^{N-1} F_{i} S_i p_{e,i}}
+         {\sum\limits_{i=0}^{N-1} F_{i} S_i }
+    .
+    \label{atu:eq:p_xe}
+  \end{equation}
+  %
+  &
+  %
+  \begin{equation}
+    p_{le}
+    =
+    \frac{ F_{l} p_{l} + F_{c} p_{c} + F_{r} p_{r} }
+       { F_{l}       + F_{c}       + F_{r}       }
+    ,
+    c = bm.
+    \label{atu:eq:p_lel}
+  \end{equation}
+  %
+  \begin{equation}
+      p_{ba} = p_{e,i}, i = bm
+      \label{atu:eq:p_ba}
+    \end{equation}
+  %
+  \[
+      e_{ge} = p_{ge} - p_o,
+      \quad
+      e_{le} = p_{le} - p_o,
+  \]
+  \begin{equation}
+      e_{ee} = p_{ee} - p_o,
+      \quad
+      e_{xe} = p_{xe} - p_o.
+      \label{atu:eq:e_xx}
+    \end{equation}
+    %
+  \end{tabular}
 
 \end{frame}
 
@@ -650,24 +960,58 @@
 
 
 % -----------------------------------------------------------------------
-% ------------------------------- P4 ----------------------------------------
-
-\begin{frame}
-  \frametitle{Система моделирования ``qontrol''}
-  %\framesubtitle{}
-
-  Задачи системы
-
-
-\end{frame}
-
+% % ------------------------------- P4 ----------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система моделирования ``qontrol''}
+%   %\framesubtitle{}
+%
+%   Задачи системы
+%
+%
+% \end{frame}
+%
 
 
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{Основные особенности программы ``qontrol''}
+  \frametitle{Система моделирования ``qontrol''}
+  %\frametitle{Основные особенности программы ``qontrol''}
   %\framesubtitle{}
+
+  Основные особенности программы ``qontrol'':
+
+  \begin{itemize}
+
+    \item
+      Предназначена для моделирования нелинейных динамических систем
+      как с использованием GUI, так и в пакетном режиме.
+
+    \item
+      Для организации объектной модели используется как возможности
+      метакомпилятора ``moc'', так и собственная система обработки метаданных.
+      Это позволяет как автоматически генерировать интерфейсные элементы,
+      так и устанавливать связи между элементами модели.
+
+    \item
+      Концепция ``модель -- схема -- задача моделирования -- средства сбора и обработки информации''
+      позволяет автоматизировать процесс моделирования.
+
+    \item
+      Развитые средства представления данных в виде графиков.
+
+    \item
+      В качестве языка автоматизации используется Javascript.
+
+    \item
+      Предусмотрены средства взаимодействия с внешними программными средствами.
+      В частности, так реализовано взаимодействие с измерительно-управляющими
+      аппаратными средствами.
+
+
+  \end{itemize}
+
 
 
 \end{frame}
@@ -680,6 +1024,11 @@
   \frametitle{Интерфейс программы ``qontrol''}
   %\framesubtitle{}
 
+  \begin{figure}[ht!]
+    \centerline{\includegraphics[width=90\TW]{p/qontrol_iface.png} }
+    \caption{Интерфейс программы ``qontrol'' }
+    \label{atu:qontrol_iface}
+  \end{figure}
 
 \end{frame}
 
@@ -691,29 +1040,40 @@
   \frametitle{Программно-аппаратная реализация взаимодействия с физическими объектами}
   %\framesubtitle{}
 
+  Программно-аппаратная составляющая комплекса реализована
+  на микроконтроллерах STM32 (ARM Cortex M4F).
+  Использовалась как собственная разработка за базе STM32F407VE,
+  так и отладочная плата на STM32F746ZI + сопутствующие элементы.
 
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Программно-аппаратная реализация }
-  \framesubtitle{Оборудование}
-
-
-\end{frame}
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Программно-аппаратная реализация }
-  \framesubtitle{Интерфейс}
+  \begin{figure}[ht!]
+    \centerline{\includegraphics[width=90\TW]{p/colp_stand.png} }
+    \caption{Программно-аппаратный комплекс при работе с генератором Колпитца}
+    \label{atu:colp_stand}
+  \end{figure}
 
 
 \end{frame}
+
+
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Программно-аппаратная реализация }
+%   \framesubtitle{Оборудование}
+%
+%
+% \end{frame}
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Программно-аппаратная реализация }
+%   \framesubtitle{Интерфейс}
+%
+%
+% \end{frame}
 
 
 
@@ -1265,100 +1625,100 @@
 
 
 
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \frametitle{Свойства}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Анализ критериев}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Тестовая задача}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Идентификация методом  Fblvd1.2.$q_{x2}$ }
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Идентификация методом qAuv5.3r.$q_{x2}$}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Идентификация методом FAlv5.3z.$q_{x2}$}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Зависимости $\overline{e}(a_q)$}
-
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Зависимости $\overline{e}(q_\gamma)$}
-
-
-\end{frame}
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система Чуа}
-  \framesubtitle{Зависимости $\overline{e}(v_f)$}
-
-
-\end{frame}
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \frametitle{Свойства}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Анализ критериев}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Тестовая задача}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Идентификация методом  Fblvd1.2.$q_{x2}$ }
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Идентификация методом qAuv5.3r.$q_{x2}$}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Идентификация методом FAlv5.3z.$q_{x2}$}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Зависимости $\overline{e}(a_q)$}
+%
+%
+% \end{frame}
+%
+%
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Зависимости $\overline{e}(q_\gamma)$}
+%
+%
+% \end{frame}
+%
+% % -----------------------------------------------------------------------
+%
+% \begin{frame}
+%   \frametitle{Система Чуа}
+%   \framesubtitle{Зависимости $\overline{e}(v_f)$}
+%
+%
+% \end{frame}
 
 
 % -- fric ---
@@ -1369,6 +1729,28 @@
   \frametitle{Система с сухим трением}
   \framesubtitle{Определение}
 
+  Существуют динамические системы, не обладающие хаотическим поведением,
+  которые, тем не менее, проявляют сходные свойства с точки зрения идентификации.
+  %
+  \begin{equation}
+    m \ddot{x} + f_{df}( x, \dot{x}, \ldots)  = u(t).
+    \label{atu:eq:dryfric_sys}
+  \end{equation}
+  %
+  %\noindent
+  где
+  $m$ -- масса тела,
+  $u(t)$ -- вынуждающая сила,
+  $ f_{df}( x, \dot{x}, \ldots)  $ -- сила сухого трения.
+
+  Важной особенностью при моделировании силы сухого трения является тот факт,
+  что это силу невозможно корректно выразить аналитически.
+
+  Основным параметром, в простейшем случае определяющим силу сухого
+  трения, является $f_{dm}$ -- максимальная значение её модуля.
+  Определение этой величины и будем считать целью задачи идентификации
+  системы с сухим трением.
+
 \end{frame}
 
 
@@ -1378,6 +1760,28 @@
   \frametitle{Система с сухим трением}
   \framesubtitle{Свойства}
 
+  На рис.~\ref{atu:f:fric_outs} представлен сравнительный пример динамики трёх
+  моделей, при одинаковом входном сигнале
+  и различных значениях $f_{dm}$.
+
+  \vspace{-1ex}
+
+  \begin{figure}[htb!]
+    \centerline{
+      \includegraphics[width=46\TW]{p/fric/frict_id_u2-g_uxe.png}
+    }
+    \caption{Динамика трёх моделей вида (\ref{atu:eq:dryfric_sys})}
+    \label{atu:f:fric_outs}
+  \end{figure}
+  \vspace{-4ex}
+
+  Общие свойства с системами хаотической динамики:
+  малые возмущения входного сигнала
+  или коэффициентов модели приводят к значительным изменениям
+  выходного, причем реакция на возмущения может быть
+  не ограничена во времени.
+
+
 \end{frame}
 
 % -----------------------------------------------------------------------
@@ -1385,6 +1789,33 @@
 \begin{frame}
   \frametitle{Система с сухим трением}
   \framesubtitle{Определение критерия}
+
+  Требования к критерию:
+
+  \begin{itemize}
+
+    \item
+      чувствительность к \textit{динамике} модели и объекта;
+
+    \item
+      свойство астатизма, то есть
+      независимость
+      от смещения выхода объекта или модели:
+      \( q(x(t)+a ) \approx q( x(t) ) \);
+
+    \item
+      достаточная устойчивость к шумам измерения;
+
+    \item
+      физическая реализуемость.
+
+  \end{itemize}
+
+Использование
+\(v = \mathrm{d}\,x(t)/ \mathrm{d}\,t \),
+--- очень высокая подверженность шумам.
+Один из методов обхода -- фильтр НЧ + реальное дифф. звено --
+этот вид критерия обозначим как $ q_{dx} $.
 
 \end{frame}
 
@@ -1395,6 +1826,21 @@
   \frametitle{Система с сухим трением}
   \framesubtitle{Процесс идентификации}
 
+  Динамика процессов идентификации для системы (\ref{atu:eq:dryfric_sys}) представлена на рис.~\ref{atu:f:fric_id}.
+  Следует отметить сильное влияние входного сигнала, В силу того, что когда системы неподвижны
+  на одном из ``плато'', то нет возможности различить их параметры,
+  какой бы критерий при этом не использовался.
+
+  \begin{figure}[htb!]
+    \centerline{
+      \includegraphics[width=0.49\textwidth]{p/fric/fric_m5p-pl_n_sign.png}
+    \includegraphics[width=0.49\textwidth]{p/fric/fric_m5p-pl_n_sin.png}
+  }
+    \caption{Процесс идентификации параметра $f_{dm}$ системы (\ref{atu:eq:dryfric_sys})
+    при различных видах нестационарности этого параметра
+    }
+    \label{atu:f:fric_id}
+  \end{figure}
 \end{frame}
 
 
@@ -1407,8 +1853,26 @@
   \frametitle{Другие рассмотренные хаотические системы}
   %\framesubtitle{}
 
-  Были расмотрены системы Дуффинга, Рёсслера, Ван-дер-Поля,
-  колебательная система с нечувствительностью в возвращающей силе.
+  Были рассмотрены системы
+  \begin{itemize}
+
+    \item
+      Дуффинга,
+
+    \item
+      Рёсслера,
+
+    \item
+      Ван-дер-Поля,
+
+    \item
+      Чуа.
+
+    \item
+    колебательная система с нечувствительностью в возвращающей силе.
+
+  \end{itemize}
+
 
   Для всех этих систем на основе предложенных критериев были
   созданы системы идентификации, показана их работоспособность
@@ -1426,6 +1890,13 @@
   \frametitle{Система Колпитца}
   %\framesubtitle{}
 
+  \begin{figure}[htb!]
+  \begin{center}
+    \includegraphics[width=50\TW]{p/colp/colp_schem.png}
+  \end{center}
+  \caption{Электрическая схема генератора Колпитца на биполярном транзисторе}
+  \label{atu:f:colp_schem}
+  \end{figure}
 
 \end{frame}
 
@@ -1435,8 +1906,50 @@
 
 \begin{frame}
   \frametitle{Система Колпитца}
-  %\framesubtitle{}
+  \framesubtitle{Модель}
 
+  %\begin{tabular}{p{45\TW}|p{54\TW}}
+    \begin{equation}
+    \label{atu:eq:colp_phys}
+    \begin{dcases}
+      C_1 \od{V_{1}}{t}  = I_L - I_{CE} , \\
+      L\, \od{I_L}{t} \; = V_{CC} - V_{1} - V_{2} - I_L R_C , \\
+      C_2 \od{V_{2}}{t}  = I_L - \frac{V_{2}}{R_e}.
+    \end{dcases}
+    \end{equation}
+%  &
+    \begin{equation}
+    \label{atu:eq:colp}
+    \begin{cases}
+      \dot{x} = y - a F(z), \\
+      \dot{y} = c - x - by - z, \\
+      \dot{z} = y - d z.
+    \end{cases}
+    \end{equation}
+
+    \begin{equation}
+    I_c =
+      \begin{cases}
+        \alpha ( V_b - V_e - V_{je} ), & V_b - V_e > V_{je} \\
+        0                              & \text{otherwise}.
+      \end{cases}
+      \label{atu:eq:bjt_libear_model}
+    \end{equation}
+%  \end{tabular}
+
+\[
+  x = \frac{V_{1}}{V_{je}} ; \quad
+  y = \frac{\rho I_L}{V_{je}} ; \quad
+  z = \frac{V_{2}}{V_{je}}, \quad
+  i_{ce} = \frac{\rho I_{ce}}{V_{je}}, \quad
+  c = \frac{V_{CC}}{V_{je}}, \quad
+  e = \frac{V_{b}}{V_{je}}.
+\]
+%
+\[
+  b = \frac{R_c}{\rho}; \quad
+  d = \frac{\rho}{R_e}. % sic!
+\]
 
 \end{frame}
 
@@ -1446,8 +1959,29 @@
 
 \begin{frame}
   \frametitle{Система Колпитца}
-  %\framesubtitle{}
+  \framesubtitle{Модель (\ref{atu:eq:bjt_libear_model}) в сранении с реальным объектом}
 
+  \begin{figure}[htb!]
+   \centerline{
+     \includegraphics[width=\DDT]{p/colp/colp_m1_vv.png}
+     \includegraphics[width=\DDT]{p/colp/colp_m2_vv.png}
+     \includegraphics[width=\DDT]{p/colp/colp_m3_vv_ac.png}
+   }
+    \caption{Проекции аттракторов реальной системы Колпитца на плоскость $(x+z,z)$}
+    \label{atu:f:colp_real_xzz}
+  \end{figure}
+
+  \vspace{-4ex}
+
+  \begin{figure}[htb!]
+   \centerline{
+     \includegraphics[width=\DDT]{p/colp/colp_0-p_z_xpz_b=1x70.png}
+     \includegraphics[width=\DDT]{p/colp/colp_0-p_z_xpz_b=1x37.png}
+     \includegraphics[width=\DDT]{p/colp/colp_0-p_z_xpz_b=0x99.png}
+   }
+    \caption{Проекции аттракторов модели (\ref{atu:eq:colp}) системы Колпитца на плоскость $(x+z,z)$}
+    \label{atu:f:colp_model_xzz}
+  \end{figure}
 
 \end{frame}
 
@@ -1457,8 +1991,13 @@
 
 \begin{frame}
   \frametitle{Система Колпитца}
-  %\framesubtitle{}
+  \framesubtitle{Критерии}
 
+  \begin{figure}[htb!]
+    \centerline{\includegraphics[width=60\TW]{p/colp/colp_bjt_q-p_Rc_q.png} }
+    \caption{Критери для системы Колпитца}
+    \label{atu:f:colp_q}
+  \end{figure}
 
 \end{frame}
 
@@ -1468,8 +2007,18 @@
 
 \begin{frame}
   \frametitle{Система Колпитца}
-  %\framesubtitle{}
+  \framesubtitle{Процесс идентификации}
 
+
+  \begin{figure}[ht!]
+    \centerline{
+      \includegraphics[width=48\TW]{p/colp/colp_real_id_qi_fv5-p_p_01.png}
+      \includegraphics[width=48\TW]{p/colp/colp_real_id_qi_fv5-p_pp_01.png}
+      \hfill
+    }
+    \caption{Процесс идентификации системы Колпитца методами ``FAlv5.3z.$q_{xy}$'' }
+    \label{atu:f:colp_real_id0}
+  \end{figure}
 
 \end{frame}
 
@@ -1479,7 +2028,45 @@
 
 \begin{frame}
   \frametitle{Система связанных релаксационных генераторов}
-  %\framesubtitle{}
+  \framesubtitle{Электрическая схема}
+
+  \begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=70\TW]{p/relax3/relax3_schem.png}
+  \end{center}
+    \caption{Электрическая схема трёх релаксационных генераторов с связью по питанию (relax3)}
+  \label{atu:f:relax3_schem}
+  \end{figure}
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Система связанных релаксационных генераторов}
+  \framesubtitle{Динамика}
+
+  \begin{figure}[h!]
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/relax3/relax3_v1v2v3_03.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/relax3/relax3_v1v2v3_17.png}
+      \hfill{~}
+    }
+    \centerline{
+      {~}\hfill
+      \includegraphics[width=\DDW]{p/relax3/relax3_f_03.png}
+      \hfill
+      \includegraphics[width=\DDW]{p/relax3/relax3_f_17.png}
+      \hfill{~}
+    }
+    \caption{Аттракторы и спектры системы ``relax3''}
+    \label{atu:f:relax3_dyn}
+  \end{figure}
+
 
 
 \end{frame}
@@ -1490,7 +2077,7 @@
 
 \begin{frame}
   \frametitle{Система связанных релаксационных генераторов}
-  %\framesubtitle{}
+  \framesubtitle{Модель}
 
 
 \end{frame}
@@ -1501,8 +2088,28 @@
 
 \begin{frame}
   \frametitle{Система связанных релаксационных генераторов}
-  %\framesubtitle{}
+  \framesubtitle{Критерии}
 
+  \begin{tabular}{p{40\TW}|p{57\TW}}
+    \[
+      q_{sv} = \overline{V_1+V_2+V_3} .
+    \]
+    \[
+      q_{vb} = \overline{V_b} .
+    \]
+    \[
+      q_{hv} = \frac{1}{\overline{V_b}} .
+    \]
+    \[
+      q_{rv} = \frac{\overline{V_1+V_2+V_3}}{\overline{V_b}}.
+    \]
+ &
+  \begin{figure}[htb!]
+    \centerline{\includegraphics[width=0.50\textwidth]{p/relax3/relax3_read_q-p_q1.png} }
+    \caption{Критери для системы ``relax3''}
+    \label{atu:f:relax3_q}
+  \end{figure}
+  \end{tabular}
 
 \end{frame}
 
@@ -1512,19 +2119,17 @@
 
 \begin{frame}
   \frametitle{Система связанных релаксационных генераторов}
-  %\framesubtitle{}
+  \framesubtitle{Процесс идентификации}
 
-
-\end{frame}
-
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Система связанных релаксационных генераторов}
-  %\framesubtitle{}
-
+  \begin{figure}[ht!]
+    \centerline{
+      \includegraphics[width=48\TW]{p/relax3/relax3_read_id2-p_p_03.png}
+      \includegraphics[width=48\TW]{p/relax3/relax3_read_id2-p_pp_03.png}
+      \hfill
+    }
+    \caption{Процесс идентификации системы ``relax3'' методами ``FAlv5.3z.$q_{rv}$'' }
+    \label{atu:f:relax3_id0}
+  \end{figure}
 
 \end{frame}
 
@@ -1668,13 +2273,13 @@
   \frametitle{Печатные работы и апробация}
   %\framesubtitle{}
 
-{\scriptsize
 По теме дисертации опубликовано
 49 печатных работ,
 из них
 24 входят в международные наукометрические базы,
 13 статей опубликовано в материалах конференций.
 
+{\scriptsize
 Основные положения дисертационной работи докладывались на
 научно-практических коференциях:
 ``Інформатика та системні науки'' (ІСН-2011) Полтава--2011,
@@ -1721,7 +2326,7 @@
 
     \item
       Проведено компьютерное моделирование процессов идентификации систем хаотической
-      динамики, подтверждено их работоспособность.
+      динамики, подтверждена их работоспособность.
 
   \end{itemize}
 
@@ -1731,13 +2336,13 @@
 
 
 % -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Выводы 2}
-  %\framesubtitle{}
-
-
-\end{frame}
+%
+% \begin{frame}
+%   \frametitle{Выводы 2}
+%   %\framesubtitle{}
+%
+%
+% \end{frame}
 
 
 
