@@ -1245,6 +1245,11 @@
   \hspace{1pt} \hfill {#1} \hfill \hspace{1pt}
 }
 
+% text index in math
+\newcommand{\Tidx}[1]{%
+  _\mathrm{#1}
+}
+
 % link to left for table cell
 \newcommand{\Lcell}[1]{%
   \raggedright #1
