@@ -864,58 +864,209 @@ $R_{i,\mathrm{leak}}$ --- сопротивления утечки.
 Тем не менее, несмотря на эти недостатки, общий вид этих зависимостей
 даёт всё основания предполагать возможность построения работоспособной системы идентификации.
 
+
 \section{Идентификация параметра системы из трёх связанных релаксационных генераторов}
+
+Для проверки работоспособности и анализа
+характеристик предлагаемых систем идентификации
+были собраны соответствующие схемы.
+
+Для обеспечения нестационарности параметра $R_b$
+в качестве дополнительного сопротивления,
+подключенного к шине питания через разъемы
+P7~(рис.~\ref{atu:f:relax3d_schem}) и
+P?~(рис.~\ref{atu:f:relax3ds_schem})
+цифрового управляемого потенциометра CAT5171.
+Данный электронный компонент представляет собой
+управляемую по протоколу I2C сборку подключаемых резисторов.
+Обеспечивается 256 значений управляемого сопротивления,
+причём, согласно документации, гарантируется достаточная интегральная и
+дифференциальная линейность зависимости сопротивления
+от переданного кода: соответственно 2 и 1 младших разряда.
+Температурная стабильность составляет 100~ppm/${}\SI{}{\celsius} $.
+Из недостатков следует отметить значительный разброс полного сопротивления
+относительно номинала (20~\%). В исследовательских
+задачах этот недостаток нивелируется предварительной калибровкой.
+Время установления после передачи требуемого значения составляет порядка
+$\SI{20}{\milli\second}$,
+что превышает время передачи. В свою очередь,
+для рассматриваемой задачи задачи требуемое время
+переключения --- от сотни миллисекунд до единиц секунд.
+
+Для управления цифровым потенциометром в программе микроконтроллера была выделена
+отдельная задача FreeRTOS. Для этой задачи задавалось
+минимальное и максимальное значение кода сопротивления,
+и требуемое время переключения в миллисекундах.
+Затраты времени, требуемые для собственно переключения,
+компенсировались на каждой итерации.
+Основная задача, обеспечивающая получение отсчётов с АЦП,
+синхронизировала начало своей работы
+с моментом переключения цифрового потенциометра.
+Анализ временных затрат, как и последующая работа системы,
+показали, что времени микропроцессора достаточно (с учётом использования DMA)
+для выполнения как указанных задач, так и служебных.
+Во время записи результатов задача, отвечающая
+за переключение сопротивления, останавливалась.
+
+С учётом результатов предварительных исследований,
+для каждой из рассматриваемой схемной реализации было выбраны
+диапазоны изменения сопротивления таким образом, что бы
+с одной стороны,
+достаточно полно покрыть рабочий диапазон изменения параметра.
+С другой --- для того, что бы при переключении были реализованы
+различные режимы работы генератора.
+
+В качестве методов идентификации для обеих систем был выбран набор
+``FAlvn5.3z''. Таким образом исследовались различные способы оценивания экстремума
+при одной и той же динамике агентов ансамбля.
+На каждом из рисунков, иллюстрирующих процесс идентификации,
+левый график показывает динамику агентов, а правый --- полученные
+значения идентифицируемого параметра для различный способов:
+$p_{ge}$, $p_{le}$, $p_{ee}$.
+
+Для системы ``'relax3d' представлены результаты трех экспериментов,
+каждый из которых заключался в получении данных
+(отсчётов $V_b(t)$,$V_1(t)$,$V_2(t)$,$V_3(t)$) с реального генератора,
+с последующим моделированием процесса идентификации в программе ``qontrol''.
+
+Параметры первого эксперимента для системы ``relax3d'': \Cmt{Define!}
+%
+\begin{equation}
+  R_{b,\min} = 
+  \label{atu:eq:relax3d_test1_cond}
+\end{equation}
+
+
+
+
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.45\textwidth]{p/relax3_read_id2-p_p_03.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3_read_id2-p_p_03.png}
     \hfill
-    \includegraphics[width=0.45\textwidth]{p/relax3_read_id2-p_pp_03.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3_read_id2-p_pp_03.png}
   }
   \caption{Идентификация }
   \label{atu:f:relax3d_id}
 \end{figure}
 
+
+% T_m = 1 s \omega_p = 3.1415926 \phi_p=3.1415926
+% m_005151.txt : 5.151k  - 24.837k (28-135) 15.00 +- 9.843
+% m_009935.txt : 9.935k  - 22.998k (54-125) 16.47 +- 6.532
+% m_013062.txt : 13.062k - 27.965k (71-152) 20.51 +- 7.452
+% m_005519.txt : 5.519k  - 18.398k (30-100) 11.96 +- 6.440
+
+Для системы ``'relax3ds' представлены результаты четырёх экспериментов,
+проведённых в аналогичных условиях.
+
+Параметры первого эксперимента для системы ``relax3ds'': \Cmt{Define!}
+%
+\begin{equation}
+  \begin{array}{c}
+    R_{b,\min} = \SI{5.15}{\kilo\ohm};
+    \;
+    R_{b,\max} = \SI{24.84}{\kilo\ohm};
+    \;
+    T_{R_b} = \SI{1.000}{\second};
+  \\
+    R_b(t) = \SI{15.00}{\kilo\ohm} + \SI{9.84}{\kilo\ohm} \cdot \sin( \pi ( t + 1 ) ).
+  \end{array}
+  \label{atu:eq:relax3ds_test1_cond}
+\end{equation}
+
+
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_0-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_0-p_p.png}
     \hfill
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_0-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_0-p_pp.png}
   }
-  \caption{Идентификация 3ds 0}
+  \caption{Процесс идентификации системы ``relax3ds'' при условиях \ref{atu:eq:relax3ds_test1_cond}}
   \label{atu:f:relax3ds_id_0}
 \end{figure}
 
-\begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_1-p_p.png}
-    \hfill
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_1-p_pp.png}
-  }
-  \caption{Идентификация 3ds 1}
-  \label{atu:f:relax3ds_id_1}
-\end{figure}
+
+Параметры второго эксперимента для системы ``relax3ds'':
+%
+\begin{equation}
+  \begin{array}{c}
+    R_{b,\min} = \SI{9.94}{\kilo\ohm};
+    \;
+    R_{b,\max} = \SI{23.00}{\kilo\ohm};
+    \;
+    T_{R_b} = \SI{1.000}{\second};
+  \\
+    R_b(t) = \SI{16.47}{\kilo\ohm} + \SI{6.53}{\kilo\ohm} \cdot \sin( \pi ( t + 1 ) ).
+  \end{array}
+  \label{atu:eq:relax3ds_test2_cond}
+\end{equation}
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_2-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_1-p_p.png}
     \hfill
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_2-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_1-p_pp.png}
   }
-  \caption{Идентификация 3ds 2}
+  \caption{Процесс идентификации системы ``relax3ds'' при условиях \ref{atu:eq:relax3ds_test2_cond}}
+  \label{atu:f:relax3ds_id_1}
+\end{figure}
+
+
+
+Параметры третьего эксперимента для системы ``relax3ds'':
+%
+\begin{equation}
+  \begin{array}{c}
+    R_{b,\min} = \SI{13.06}{\kilo\ohm};
+    \;
+    R_{b,\max} = \SI{27.97}{\kilo\ohm};
+    \;
+    T_{R_b} = \SI{1.000}{\second};
+  \\
+    R_b(t) = \SI{20.51}{\kilo\ohm} + \SI{7.45}{\kilo\ohm} \cdot \sin( \pi ( t + 1 ) ).
+  \end{array}
+  \label{atu:eq:relax3ds_test3_cond}
+\end{equation}
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_2-p_p.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_2-p_pp.png}
+  }
+  \caption{Процесс идентификации системы ``relax3ds'' при условиях \ref{atu:eq:relax3ds_test3_cond}}
   \label{atu:f:relax3ds_id_2}
 \end{figure}
 
 
+
+Параметры четвёртого эксперимента для системы ``relax3ds'':
+%
+\begin{equation}
+  \begin{array}{c}
+    R_{b,\min} = \SI{5.52}{\kilo\ohm};
+    \;
+    R_{b,\max} = \SI{18.40}{\kilo\ohm};
+    \;
+    T_{R_b} = \SI{1.000}{\second};
+  \\
+    R_b(t) = \SI{11.96}{\kilo\ohm} + \SI{6.44}{\kilo\ohm} \cdot \sin( \pi ( t + 1 ) ).
+  \end{array}
+  \label{atu:eq:relax3ds_test4_cond}
+\end{equation}
+
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_3-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_3-p_p.png}
     \hfill
-    \includegraphics[width=0.45\textwidth]{p/relax3d_read_id2_3-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/relax3ds_read_id2_3-p_pp.png}
   }
-  \caption{Идентификация 3ds 3}
+  \caption{Процесс идентификации системы ``relax3ds'' при условиях \ref{atu:eq:relax3ds_test4_cond}}
   \label{atu:f:relax3ds_id_3}
 \end{figure}
+
+
 
 \section{Выводы по разделу \thechapter}
 
