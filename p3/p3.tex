@@ -396,7 +396,7 @@ $ q_l(t) \equiv q_l$.
 значений параметров моделей, на основании которых
 было получено это значение, то его следует считать сомнительным.
 Степень ``уверенности'' в вычисленном значении $p_e$
-обозначим $S \in [0;1]$ (surety).
+обозначим $S \in [0;1]$\label{atu:d:S}(surety).
 В результате такие оценки в дальнейшем можно
 как вообще исключать из рассмотрения, так и ограничить
 его влияние на следующем уровне.
@@ -599,13 +599,13 @@ $ q_l(t) \equiv q_l$.
 следующие способы определения $S$:
 %
 \begin{equation}
-  S_1 = c_\mathrm{su} \exp \left( - \frac{ \left( k_l c_\mathrm{dist} ( p_e - p_c ) \right)^2 }{p_b^2} \right)
+  S_1 = c_\mathrm{su} \exp \left( - \frac{ \big( k_l c_\mathrm{dist} ( p_e - p_c ) \big)^2 }{p_b^2} \right)
   ,
   \label{atu:eq:S1}
 \end{equation}
 %
 \begin{equation}
-  S_3 = c_\mathrm{su} \exp \left( - \frac{ \left( k_l c_\mathrm{dist} \min( |p_e - p_l|,|p_e - p_c|, |p_e - p_r| ) \right)^2 }{p_b^2} \right)
+  S_3 = c_\mathrm{su} \exp \left( - \frac{ \big( k_l c_\mathrm{dist} \min( |p_e - p_l|,|p_e - p_c|, |p_e - p_r| ) \big)^2 }{p_b^2} \right)
   .
   \label{atu:eq:S3}
 \end{equation}
@@ -945,24 +945,27 @@ $p_e$ в дальнейшем изложении будем обозначать
 нелинейность $q(p)$:
 %
 \begin{equation}
-  k_l = 1 + \frac{|q_c - q_{c,\mathrm{lin}}}{|q_r-q_l|} ,
+  k_l = 1 + \frac{|q_c - q_{c,\mathrm{lin}}|}{|q_r-q_l|} ,
   \label{atu:eq:k_l1}
 \end{equation}
 %
 \begin{equation}
-  k_l = \frac{|\tilde{q}_c - \tilde{q}_{c,\mathrm{lin}}}{ |\tilde{q}_r-\tilde{q}_l|} .
+  k_l = 1 + \frac{|\tilde{q}_c - \tilde{q}_{c,\mathrm{lin}}|}{ |\tilde{q}_r-\tilde{q}_l|} .
   \label{atu:eq:k_l2}
 \end{equation}
 
-Данное представление $k_l$ было выбрано с целью непосредственного мультипликативного участия
-% TODO: not so, it is a denominator - alike
+Данное представление $k_l$ было выбрано с целью непосредственного участия
 этой величины в $S$, т.е. если $\tilde{q}_{c,\mathrm{lin}} \to \tilde{q}_c$,
 то $k_l \to 1$, и есть основания полагать, что на расстояниях порядка $p_r-p_l$
 оценка $p_e$ достаточно состоятельна. С другой стороны,
 если $k_l \gg 1 $, то нелинейные эффекты в рассматриваемой области
 преобладают над линейными, и оценку $p_e$  стоит рассматривать как недостоверную.
+При практическом использовании имеет смысл искусственно ограничить эту величину,
+например $k_l < 100 $, так как неограниченный рост при стремлении знаменателя
+к нулю принципиально ничего не меняет в работе метода, но при этом
+возможны проблемы чисто вычислительного характера.
 
-\Cmt{Correct $S$ definition}
+
 
 
 
