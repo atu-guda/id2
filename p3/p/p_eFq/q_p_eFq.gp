@@ -28,10 +28,10 @@ if( ARGC > 0 ) {
 }
 print "task= ", task;
 
+q_gamma = 0.2;
 taskfile = "q_dem_01_task_" . task . ".gp";
 # load "q_dem_01_flat.gp"
 load taskfile
-q_gamma = 0.2;
 load "q_dem.gp";
 
 set output "q_p_eFq_" . task . ".png"
