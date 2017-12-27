@@ -16,18 +16,11 @@ set label 3 "{/:Italic*1.4 q}" at graph -0.07,1.03
 
 
 p_min = 20.0;  p_max = 60.0;
-p_l   = 30.0; p_c = 40.0; p_r = 50.0; p_ox = 41;
 p_dlt = p_max - p_min;
-q_00 = 7;
-c_lin = -4;
-c_s1 = 0.2; c_s2 = -0.4; c_s20 = 0.02;
-#c_lin = 0;
-#c_s1 = 0.0; c_s2 = -0.0; c_s20 = 0.02;
+p_l   = 30.0; p_c = 40.0; p_r = 50.0; p_ox = 41;
 
-u(x)=(x-p_min)/p_dlt;
-q_all(x) = q_00 + c_lin * u(x) + c_s1 * sin( pi * u(x) ) + c_s2 * sin( 2 * pi * u(x) ) + c_s20 * sin( 20 * pi * u(x) );
-q_s20(x) = q_00 + c_lin * u(x) + c_s20 * sin( 20 * pi * u(x) );
-q_lin(x) = q_00 + c_lin * u(x);
+load "q_dem_2060_all.gp"
+load "q_dem.gp";
 
 print "q_dlt= ", p_dlt;
 print "p_l= ", p_l, "  p_c= ", p_c, "  p_r= ", p_r, "  p_ox= ", p_ox;
