@@ -1807,9 +1807,6 @@ $ p_c $ агента, характеризуються дещо більшими
 
 
 
-
-
-
 \medskip
 \textbf{У третьому розділі}
 розглядається розроблене програмне
@@ -2050,11 +2047,124 @@ $q_{z^2}(r,b)$.
 використовуваним часом усереднення критерію.
 
 
+Розглянемо систему, що позначається як ``Sprott A''~(\ref{atu:eq:spr_a_orig}). Відмінною
+особливістю цієї системи є відсутність положень рівноваги, що унеможливлює
+застосування багатьох відомих методів аналізу, заснованих на будь-якому
+розкладі в околицях точок рівноваги.
+%
+\begin{equation}
+  \begin{cases}
+    \dot{x} =  y, \\
+    \dot{y} = -x + yz, \\
+    \dot{z} =  1 - y^2.
+  \end{cases}
+  \label{atu:eq:spr_a_orig}
+\end{equation}
+
+Додамо до системи параметр $c_{x_y}$:
+%
+\begin{equation}
+  \begin{cases}
+    \dot{x} =  c_{x_y} y, \\
+    \dot{y} = -x + yz, \\
+    \dot{z} =  1 - y^2.
+  \end{cases}
+  \label{atu:eq:spr_a}
+\end{equation}
+
+У такому вигляді система, при зміні $c_{x_y} $ в досить широкому діапазоні
+може демонструвати як складно-періодичне, так і переважно, хаотичну поведінку
+(рис.~\ref{atu:f:spr_a_p_0610}).
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.45\textwidth]{p5/p/cha/spr_a/sprott_a-p_xyz_cx_y=0x610.png}
+  \includegraphics[width=0.45\textwidth]{p5/p/cha/spr_a/sprott_a_f-p_f_cx_y=0x610.png}
+}
+\caption{Атрактор та спектр системи (\ref{atu:eq:spr_a}) при $ c_{x_y} =0.610 $.
+  Хаотичний режим
+}
+\label{atu:f:spr_a_p_0610}
+\end{figure}
 
 
+Розглянемо залежності $q_{*}(c_{x_y}) $ (рис.~\ref{atu:f:spr_a_q})
+для системи (\ref{atu:eq:spr_a}). Аналіз цих залежностей дає практично
+однозначну відповідь про можливий вид критерію --- $ q_{x^2} $.
 
 
-У підрозділі 5.2 досліджуються процеси ідентифікації системи Sprott A.
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.50\textwidth]{p5/p/cha/spr_a/sprott_a_q-p_c_x_y.png}
+}
+\caption{Залежності $q_{*}(c_{x_y})$ для системы (\ref{atu:eq:spr_a}) }
+\label{atu:f:spr_a_q}
+\end{figure}
+
+В околиці точки $ c_ {x_y} = 1.775 $ аттрактор також різко змінює свою
+структуру. Так як це досить вузька околиця, то можна припустити, що
+мультиагентна система ідентифікації не опиниться непрацездатною в цій області,
+просто виросте помилка ідентифікації.
+
+Визначимо тестове завдання наступним чином:
+\[
+  c_{x_y}(t) \equiv p_o(t) \in (0, 5],
+\]
+%
+\begin{equation}
+  p_o(t) = p_0 +  U_{p} \sign \sin( \omega_{p} t ),
+  \label{atu:eq:spr_a_po_t_sign}
+\end{equation}
+%
+%
+\begin{equation}
+  p_o(t) = p_0 +  U_{p} \sin( \omega_{p} t ),
+  \label{atu:eq:spr_a_po_t_sin}
+\end{equation}
+%
+де:
+$p_0 = 2.8$, $U_p=1.9$, $\omega_p=0.04$.
+
+На рис.~\ref{atu:f:spr_a_id_qAuv5.3r.q_x2_sign}
+представлені результати моделювання процесу ідентифікації методом qAuv5.3r.
+$q_{x^2} $. Залежність $ p_{xe} (t) $, в даному випадку демонструє високий
+рівень коливань, і отже, гірші результати пошуку. При цьому, інші підходи до
+визначення $ p_\mathrm{id} $ демонструють схожі між собою результати.
+
+\begin{figure}[h!]
+  \centerline{
+    \includegraphics[width=0.45\textwidth]{p5/p/cha/spr_a/qAuv5.3r/sprott_a_qAuv5_3r_qx2-p_t_pi_sign.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{p5/p/cha/spr_a/qAuv5.3r/sprott_a_qAuv5_3r_qx2-p_t_pz_sign.png}
+  }
+  \caption{Процес ідентифікації параметра ``$c_{x_y}$'' системы Sprott A методом qAuv5.3r.$q_{x^2}$ при умовах~(\ref{atu:eq:spr_a_po_t_sign})}
+  \label{atu:f:spr_a_id_qAuv5.3r.q_x2_sign}
+\end{figure}
+
+На рис.~\ref{atu:f:spr_a_id_FAlv5.3r.q_x2_sign}
+представлені результати ідентифікації методом
+FAlv5.3r.$q_{x^2}$.
+
+
+\begin{figure}[h!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p5/p/cha/spr_a/FAlv5.3A/sprott_a_FAlv5x3r-pl_n_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p5/p/cha/spr_a/FAlv5.3A/sprott_a_FAlv5x3r-p_p_sign.png}
+  }
+  \caption{Процес ідентифікації параметра ``$c_{x_y}$'' системы Sprott A методом FAlv5.3r.$q_{x^2}$ при умовах~(\ref{atu:eq:spr_a_po_t_sign})}
+  \label{atu:f:spr_a_id_FAlv5.3r.q_x2_sign}
+\end{figure}
+
+При наявності різниці у динамиці агентів, загальна помилка ідентификаціі
+має той же порядок.
+
+Також розглянуто вплив параметрів $a_q$, $q_\gamma$, $v_f$, $k_e$, $k_n$, $k_c$
+на якість ідентифікації. Як і для системи Лоренца, методи
+продемонстрували достатью робастність, але для цієї системи
+вплив динаміки агентів значно меньший.
+
+
 
 У підрозділі 5.3 досліджуються процеси ідентифікації системи Дуффінга.
 
