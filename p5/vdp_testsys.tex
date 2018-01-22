@@ -284,7 +284,7 @@ $U_{in}$ идентификация возможна.
 При синтеза системы идентификации использовалась группа методов ``ql3rlWvnAAW''.
 С учётом выбора критерия $q_{T}$ при постановке задачи идентификации
 параметры выбирались с учётом диапазона работоспособности этого критерия.
-Первая группа значения параметров: $U_{in}=0.3$, $\omega_{in}=0.27$, $ \varepsilon \in [1, 4 ]$.
+Первая группа значений параметров: $U_{in}=0.3$, $\omega_{in}=0.27$, $ \varepsilon \in [1, 4 ]$.
 
 Рассмотрим процесс идентификации
 в квазистационарном случае,
@@ -357,8 +357,108 @@ $U_{in}$ идентификация возможна.
 
 \subsection{Влияние параметров системы идентификации на ошибку идентификации для системы Ван-дер-Поля}  % {{{2
 
+При идентификации системы Ван-дер-Поля
+с использованием критерия $q_T$
+влияние параметра $a_q$ представляет
+особый интерес, ввиду наличия двух уровней усреднения.
+Зависимости усреднённых ошибок идентификации
+от этого параметра представлены на  рис.~\ref{atu:f:vdp_e_a_q}.
 
-Зависимости здесь
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_a_q_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_a_q_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(a_q)$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_a_q}
+\end{figure}
+
+Исходя из характерных значений ``периода'' можно было ожидать
+изменение характера этих зависимостей при $a_q \approx 0.1$.
+Однако, никаких существенных изменений на графиках не обнаружено.
+Сам вид этих зависимостей практически ничем, кроме масштаба,
+не отличается от таковых для уже рассмотренных систем.
+Таким образом получил подтверждение тезис о необходимости
+дополнительного усреднения на этом этапе.
+
+Рассмотрим влияние ещё одного параметра системы идентификации --- $q_\gamma$.
+Соответствующие зависимости приведены на  рис.~\ref{atu:f:vdp_e_q_gamma}.
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_q_gamma_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_q_gamma_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(q_\gamma)$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_q_gamma}
+\end{figure}
+
+Используемая группа методов ``ql3rlWvnAAW'' характеризуется
+работоспособностью для широкого диапазона величины $q_\gamma$,
+за исключением области избыточной чувствительности,
+к которой поиск всё же возможен, но
+его диапазон ограничивается малой окрестностью агентов.
+Представленные графики полностью это подтверждают.
+Применение различных методов определения $p_\mathrm{id}$
+по разному себя проявляет в области заниженной чувствительности,
+но это различие мало.
+
+
+Зависимости $\bar{e}(v_f)$ полученные при идентификации системы Ван-дер-Поля
+(рис.~\ref{atu:f:vdp_e_v_f}), демонстрируют
+существенную разницу при различных способах
+задания нестационарности  параметра.
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_v_f_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_v_f_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(v_f)$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_v_f}
+\end{figure}
+
+Влияние коэффициента $k_e$ (рис.~\ref{atu:f:vdp_e_k_e})
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_e_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_e_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_e)$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_k_e}
+\end{figure}
+
+Влияние параметра $k_{nl}$ (рис.~\ref{atu:f:vdp_e_k_nl})
+отображает свойства множества агентов как ансамбля.
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_nl_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_nl_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_{nl})$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_k_nl}
+\end{figure}
+
+Наличие искусственных ограничений на перемещения агентов
+приводит к тому, что влияние коэффициента $k_{cl}$
+становится минимальным (рис.~\ref{atu:f:vdp_e_k_cl}).
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_cl_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/vdp/vdp_id-p_k_cl_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_{cl})$ для системы Ван-дер-Поля}
+\label{atu:f:vdp_e_k_cl}
+\end{figure}
 
 % }}}2
 
