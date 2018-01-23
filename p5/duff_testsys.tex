@@ -96,6 +96,14 @@ $ \beta $ -- безразмерный коэффициент нелинейно�
 \label{atu:f:duff_phase_f_chaos2}
 \end{figure}
 
+Анализ спектра системы в хаотическом режиме дает
+важное наблюдение: участок сплошного спектра
+вплотную примыкает к оси ординат. Таким образом
+нет такой частоты, ниже которой не наблюдалось собственная
+динамика системы, а проявлялись бы только последствия изменения
+идентифицируемого параметра. Это к определённым сложностям
+при усреднении критериев идентификации.
+
 
 % \begin{figure}[htb!]
 % \centerline{\includegraphics[width=0.5\textwidth]{p/cha/duff_phase.pdf} }
@@ -212,12 +220,118 @@ $U_{in}=1.0$, $\omega_{in}=0.7$, $ \beta \in [1, 4]$.
 \label{atu:f:duff_id_ramp}
 \end{figure}
 
+Как и для предыдущих систем, метод идентификации демонстрирует свою работоспособность
+со всём рабочем диапазоне. Но наблюдаются и существенное
+отличие. Особенности спектра системы не дают возможности построить достаточно эффективный
+фильтр. Как следствие, у значений $p_\mathrm{id}$ наблюдаются
+высокочастотные колебания. Наиболее подвержены этому явлению
+методы координаторов $p_{lc}$ и $p_{bc}$.
+
+Рассмотрим реакцию системы идентификации на скачкообразные
+изменения параметра, динамика которого была задана (\ref{atu:eq:po_t_sign}),
+$p_0=2$, $U_p=0.8$, $\omega_{in}=0.01047$.
+Результаты представлены на рис.~\ref{atu:f:duff_id_sign}.
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_t_pi_ql3rlWvnAAW_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_t_p_ql3rlWvnAAW_sign.png}
+\end{center}
+  \caption{Динамика агентов и идентифицируемого значения для системы Дуффинга при условии (\ref{atu:eq:po_t_sign})}
+\label{atu:f:duff_id_sign}
+\end{figure}
+
+Помимо уже отмеченной особенности, заключающейся в повышенном уровне колебаний,
+обращает на себя факт увеличения ошибки идентификации при $\beta \approx 3$.
+В этой области значений параметра наблюдается устойчивый хаотический режим,
+с сплошным спектром вплоть но нулевой частоты.
+
+При более плавной динамике параметра
+(\ref{atu:eq:po_t_sin}),
+$p_0=2$, $U_p=0.8$, $\omega_{in}=0.01047$
+наблюдается аналогичная картина
+(рис.~\ref{atu:f:duff_id_sign}),
+но размах колебаний существенно меньше.
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_t_pi_ql3rlWvnAAW_sin.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_t_p_ql3rlWvnAAW_sin.png}
+\end{center}
+  \caption{Динамика агентов и идентифицируемого значения для системы Дуффинга при условии (\ref{atu:eq:po_t_sin})}
+\label{atu:f:duff_id_sin}
+\end{figure}
+
+
 % }}}2
 
 \subsection{Влияние параметров системы идентификации на ошибку идентификации для системы Дуффинга}  % {{{2
 
+Эти зависимости представлены на рис.~\ref{atu:f:duff_e_a_q}.
 
-Зависимости здесь
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_a_q_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_a_q_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(a_q)$ для системы Дуффинга}
+\label{atu:f:duff_e_a_q}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_q_gamma_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_q_gamma_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(q_\gamma)$ для системы Дуффинга}
+\label{atu:f:duff_e_q_gamma}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_v_f_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_q_gamma_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(v_f)$ для системы Дуффинга}
+\label{atu:f:duff_e_v_f}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_e_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_e_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_e)$ для системы Дуффинга}
+\label{atu:f:duff_e_k_e}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_nl_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_nl_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_{nl})$ для системы Дуффинга}
+\label{atu:f:duff_e_k_nl}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_cl_sign.png}
+  \hfill
+  \includegraphics[width=0.49\textwidth]{p/cha/duff/duff_id-p_k_cl_sin.png}
+\end{center}
+  \caption{Зависимости $\bar{e}(k_{cl})$ для системы Дуффинга}
+\label{atu:f:duff_e_k_cl}
+\end{figure}
+
 
 % }}}2
 
@@ -229,4 +343,4 @@ $U_{in}=1.0$, $\omega_{in}=0.7$, $ \beta \in [1, 4]$.
 
 % }}}1
 
-% vim: fdm=marker foldlevelstart=2 fdc=4 ft=tex
+% vim: fdm=marker foldlevel=1 foldignore="%#" fdc=4 ft=tex
