@@ -206,6 +206,16 @@ $p_0 = 2.8$, $U_p=1.9$, $\omega_p=0.04$.
 динамика перемещения каждой из подвижных моделей,
 а на правом --- 8 способов определения $p_\mathrm{id}(t)$.
 
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_t_pi_ql3rlWvnAAW_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_t_p_ql3rlWvnAAW_sign.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A группой методов ql3rlWvnAAW.$q_{x^2}$ при условии~(\ref{atu:eq:spr_a_po_t_sign})}
+  \label{atu:f:spr_a_id_ql3rlWvnAAW_q_x2_sign}
+\end{figure}
+
 В первую очередь, следует отметить различие между процессами
 идентификации этим методом данной системы и система Лоренца.
 Зависимость $p_{be}(t)$, в данном случае демонстрирует
@@ -220,15 +230,6 @@ $p_0 = 2.8$, $U_p=1.9$, $\omega_p=0.04$.
 %$\overline{e}_{ba}=1.49$.
 
 
-\begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_t_pi_ql3rlWvnAAW_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_t_p_ql3rlWvnAAW_sign.png}
-  }
-  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A группой методов ql3rlWvnAAW.$q_{x^2}$ при условии~(\ref{atu:eq:spr_a_po_t_sign})}
-  \label{atu:f:spr_a_id_ql3rlWvnAAW_q_x2_sign}
-\end{figure}
 
 На рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_x2_sin} представлены аналогичные результаты,
 но при условии плавного изменение значения $p_o(t)$. Также очевидно, что
@@ -390,7 +391,7 @@ $\overline{e}(q_\gamma)$ при применении группы методов
   \centerline{
     \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_q_gamma_sign.png}
     \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_q_gamma_sign.png}
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_x2/sprott_a_id-p_q_gamma_sin.png}
   }
   \caption{Зависимости $\overline{e}(q_\gamma)$ при идентификации системы Sprott A группой методов ql3rlWvnAAW.$q_{x^2}$
    при~(\ref{atu:eq:spr_a_po_t_sign}) и (\ref{atu:eq:spr_a_po_t_sin})}
@@ -526,6 +527,186 @@ $\overline{e}(k_e)$ при применении методов Fq3rlFvnAAF.$q_{x
 
 \subsection{Альтернативные критерии для системы Sprott A}   % {{{2
 
+Представленные системы идентификации были основаны на критерии,
+который были выбран путём перебора наиболее простых и очевидных кандидатов.
+При этом удалось достичь работоспособности систем,
+однако, ошибки идентификации были весьма высоки.
+Следовательно, имеет смысл создать и использовать другие критерии,
+используя больше информации о системе.
+
+В первую очередь, сравнивая зависимости $q_{x^2}(c_{x_y})$ и $q_{y^2}(c_{x_y})$
+(рис.~\ref{atu:f:spr_a_q}), можно заметить, что
+пики и провалы этих зависимостей близки, а  $q_{y^2}(c_{x_y})$
+в целом практически не зависит от $c_{x_y}$.
+Таким образом, можно использовать критерий вида
+%
+\[
+  q_{x2Oy2} = \frac{q_{x^2}}{q_{y^2}}.
+\]
+
+Далее, исходя из вида первого из уравнений системы~(\ref{atu:eq:spr_a})
+можно сделать вывод о том, что величина
+%
+\begin{equation}
+  q_{dxOy} =
+  \frac{\overline{\dot{x}y}}{\overline{\dot{x}^2}}
+  \label{atu:eq:spr_a_q_dxyOdx2}
+\end{equation}
+%
+может быть использована в качестве критерия с широким рабочим диапазоном.
+Под знаком усреднения подразумевается или скользящее среднее,
+или же экспоненциальное сглаживание.
+Существенным недостатком данного критерия является использование
+производных, которые как из-за реальных ошибок измерения $x(t)$,
+та и и-за ошибок оценивания производной подвержены
+скачкам большой амплитуды. Это ограничивает применимость данного критерия
+значительными интервалами оценивания, т.е. малыми величинами $a_q$.
+
+Вид зависимостей для критериев $q_{x2Oy2}$ и $q_{dxOy}$,
+в сравнении с критериями $q_{x^2}$ и $q_{y^2}$
+представлены на  рис.~\ref{atu:f:spr_a_q_alt}.
+
+\begin{figure}[htb!]
+\centerline{
+  \includegraphics[width=0.60\textwidth]{p/cha/spr_a/sprott_a_q2-p_c_x_y2.png}
+}
+\caption{Зависимости альтернативных критериев $q(c_{x_y})$ для системы (\ref{atu:eq:spr_a}) }
+\label{atu:f:spr_a_q_alt}
+\end{figure}
+
+Анализ этих зависимостей позволяет сделать вывод о том,
+что критерий $q_{x2Oy2}$ характеризуется
+значительно меньшими возмущениями, тем исходный  $q_{x^2}$,
+однако эти возмущения всё же есть. При этом сохраняется
+начальный участок с сильным нарушением монотонности.
+Критерий $q_{dxOy}$ напротив, несмотря на возмущения,
+характеризуется зависимостью, более близкой к линейной,
+при этом она сохраняется как на начальном участке,
+так и в областях импульсных возмущений других критериев.
+Следовательно, этот критерий имеет смысл использовать
+при создании системы идентификации.
+
+Рассмотрим процесс идентификации при условиях~(\ref{atu:eq:spr_a_po_t_sign})
+при использовании группы методов ql3rlWvnAAW.$q_{dxOy}$.
+Результаты моделирования приведены на рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_sign}.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_pi_ql3rlWvnAAW_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_p_ql3rlWvnAAW_sign.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$ при условии~(\ref{atu:eq:spr_a_po_t_sign})}
+  \label{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_sign}
+\end{figure}
+
+Сравнивая эти результатов с теми, что были приведены на рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_x2_sign},
+можно отметить, что несмотря на сохранившиеся высокочастотные колебания,
+уровень ошибки идентификации существенно уменьшился.
+
+Результаты моделирования для этого же метода,
+но при условии~(\ref{atu:eq:spr_a_po_t_sin}) приведены на рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_sin}.
+В отличие от методов с применением критерия $q_{x^2}$,
+здесь переход к плавному изменению идентифицируемого параметра приводит
+к значительному снижению уровня ошибки. Не только
+уменьшился размах колебаний, но и систематические ошибки стали значительно меньше.
+Также существенно снизилось время реакции на изменение параметра.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_pi_ql3rlWvnAAW_sin.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_p_ql3rlWvnAAW_sin.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$ при условии~(\ref{atu:eq:spr_a_po_t_sin})}
+  \label{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_sin}
+\end{figure}
+
+Для проверки равномерности идентификации от значения параметра
+рассмотрим процесс идентификации при условии~(\ref{atu:eq:po_t_ramp})
+(рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_ramp}).
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_pi_ql3rlWvnAAW_ramp.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_t_p_ql3rlWvnAAW_ramp.png}
+  }
+  \caption{Процесс идентификации параметра ``$c_{x_y}$'' системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$ при условии~(\ref{atu:eq:po_t_ramp})}
+  \label{atu:f:spr_a_id_ql3rlWvnAAW_q_dxOy_ramp}
+\end{figure}
+
+При сравнении с результатами, приведёнными на рис.~\ref{atu:f:spr_a_id_ql3rlWvnAAW_q_x2_ramp},
+можно сделать вывод о том, что во всём диапазоне изменения параметра
+не наблюдается заметных отклонений $p_\mathrm{id}$ от $p_o$,
+если не учитывать высокочастотные возмущения. Выход на рабочий режим также проиходит быстрее.
+Однако, имульсные возмущения всё равно присутствуют,
+хотя и в меньшей степени.
+
+На рис.~\ref{atu:f:spr_a_a_q_ql3rlWvnAAW_q_dxOy} представлены зависимости
+$\overline{e}(a_q)$ при применении метода ql3rlWvnAAW.$q_{dxOy}$.
+Наблюдается как общее существенно снижения урвня ошибки идентификации,
+так обоснованное разделение этого уровня от метода
+координатора поиска при условии~(\ref{atu:eq:spr_a_po_t_sin}).
+Ошибка при использовании метода $p_{gc}$ ограничена снизу
+из-за влияния агентов, расположенных в удалении от $p_o$.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_a_q_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_a_q_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(a_q)$ при идентификации системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$
+   при~(\ref{atu:eq:spr_a_po_t_sign}) и (\ref{atu:eq:spr_a_po_t_sin})}
+  \label{atu:f:spr_a_a_q_ql3rlWvnAAW_q_dxOy}
+\end{figure}
+
+На рис.~\ref{atu:f:spr_a_ql3rlWvnAAW_q_dxOy} представлены зависимости
+$\overline{e}(q_\gamma)$ при применении группы методов ql3rlWvnAAW.$q_{dxOy}$.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_q_gamma_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_q_gamma_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(q_\gamma)$ при идентификации системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$
+   при~(\ref{atu:eq:spr_a_po_t_sign}) и (\ref{atu:eq:spr_a_po_t_sin})}
+  \label{atu:f:spr_a_ql3rlWvnAAW_q_dxOy}
+\end{figure}
+
+Существенно меньший уровень ошибок идентификации,
+про сравнению с результатами, приведёнными на рис.~\ref{atu:f:spr_a_qg_Fq3rlFvnAAF_q_x2}
+позволяет более чётко проявить влияние параметра $q_\gamma$.
+Явно выражен рост ошибки для всех методов координатора при избыточной
+чувствительности, а также слабую зависимость для большинства методов
+за пределами этой зоны. Исключение составляет метод $p_{gc}$,
+который и должен быть наиболее подверженным влиянию
+недостаточной чувствительности функции качества.
+
+На рис.~\ref{atu:f:spr_a_v_f_ql3rlWvnAAW_q_dxOy} представлены зависимости
+$\overline{e}(v_f)$ при применении группы методов ql3rlWvnAAW.$q_{dxOy}$.
+Если при использовании критерия $q_{x^2}$ зависимость была по большей части условной,
+то в данном случае, особенно при условии  (\ref{atu:eq:spr_a_po_t_sin}),
+динамика агентов даёт существенный вклад, уменьшая ошибку идентификации в 2--3 раза.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_v_f_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/spr_a/ql3rlWvnAAW_dxOy/sprott_a_id2-p_v_f_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(v_f)$ при идентификации системы Sprott A группой методов ql3rlWvnAAW.$q_{dxOy}$
+   при~(\ref{atu:eq:spr_a_po_t_sign}) и (\ref{atu:eq:spr_a_po_t_sin})}
+  \label{atu:f:spr_a_v_f_ql3rlWvnAAW_q_dxOy}
+\end{figure}
+
+Таким образом, использование критерия $q_{dxOy}$
+позволяет повысить точность идентификации при всех рассмотренных
+условиях. Недостатком является большие вычислительные затраты
+на вычисление данного критерия, но в большинстве случаев это не является проблемой.
+
 
 % }}}2
 
@@ -539,17 +720,21 @@ $\overline{e}(k_e)$ при применении методов Fq3rlFvnAAF.$q_{x
 
   \item
     Попытка создать и критерий идентификации и работоспособную систему идентификации
-    на основании энергетического критерия вида $q_{x^2}$ оказалась успешной. В отличие
-    от системы Лоренца, для которой выбор возможных критериев был шире,
-    здесь критерий определён однозначно.
+    на основании энергетического критерия вида $q_{x^2}$ оказалась успешной.
+    Однако уровень ошибок идентификации при этом не позволяет
+    заметно улучшить качество идентификации за счёт настройки её параметров.
 
   \item
-    Для рассматриваемой постановки задачи идентификации,
-    смещение агентов слабо влияет на качество идентификации.
+    Использование критерия $q_{dxOy}$ даёт существенно лучшие результаты,
+    и появляется возможность успешно настраивать систему идентификации.
 
   \item
-    В целом, использование метода  Fq3rlFvnAAF.$q_{x^2}$ для данной системы
-    и начальных условий более оправданно.
+    Все рассмотренные критерии подвержены импульсным возмущениям,
+    что приводи к высокочастотным колебаниям значения $p_{\mathrm{id}}$.
+
+  \item
+    В целом, использование метода  ql3rlWvnleW.$q_{x^2}$ для данной системы
+    и начальных условий наиболее оправданно.
 
 \end{itemize}
 
