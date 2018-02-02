@@ -199,11 +199,11 @@ $\mu$ (рис.~\ref{atu:f:chua_spectrum}). Как следует из графи
 была сделана корректно.
 
 % }}}2
+\subsection{Тестовая задача идентификации для системы Чуа}  % {{{2
 
-
-В качестве системы идентификации использовалась система с 5 поисковыми агентами и
-двумя неподвижными моделями. Для исследования динамических свойств системы идентификации
-параметр $\mu_o$ для объекта задавался двумя способами:
+В соответствии с полученными данными, и используя
+предложения~(\ref{atu:eq:po_t_sign}) и~(\ref{atu:eq:po_t_sin}),
+определим тестовую задачу следующим образом:
 %
 \begin{equation}
  \mu_o(t) = p_0 + U_p \sign \sin( \omega_p t )
@@ -214,58 +214,99 @@ $\mu$ (рис.~\ref{atu:f:chua_spectrum}). Как следует из графи
  \mu_o(t) = p_0 + U_p \sin( \omega_p t ).
   \label{atu:eq:chua_mu_sin}
 \end{equation}
+%
+где:
+$p_0 = 3.25$, $U_p=0.6$, $\omega_p=0.0104719755$.
+При моделировании процессов идентификации было обнаружено
+следующее явление: если динамика параметра $\mu$ задана (\ref{atu:eq:chua_mu_sign}),
+то существуют такие значения $p_0$ и $U_p$,
+при которых система полностью теряет устойчивость.
+Для схемотехнических реализаций системы Чуа таких явлений
+не наблюдается, так как реальные системы имеют ограниченные возможности
+по поддержанию отрицательного сопротивления. Для таких случаев
+представление диода Чуа в виде (\ref{atu:eq:diodchua})
+не является адекватным. Точнее, учитывая тот факт,
+что схемотехнические реализации появились после аналитичного представления,
+более правильным будет утверждение о том, что реализации недостаточно адекватно
+реализуют аналитическую зависимость для диода Чуа.
+Более адекватная реализация требует наличия неограниченного
+источника энергии. С учётом вышеупомянутого,
+множество тестовых систем для рассматриваемой задачи
+является более ограниченным.
 
-Динамика процессов идентификации для системы Чуа представлена на рис.~\ref{atu:f:chua_id}.
-
+На рис.~\ref{atu:f:chua_id_ql3rlWvnAAW_sign} представлены результаты
+моделирования процесса идентификации
+группой методов ql3rlWvnAAW при условии~(\ref{atu:eq:chua_mu_sign}).
 
 \begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-pl_n_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-pl_n_sin.png}
-}
-\caption{Процесс идентификации параметра $\mu$ системы (\ref{atu:eq:chua2})
-  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
-}
-\label{atu:f:chua_id}
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_pi_ql3rlWvnAAW_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_p_ql3rlWvnAAW_sign.png}
+  }
+  \caption{Процесс идентификации параметра ``$\mu$'' системы Чуа группой методов ql3rlWvnAAW при условии~(\ref{atu:eq:chua_mu_sign})}
+  \label{atu:f:chua_id_ql3rlWvnAAW_sign}
 \end{figure}
 
+При заданных условиях система вполне работоспособна,
+уровень колебаний идентифицируемого параметра вполне адекватный задаче.
+
+На рис.~\ref{atu:f:chua_id_ql3rlWvnAAW_sin} представлены результаты
+моделирования процесса идентификации
+группой методов ql3rlWvnAAW при условии~(\ref{atu:eq:chua_mu_sin}).
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_pi_ql3rlWvnAAW_sin.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_p_ql3rlWvnAAW_sin.png}
+  }
+  \caption{Процесс идентификации параметра ``$\mu$'' системы Чуа группой методов ql3rlWvnAAW при условии~(\ref{atu:eq:chua_mu_sin})}
+  \label{atu:f:chua_id_ql3rlWvnAAW_sin}
+\end{figure}
+
+Как общий уровень ошибки, так и размах колебаний значения параметра
+в этом случае заметно меньше, аналогично процессам идентификации
+других рассмотренных хаотических систем.
+
+Процесс идентификации в условиях, когда параметр
+$\mu$ медленно и линейно ``пробегает'' весь рассматриваемый рабочий диапазон,
+проиллюстрирован на  рис.~\ref{atu:f:chua_id_ql3rlWvnAAW_ramp}.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_pi_ql3rlWvnAAW_ramp.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_t_p_ql3rlWvnAAW_ramp.png}
+  }
+  \caption{Процесс идентификации параметра ``$\mu$'' системы Чуа группой методов ql3rlWvnAAW при условии~(\ref{atu:eq:po_t_ramp})}
+  \label{atu:f:chua_id_ql3rlWvnAAW_ramp}
+\end{figure}
+
+Зависимости на графиках свидетельствуют о том, что с учётом уровня
+ошибки, идентификация на всём диапазоне происходит без каких-либо
+нарушений.
+
+
+% }}}2
 
 
 \subsection{Влияние параметров системы идентификации на ошибку идентификации для системы Чуа}  % {{{2
 
-
-
 Для более точной настройки параметров самой системы идентификации
-рассмотрим зависимости среднеквадратических ошибок идентификации
+рассмотрим зависимости ошибок идентификации
 от основных параметров системы идентификации.
 
-Одним из важнейших параметров является $q_\gamma$ -- масштаб функции качества
-((\ref{atu:eq:F_gauss})--(\ref{atu:eq:F_log})).
-Зависимости для этого параметра приведены на рис.~\ref{atu:f:chua_e_qgamma}.
-
-\begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_qg_e_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_qg_e_sin.png}
-}
-  \caption{Зависимости  $\overline{e}(q_\gamma)$ для системы (\ref{atu:eq:chua2})
-  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
-}
-\label{atu:f:chua_e_qgamma}
-\end{figure}
-
-Явно выраженного экстремума не наблюдается, что свидетельствует
-о сильной робастности метода.
-
 Для проверки корректности выбора величины $a_q$ была построены зависимости
-среднеквадратических ошибок идентификации (рис.\ref{atu:f:chua_e_a_q}).
+ошибок идентификации (рис.~\ref{atu:f:chua_e_a_q}) от этого параметра.
 
 
 \begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_a_q_e_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/chua/chua_m5p-p_a_q_e_sin.png}
-}
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_a_q_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_a_q_sin.png}
+  }
   \caption{Зависимости  $\overline{e}(a_q)$ для системы (\ref{atu:eq:chua2})
   при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
 }
@@ -279,16 +320,88 @@ $\mu$ (рис.~\ref{atu:f:chua_spectrum}). Как следует из графи
 и, следовательно, допустимо большее время оценивания. Напротив, в случае (\ref{atu:eq:chua_mu_sign})
 увеличение времени оценивания приводит к заметному снижению интегральной точности идентификации.
 
+
+
+Одним из важнейших параметров является $q_\gamma$ -- масштаб функции качества
+((\ref{atu:eq:F_gauss})--(\ref{atu:eq:F_log})).
+Зависимости для этого параметра приведены на рис.~\ref{atu:f:chua_e_qgamma}.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_q_gamma_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_q_gamma_sin.png}
+  }
+  \caption{Зависимости  $\overline{e}(q_\gamma)$ для системы (\ref{atu:eq:chua2})
+  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
+}
+\label{atu:f:chua_e_qgamma}
+\end{figure}
+
+Явно выраженного экстремума не наблюдается, что свидетельствует
+о сильной робастности метода. При условиях скачкообразной
+динамики параметра, ошибки, связанные с динамикой системы
+маскируют эту зависимость. При условиях (\ref{atu:eq:chua_mu_sin})
+проявляется увеличение уровня ошибок при избыточной чувствительности функции
+качества, и и близкое к равномерному ``плато'' при её снижении.
+
+Зависимости ошибки идентификации от коэффициента скорости поиска $v_f$
+приведены на рис.~\ref{atu:f:chua_e_v_f}.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_v_f_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/chua/ql3rlWvnAAW/chua_id-p_v_f_sin.png}
+  }
+  \caption{Зависимости  $\overline{e}(v_f)$ для системы (\ref{atu:eq:chua2})
+  при условиях (\ref{atu:eq:chua_mu_sign}) и (\ref{atu:eq:chua_mu_sin})
+}
+\label{atu:f:chua_e_v_f}
+\end{figure}
+
+Снижение ошибки идентификации за счёт динамики агентов
+в случае плавного изменения параметра $\mu$ достигает 250\%.
+Если же динамика агентов задана (\ref{atu:eq:chua_mu_sign}),
+то выигрыш существенно ниже.
+
+Зависимости
+$\overline{e}(k_e)$,
+$\overline{e}(k_{nl})$ и
+$\overline{e}(k_{cl})$ имеют вид, совершенно аналогичный тому,
+что был получен для других систем хаотической динамики.
+
+
+
 % }}}2
 
 
 \subsection{Выводы}  % {{{2
 
-Выводы
+Результаты моделирования процессов идентификации параметра ``$\mu$''системы Чуа,
+и сравнение этих результатов, с данными, полученными
+для других система, позволяют сделать следующие выводы:
+
+\begin{itemize}
+
+  \item
+    Для идентификации параметра $\mu$ системы Чуа
+    можно использовать несколько критериев.
+    При этом критерий $q_{V1}$ позволяет достичь лучших результатов.
+
+  \item
+    Использование метода  ql3rlWvnleW для данной системы
+    оправданно.
+
+  \item
+    Принципиальных отличий процесса идентификации от других систем не обнаружено.
+
+\end{itemize}
+
 
 % }}}2
 
 
 % }}}1
 
-% vim: fdm=marker foldlevelstart=2 fdc=4 ft=tex
+% vim: fdm=marker foldlevel=1 foldignore="%#" fdc=4 ft=tex
