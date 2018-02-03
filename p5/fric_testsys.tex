@@ -63,7 +63,7 @@ $ f_{df}( x, \dot{x}, \ldots)  $ -- сила сухого трения.
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.5\textwidth]{p/cha/fric/fric_outs.png}
+    \includegraphics[width=0.5\textwidth]{p/cha/fric/fric_outs1.png}
   }
   \caption{Динамика трёх моделей вида (\ref{atu:eq:dryfric_sys})}
   \label{atu:f:fric_outs}
@@ -128,68 +128,182 @@ $ f_{df}( x, \dot{x}, \ldots)  $ -- сила сухого трения.
 
 \begin{figure}[htb!]
 \centerline{
-  \includegraphics[width=0.50\textwidth]{p/cha/fric/fric_p-p_f_dm_q.png}
+  \includegraphics[width=0.60\textwidth]{p/cha/fric/fric_q-p_f_dm_q.png}
 }
   \caption{Зависимость $q_{dx}(f_{dm})$ для системы (\ref{atu:eq:dryfric_sys}) }
 \label{atu:f:fric_q}
 \end{figure}
 
+Несмотря на выраженную нелинейность в начальной части графика,
+данный критерий представляется вполне применимым для задачи идентификации,
+ввиду монотонности ограниченным диапазоном производной.
+При больших значениях параметра $f_{dm}$ смысл этого критерия теряется,
+так как отсутствует динамика системы. При малых значениях возможности идентификации
+тоже сильно ограничены, так как динамика системы больше определяется
+массой объекта, чем пренебрежимо малой силой трения.
+
 % }}}2
+
+
+\subsection{Тестовая задача идентификации }   % {{{2
+
+Аналогично уже рассмотренным система
+определим тестовую задачу следующим образом:
+\[
+  f_{dm}(t) \equiv p_o(t) \in (0.1, 1.5),
+\]
+%
+\begin{equation}
+  p_o(t) = p_0 +  U_{p} \sign \sin( \omega_{p} t ),
+  \label{atu:eq:fric_po_t_sign}
+\end{equation}
+%
+%
+\begin{equation}
+  p_o(t) = p_0 +  U_{p} \sin( \omega_{p} t ),
+  \label{atu:eq:fric_po_t_sin}
+\end{equation}
+%
+где:
+$p_0 = 0.7$, $U_p=0.4$, $\omega_p=0.0104719755$.
+
+Динамика процессов идентификации для системы (\ref{atu:eq:dryfric_sys})
+с использованием группы методов ql3rlWvnAAW.$q_{dx}$
+при условии (\ref{atu:eq:fric_po_t_sign})
+представлена на рис.~\ref{atu:f:fric_id_ql3rlWvnAAW_q_dx_sign}.
+
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sign.png}
+  }
+  \caption{Процесс идентификации параметра ``$f_{dm}$'' системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$ при условии~(\ref{atu:eq:fric_po_t_sign})}
+  \label{atu:f:fric_id_ql3rlWvnAAW_q_dx_sign}
+\end{figure}
+
+Для рассматриваемых условий наблюдается малый уровень возмущений
+идентифицируемого параметра. Однако, при малых значениях $f_{dm}$
+наблюдается заметная статическая ошибка идентификации. Это связано с тем,
+что в этой области влияние трения становится мало,
+и критерий теряет свою адекватность.
+
+Следует отметить, что при
+больших значениях $\omega_p$ наблюдается
+сильное влияние входного сигнала, В силу того, что когда системы неподвижны
+на одном из ``плато'', в эти моменты нет возможности различить их параметры,
+какой бы критерий при этом не использовался.
+
+Результаты моделирования при аналогичных условиях, но
+при динамике параметра, заданной (\ref{atu:eq:fric_po_t_sin}),
+представлены на рис.~\ref{atu:f:fric_id_ql3rlWvnAAW_q_dx_sin}.
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sin.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sin.png}
+  }
+  \caption{Процесс идентификации параметра ``$f_{dm}$'' системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$ при условии~(\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_id_ql3rlWvnAAW_q_dx_sin}
+\end{figure}
+
+За исключением уже упомянутой области, в которой критерий перестаёт работать,
+наблюдается весьма низкий уровень ошибок идентификации.
+В первую очередь это обусловлено тем, что данная система не является
+хаотической, и проявляет только некоторые подобные свойства.
+И как следствие, критерий, основанный на физических свойствах системы
+позволяет создать систему идентификации с низким уровнем ошибок.
+
+
+% }}}2
+
 
 
 
 \subsection{Влияние параметров системы идентификации на ошибку идентификации для системы }  % {{{2
 
+Относительно низкий достигнутый уровень ошибки идентификации
+для данной системы даёт возможность выпукло проявить влияние
+параметров системы идентификации.
 
 
-Динамика процессов идентификации для системы (\ref{atu:eq:dryfric_sys}) представлена на рис.~\ref{atu:f:fric_id}.
-Следует отметить сильное влияние входного сигнала, В силу того, что когда системы неподвижны
-на одном из ``плато'', то нет возможности различить их параметры,
-какой бы критерий при этом не использовался.
-
-\begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-pl_n_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-pl_n_sin.png}
-}
-\caption{Процесс идентификации параметра $f_{dm} $ системы (\ref{atu:eq:dryfric_sys})
-  при различных видах нестационарности этого параметра
-}
-\label{atu:f:fric_id}
-\end{figure}
-
-Зависимость среднеквадратических ошибок идентификации от величины коэффициента масштаба
-$q_\gamma$ (рис.~\ref{atu:f:fric_e_qgamma})
-достаточно сильно отличатся от аналогичной, например, для системы ``Sprott A''. На ней явно выражены
-экстремумы, дающие возможность тонкой настройки системы идентификации. Следовательно,
-для данной динамической системы робастные свойства системы идентификации проявляются слабо,
-и может потребовался дополнительная адаптация.
+Зависимости $\overline{e_*}(a_q)$ (рис.~\ref{atu:f:fric_a_q_ql3rlWvnAAW_q_dx})
+ позволяют определить корректное время усреденения критерия.
 
 \begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-p_qg_e_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-p_qg_e_sin.png}
-}
-  \caption{Зависимости  $\overline{e}(q_\gamma)$ для системы (\ref{atu:eq:dryfric_sys})
-  при различных видах нестационарности этого параметра
-}
-\label{atu:f:fric_e_qgamma}
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(a_q)$ при идентификации системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$
+   при~(\ref{atu:eq:fric_po_t_sign}) и (\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_a_q_ql3rlWvnAAW_q_dx}
 \end{figure}
 
 
-Зависимости $\overline{e_*}(a_q)$ (рис.~\ref{atu:f:fric_e_a_q})
- позволяют корректно определить время усреденения.
+Зависимость ошибок идентификации от величины коэффициента масштаба
+$q_\gamma$
+(рис.~\ref{atu:f:fric_q_gamma_ql3rlWvnAAW_q_dx})
+достаточно сильно отличатся от аналогичной, например, для системы ``Sprott A''.
+% На ней явно выражены
+%экстремумы, дающие возможность тонкой настройки системы идентификации.
+Следовательно,
+дополнительная адаптация может заметно улучшить качество идентификации.
 
 \begin{figure}[htb!]
-\centerline{
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-p_a_q_e_sign.png}
-  \includegraphics[width=0.49\textwidth]{p/cha/fric/fric_m5p-p_a_q_e_sin.png}
-}
-  \caption{Зависимости  $\overline{e}(a_q)$ для системы (\ref{atu:eq:dryfric_sys})
-  при различных видах нестационарности этого параметра
-}
-\label{atu:f:fric_e_a_q}
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(q_\gamma)$ при идентификации системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$
+   при~(\ref{atu:eq:fric_po_t_sign}) и (\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_q_gamma_ql3rlWvnAAW_q_dx}
 \end{figure}
+
+
+(рис.~\ref{atu:f:fric_v_f_ql3rlWvnAAW_q_dx})
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(v_f)$ при идентификации системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$
+   при~(\ref{atu:eq:fric_po_t_sign}) и (\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_v_f_ql3rlWvnAAW_q_dx}
+\end{figure}
+
+(рис.~\ref{atu:f:fric_k_e_ql3rlWvnAAW_q_dx})
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(k_e)$ при идентификации системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$
+   при~(\ref{atu:eq:fric_po_t_sign}) и (\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_k_e_ql3rlWvnAAW_q_dx}
+\end{figure}
+
+(рис.~\ref{atu:f:fric_k_nl_ql3rlWvnAAW_q_dx})
+
+\begin{figure}[htb!]
+  \centerline{
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sign.png}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sin.png}
+  }
+  \caption{Зависимости $\overline{e}(k_{nl})$ при идентификации системы (\ref{atu:eq:dryfric_sys}) группой методов ql3rlWvnAAW.$q_{dx}$
+   при~(\ref{atu:eq:fric_po_t_sign}) и (\ref{atu:eq:fric_po_t_sin})}
+  \label{atu:f:fric_k_nl_ql3rlWvnAAW_q_dx}
+\end{figure}
+
 
 % }}}2
 
@@ -206,4 +320,4 @@ $q_\gamma$ (рис.~\ref{atu:f:fric_e_qgamma})
 
 % }}}1
 
-% vim: fdm=marker foldlevelstart=2 fdc=4 ft=tex
+% vim: fdm=marker foldlevel=1 foldignore="%#" fdc=4 ft=tex
