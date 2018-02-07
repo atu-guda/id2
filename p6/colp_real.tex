@@ -5,7 +5,8 @@
   colp: ASAU-21, APIR-2013
 }
 
-\section{Определение системы и анализ её динамики} %  % {{{2 _colp_task
+\section{Определение системы и анализ её динамики} %  % {{{1
+\label{atu:s:colp_task}
 
 В ряде радиоэлектронных устройств используются
 генераторы сигналов, способные генерировать разнообразные виды  сигналов, в том числе
@@ -400,19 +401,12 @@ $q_{*}(\mu) $, полученные путём моделирования
 
 % }}}2
 
-\subsection{Выводы}  % {{{2
-
-В целом синтез критерия идентификации и построение работоспособной системы идентификации для
-системы генератора Колпитца не потребовало никаких специальных подходов и введения дополнительных
-мер оценивания взаимосвязей параметров генератора.
-
-% }}}2
 
 
 
 % }}}1
 
-\section{Отличия реального генератора Колпитца}
+\section{Отличия реального генератора Колпитца} % {{{1
 
 
 Как уже было отмечено,
@@ -426,10 +420,10 @@ $q_{*}(\mu) $, полученные путём моделирования
 или же допустимо при определённых условиях (индуктивность).
 
 
+% }}}1
 
 
-
-\section{Физическая реализация генератора Колпитца и исследование её динамики}
+\section{Физическая реализация генератора Колпитца и исследование её динамики} % {{{1
 
 На рис.~\ref{atu:f:colp_schem_real} представлена электрическая схема
 реализации генератора Колпитца, используемая в данной работе.
@@ -461,11 +455,15 @@ $q_{*}(\mu) $, полученные путём моделирования
 
 Примеры динамики с сравнением.
 
-\section{Численная модель генератора Колпитца}
+% }}}1
+
+\section{Численная модель генератора Колпитца}  % {{{1
 
 Методы расчёта~\cite{zaeplnii_radio_calc}.
 
-\section{Анализ и выбор критериев}
+% }}}1
+
+\section{Анализ и выбор критериев}  % {{{1
 
 Проверяем старые.
 
@@ -492,7 +490,9 @@ $q_{*}(\mu) $, полученные путём моделирования
 
 Предлагаем новые.
 
-\section{Синтез и анализ и системы идентификации}
+% }}}1
+
+\section{Синтез и анализ и системы идентификации}  % {{{1
 
 Описание с картинкой.
 
@@ -502,6 +502,11 @@ $q_{*}(\mu) $, полученные путём моделирования
 % C_1, C_2 = 1.0 uF, L = 1.0 mH, R_l=24.2 Ohm, R_e = 300 Ohm, R_1 = R_2 = 2.0 kOhm,
 % Q: MMBT2222A: h_{FE}=210, V_{je} = 0.667V.
 % V_{cc} = 12.0 V, V_{b} = 5.94 V
+% d_0.txt: 27.0 - 50.0 Ohm  28.5  +-  11.5
+% d_1.txt: 29.5 - 35.0 Ohm  32.25 +-  2.75
+% d_2.txt: 32.0 - 40.0 Ohm  36.0  +-  4.0
+% d_3.txt: 28.0 - 37.0 Ohm  32.5  +-  4.5
+% old:
 % d_0.txt: 27.3 - 44.2 Ohm  35.75 +-  8.45
 % d_1.txt: 29.0 - 35.0 Ohm  32    +-  3
 % d_2.txt: 26.0 - 30.0 Ohm  28    +-  2
@@ -512,24 +517,24 @@ $q_{*}(\mu) $, полученные путём моделирования
 %
 \begin{equation}
   \begin{array}{c}
-    R_{c,\min} = \SI{27.3}{\ohm};
+    R_{c,\min} = \SI{27.0}{\ohm};
     \;
-    R_{c,\max} = \SI{44.2}{\ohm};
+    R_{c,\max} = \SI{50.0}{\ohm};
     \;
     T_{R_c} = \SI{200}{\milli\second};
   \\
-    R_c(t) = \SI{35.75}{\ohm} + \SI{8.45}{\ohm} \cdot \sin( \pi ( t + 1 ) ).
+    R_c(t) = \SI{28.5}{\ohm} + \SI{11.5}{\ohm} \cdot \sign \sin \left(  \frac{\pi t}{T_{R_c}}  \right).
   \end{array}
   \label{atu:eq:colp_test1_cond}
 \end{equation}
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5-p_p_01.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_pi_ql3rlWvnAAW_real_d_0.png}
     \hfill
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5-p_pp_01.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_p_ql3rlWvnAAW_real_d_0.png}
   }
-  \caption{Процесс идентификации параметра $R_c$ реального генератора Колпитца '' при условиях }
+  \caption{Процесс идентификации параметра $R_c$ реального генератора Колпитца при условиях \ref{atu:eq:colp_test1_cond} }
   \label{atu:f:colp_r_id_1}
 \end{figure}
 
@@ -538,140 +543,139 @@ $q_{*}(\mu) $, полученные путём моделирования
 %
 \begin{equation}
   \begin{array}{c}
-    R_{c,\min} = \SI{29.0}{\ohm};
+    R_{c,\min} = \SI{29.5}{\ohm};
     \;
     R_{c,\max} = \SI{35.0}{\ohm};
     \;
     T_{R_c} = \SI{200}{\milli\second};
   \\
-    R_c(t) = \SI{32.0}{\ohm} + \SI{3.0}{\ohm} \cdot \sin( \pi ( t + 1 ) ).
+    R_c(t) = \SI{32.25}{\ohm} + \SI{2.75}{\ohm} \cdot \sign \sin \left( \frac{\pi t}{T_{R_c}}  \right).
   \end{array}
   \label{atu:eq:colp_test2_cond}
 \end{equation}
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_0-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_pi_ql3rlWvnAAW_real_d_1.png}
     \hfill
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_0-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_p_ql3rlWvnAAW_real_d_1.png}
   }
-  \caption{Процесс идентификации системы  при условиях (первый эксперимент)}
-  \label{atu:f:colp_real_id_qi_fv5_0}
+  \caption{Процесс идентификации параметра $R_c$ реального генератора Колпитца при условиях \ref{atu:eq:colp_test2_cond} }
+  \label{atu:f:colp_r_id_2}
 \end{figure}
+
 
 Параметры третьего эксперимента для генератора Колпитца
 %
 \begin{equation}
   \begin{array}{c}
-    R_{c,\min} = \SI{31.0}{\ohm};
+    R_{c,\min} = \SI{32.0}{\ohm};
     \;
-    R_{c,\max} = \SI{52.0}{\ohm};
+    R_{c,\max} = \SI{40.0}{\ohm};
     \;
     T_{R_c} = \SI{200}{\milli\second};
   \\
-    R_c(t) = \SI{41.5}{\ohm} + \SI{10.5}{\ohm} \cdot \sin( \pi ( t + 1 ) ).
+    R_c(t) = \SI{36.0}{\ohm} + \SI{4.0}{\ohm} \cdot \sign \sin \left(   \frac{\pi t}{T_{R_c}}   \right).
   \end{array}
   \label{atu:eq:colp_test3_cond}
 \end{equation}
 
+
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_1-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_pi_ql3rlWvnAAW_real_d_2.png}
     \hfill
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_1-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_p_ql3rlWvnAAW_real_d_2.png}
   }
-  \caption{Процесс идентификации системы  при условиях (второй эксперимент)}
-  \label{atu:f:colp_real_id_qi_fv5_1}
+  \caption{Процесс идентификации параметра $R_c$ реального генератора Колпитца при условиях \ref{atu:eq:colp_test3_cond} }
+  \label{atu:f:colp_r_id_3}
 \end{figure}
+
 
 
 Параметры четвёртого эксперимента для генератора Колпитца
 %
 \begin{equation}
   \begin{array}{c}
-    R_{c,\min} = \SI{29.0}{\ohm};
+    R_{c,\min} = \SI{28.0}{\ohm};
     \;
-    R_{c,\max} = \SI{32.0}{\ohm};
+    R_{c,\max} = \SI{37.0}{\ohm};
     \;
     T_{R_c} = \SI{200}{\milli\second};
   \\
-    R_c(t) = \SI{30.5}{\ohm} + \SI{1.5}{\ohm} \cdot \sin( \pi ( t + 1 ) ).
+    R_c(t) = \SI{32.5}{\ohm} + \SI{4.5}{\ohm} \cdot \sign \sin \left( \frac{\pi t}{T_{R_c}}  \right).
   \end{array}
   \label{atu:eq:colp_test4_cond}
 \end{equation}
 
 \begin{figure}[htb!]
   \centerline{
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_3-p_p.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_pi_ql3rlWvnAAW_real_d_3.png}
     \hfill
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_3-p_pp.png}
+    \includegraphics[width=0.48\textwidth]{p/r/colp_real_id-p_t_p_ql3rlWvnAAW_real_d_3.png}
   }
-  \caption{Процесс идентификации системы  при условиях (третий эксперимент)}
-  \label{atu:f:colp_real_id_qi_fv5_3}
+  \caption{Процесс идентификации параметра $R_c$ реального генератора Колпитца при условиях \ref{atu:eq:colp_test4_cond} }
+  \label{atu:f:colp_r_id_4}
 \end{figure}
 
-
-\begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_4-p_p.png}
-    \hfill
-    \includegraphics[width=0.48\textwidth]{p/colp_real_id_qi_fv5_4-p_pp.png}
-  }
-  \caption{Процесс идентификации системы  при условиях (четвёртый эксперимент)}
-  \label{atu:f:colp_real_id_qi_fv5_4}
-\end{figure}
 
 
 Рассмотрим зависимости ошибок идентификации от параметров самой системы идентификации.
 Параметр $a_q$, задающий
 фильтрующие способности критерия идентификации, должен рассматриваться в первую очередь.
-На рис.~\ref{atu:f:colp_real_id_qi_fv5_prm_0-p_a_q} представлены полученные зависимости
+На рис.~\ref{atu:f:colp_real_id_p_a_q_d_0} представлены полученные зависимости
 для процессов идентификации параметра $R_c$ генератора Колпитца.
 
 \begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_a_q.png} }
-  \caption{Зависимости $\overline{e}_{r*}(a_q)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_a_q}
+  \centerline{\includegraphics[width=0.6\textwidth]{p/r/colp_real_id-p_a_q_d_0.png} }
+  \caption{Зависимости $\overline{e}(a_q)$ при идентификации параметра $R_c$ генератора Колпитца при условиях \ref{atu:eq:colp_test1_cond} }
+  \label{atu:f:colp_real_id_p_a_q_d_0}
 \end{figure}
 
 
 \begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_q_gamma.png} }
-  \caption{Зависимости $\overline{e}_{r*}(q_\gamma)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_q_gamma}
+  \centerline{\includegraphics[width=0.6\textwidth]{p/r/colp_real_id-p_q_gamma_d_0.png} }
+  \caption{Зависимости $\overline{e}(q_\gamma)$ при идентификации параметра $R_c$ генератора Колпитца при условиях \ref{atu:eq:colp_test1_cond} }
+  \label{atu:f:colp_real_id_p_q_gamma_d_0}
 \end{figure}
 
 \begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_v_f.png} }
-  \caption{Зависимости $\overline{e}_{r*}(v_f)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_v_f}
-\end{figure}
-
-
-\begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_k_e.png} }
-  \caption{Зависимости $\overline{e}_{r*}(k_e)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_k_e}
+  \centerline{\includegraphics[width=0.6\textwidth]{p/r/colp_real_id-p_v_f_d_0.png} }
+  \caption{Зависимости $\overline{e}(v_f)$ при идентификации параметра $R_c$ генератора Колпитца при условиях \ref{atu:eq:colp_test1_cond} }
+  \label{atu:f:colp_real_id_p_v_f_d_0.png}
 \end{figure}
 
 
 \begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_k_cl.png} }
-  \caption{Зависимости $\overline{e}_{r*}(k_c)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_k_cl}
+  \centerline{\includegraphics[width=0.6\textwidth]{p/r/colp_real_id-p_k_e_d_0.png} }
+  \caption{Зависимости $\overline{e}(k_e)$ при идентификации параметра $R_c$ генератора Колпитца при условиях \ref{atu:eq:colp_test1_cond} }
+  \label{atu:f:colp_real_id_p_k_e_d_0.png}
 \end{figure}
 
 
 \begin{figure}[htb!]
-  \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_k_cn.png} }
-  \caption{Зависимости $\overline{e}_{r*}(c_n)$ при идентификации параметра $R_c$ генератора Колпитца}
-  \label{atu:f:colp_real_id_qi_fv5_prm_0-p_k_cn.png}
+  \centerline{\includegraphics[width=0.6\textwidth]{p/r/colp_real_id-p_k_nl_d_0.png} }
+  \caption{Зависимости $\overline{e}(k_{nl})$ при идентификации параметра $R_c$ генератора Колпитца \ref{atu:eq:colp_test1_cond} }
+  \label{atu:f:colp_real_id_p_k_nl_d_0.png}
 \end{figure}
+%
+%
+% \begin{figure}[htb!]
+%   \centerline{\includegraphics[width=0.6\textwidth]{p/colp_real_id_qi_fv5_prm_0-p_k_cn.png} }
+%   \caption{Зависимости $\overline{e}_{r*}(c_n)$ при идентификации параметра $R_c$ генератора Колпитца}
+%   \label{atu:f:colp_real_id_qi_fv5_prm_0-p_k_cn.png}
+% \end{figure}
+
+% }}}1
 
 
+\section{Выводы по разделу \thechapter}  % {{{1
 
-\section{Выводы по разделу \thechapter}
 
-Выводы.
+В целом синтез критерия идентификации и построение работоспособной системы идентификации для
+системы генератора Колпитца не потребовало никаких специальных подходов и введения дополнительных
+мер оценивания взаимосвязей параметров генератора.
 
-% vim: fdm=marker foldlevelstart=3 fdc=4 ft=tex
+% }}}1
+
+% vim: fdm=marker foldlevel=0 foldignore="%#" fdc=4 ft=tex
