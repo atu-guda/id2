@@ -441,7 +441,8 @@
 \renewcommand\thesubsubsection{\thesubsection .\@arabic\c@subsubsection}
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
-\newcommand\@chapapp{\chaptername}
+%\newcommand\@chapapp{\chaptername}
+\newcommand\@chapapp{}
 \def\@make@chapapp#1{\let\\\protected@dblbs\MakeUppercase{#1}}
 \def\protected@dblbs{\noexpand\linebreak}
 \newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
@@ -470,12 +471,12 @@
   \vspace*{8\p@}%
   {\centering \normalfont
     \ifnum \c@secnumdepth >\m@ne
-        \normalsize \@make@chapapp{\@chapapp}\space \thechapter
-        \par\nobreak
+        \normalsize\bfseries \@make@chapapp{\@chapapp}\space \thechapter.\;
+        %\par\nobreak
     \fi
     \interlinepenalty\@M
     \normalsize \bfseries \@make@chapapp{#1}\par\nobreak
-    \vskip 40\p@
+    \vskip 20\p@
   }}
 \def\@schapter#1{\addcontentsline{toc}{chapter}{#1}%
                  \chaptermark{#1}%
@@ -811,7 +812,8 @@
 \setlength\belowcaptionskip{0\p@}
 %% Підписи до малюнків Рис. 1.1  Назва
 %% ідею \CaptionSeparator запозичено з frenchb.ldf / тепер там по-іншому?
-\AtBeginDocument{\def\CaptionSeparator{\string.\space}}
+%\AtBeginDocument{\def\CaptionSeparator{\string ---\space}}
+\AtBeginDocument{\def\CaptionSeparator{ ---\space}}
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
   \sbox\@tempboxa{#1\CaptionSeparator #2}%
