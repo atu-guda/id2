@@ -5,7 +5,7 @@
 \newlength\TW
 \setlength{\TW}{0.01\textwidth} % after geometry!
 
-\usepackage[backend=biber,language=russian,sorting=none,maxnames=3,bibstyle=gost-numeric]{biblatex}
+\usepackage[backend=biber,language=russian,sorting=nty,maxnames=5,bibstyle=gost-numeric]{biblatex}
 
 \input{tikzsetup.tex}
 
@@ -84,8 +84,9 @@
 
 
 
-
-\printbibliography
+\clearpage
+\phantomsection
+\printbibliography[sorting=nty]
 \label{e:atu}{~}
 
 
