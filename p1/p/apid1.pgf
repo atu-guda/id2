@@ -1,0 +1,54 @@
+% vi:syntax=tex
+% use: УГПК =  CRO (controlled rectangular oscillator)
+\begin{tikzpicture}
+  % \draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  % --- U
+  \bXInput{U};
+  \path (U.center) ++(2.5em,0.0em) coordinate (UxM);
+  \draw (U.center) -- (UxM);
+  \fill (UxM) circle[radius=0.05];
+  \node[above right] at(U) {$u(t)$};
+  % --- Obj
+  \bXBranchy[-3]{UxM}{U0};
+  % \fill[red](U0) circle[radius=0.05];
+  \bXBlocL[1.0]{Obj}{$\mathbf{O}$}{U0};
+  \bXLinkyx{UxM}{Obj};
+  % --- M1
+  \bXBranchy[3]{UxM}{U1};
+  %\fill[green](U1) circle[radius=0.05];
+  \bXBlocL[1.0]{M1}{$\mathbf{M}$}{U1};
+  \bXLinkyx{UxM}{M1};
+  \node[below right] at(M1.south east) {$p(t)$};
+  % --- W
+  \bXCompSum[5.0]{W}{Obj}{}{}{}{};
+  \bXLink[$x_o(t)$]{Obj}{W};
+  \path (W.north) ++(0.0em,2.0em) coordinate (Win);
+  \draw[medlinep] (Win) -- (W.north);
+  \node[below right] at(Win) {$w(t)$};
+  % --- Err
+  \bXCompSum[9.5]{Err}{UxM}{+}{-}{}{};
+  \bXLinkxy{W}{Err};
+  \bXLinkxy{M1}{Err};
+  \node[above right] at(M1.east) {$x_m(t)$};
+  % --- F
+  \bXBloc{F}{$F(e)$}{Err};
+  \bXLink[$e(t)$]{Err}{F};
+  % --- Omega
+  \bXBloc{Omega}{$\omega\left(F\right)$}{F};
+  \bXLink[$F(t)$]{F}{Omega};
+  \node[above right] at(Omega.east) {$\omega(t)$};
+  % --- Gener - CRO
+  \bXBranchy[6]{Omega}{GenPoint};
+  \bXBlocr[-1.5]{Gener}{\textbf{CRO}}{GenPoint};
+  \draw[medlinep] (Omega.east) -- ++(1.0em,0.0em) |- (Gener.east);
+  \node[above left] at(Gener.west){$g(t)$};
+  % --- Integr
+  \bXBlocrL{Integr}{$k_i \int{}$}{Gener};
+  % % --- param
+  \draw[semiboldlinep] (Integr.west) -| (M1.south);
+  %
+  \TikzAddPadding
+  %
+\end{tikzpicture}
