@@ -1,0 +1,93 @@
+% vi:syntax=tex
+% use: УГПК =  CRO (controlled rectangular oscillator)
+\begin{tikzpicture}
+  % \draw[hair,step=1.0em] (0,-4) grid (12.0,4.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  % --- U
+  \bXInput{U};
+  \path (U.center) ++(2.5em,0.0em) coordinate (UxM);
+  \draw (U.center) -- (UxM);
+  \fill (UxM) circle[radius=0.05];
+  \node[above right] at(U) {$u(t)$};
+  % --- Obj
+  \bXBranchy[0]{UxM}{U0};
+  % \fill[red](U0) circle[radius=0.05];
+  \bXBlocL[1.0]{Obj}{$\mathbf{O}$}{U0};
+  \bXLinkyx{UxM}{Obj};
+  % --- Ml
+  \bXBranchy[-5]{UxM}{U1};
+  %\fill[green](U1) circle[radius=0.05];
+  \bXBlocL[1.0]{Ml}{$\mathbf{M_l}$}{U1};
+  \bXLinkyx{UxM}{Ml};
+  \node[above right] at(Ml.north east) {$p_l(t)$};
+  % --- Mr
+  \bXBranchy[5]{UxM}{U2};
+  %\fill[green](U2) circle[radius=0.05];
+  \bXBlocL[1.0]{Mr}{$\mathbf{M_r}$}{U2};
+  \bXLinkyx{UxM}{Mr};
+  \node[below right] at(Mr.south east) {$p_r(t)$};
+  % --- W
+  \bXCompSum[5.0]{W}{Obj}{}{}{}{};
+  \bXLink[$x_o(t)$]{Obj}{W};
+  \path (W.north) ++(0.0em,2.0em) coordinate (Win);
+  \draw[medlinep] (Win) -- (W.north);
+  \node[below right] at(Win) {$w(t)$};
+  % --- Errl
+  \bXBranchy[2.5]{Ml}{Err1Point};
+  \bXCompSum[8.0]{Errl}{Err1Point}{-}{+}{}{};
+  \bXLinkxy{W}{Errl};
+  \bXLinkxy{Ml}{Errl};
+  \node[above right] at(Ml.east) {$x_{l}(t)$};
+  % --- Errr
+  \bXBranchy[-2.5]{Mr}{ErrrPoint};
+  \bXCompSum[8.0]{Errr}{ErrrPoint}{+}{-}{}{};
+  \bXLinkxy{W}{Errr};
+  \bXLinkxy{Mr}{Errr};
+  \node[above right] at(Mr.east) {$x_{r}(t)$};
+  % --- Fl
+  \bXBloc{Fl}{$F(e)$}{Errl};
+  \bXLink[$e_l(t)$]{Errl}{Fl};
+  % --- Fr
+  \bXBloc{Fr}{$F(e)$}{Errr};
+  \bXLink[$e_r(t)$]{Errr}{Fr};
+  % --- Omegal
+  \bXBloc{Omegal}{$\omega\left(F\right)$}{Fl};
+  \bXLink[$F_l(t)$]{Fl}{Omegal};
+  \node[above right] at(Omegal.east) {$\omega_l$};
+  % --- Omegar
+  \bXBloc{Omegar}{$\omega\left(F\right)$}{Fr};
+  \bXLink[$F_r(t)$]{Fr}{Omegar};
+  \node[above right] at(Omegar.east) {$\omega_r$};
+  % --- Generl - CRO
+  \bXBloc{Generl}{\textbf{CRO}}{Omegal};
+  \node[above right] at(Generl.east) {$g_l(t)$};
+  \bXLink{Omegal}{Generl};
+  % --- Generr - CRO
+  \bXBloc{Generr}{\textbf{CRO}}{Omegar};
+  \node[below right] at(Generr.east) {$g_r(t)$};
+  \bXLink{Omegar}{Generr};
+  \draw[semiboldline,<->] (Generr.north) -- ( Generl.south);
+  % --- dG
+  \bXCompSum[21.0]{dG}{W}{+}{-}{}{};
+  \bXLinkxy{Generr}{dG};
+  \bXLinkxy{Generl}{dG};
+  \node[left] at(dG.west) {rst};
+  % --- Al
+  \bXBranchy[-5.5]{Omegal}{AlPoint};
+  \bXCompSum[0.0]{Al}{AlPoint}{}{-}{}{+};
+  \draw[medlinep] (dG.east) -- ++(1.0em,0.0em) |- (Al.east);
+  \draw[medline,<-] (Al.south) -- ++(0.0em,-1.0em);
+  \node[below right] at(Al.south) {$A$};
+  \draw[semiboldlinep] (Al.west) -| (Ml.north);
+  % --- Ar
+  \bXBranchy[5.5]{Omegar}{ArPoint};
+  \bXCompSum[0.0]{Ar}{ArPoint}{+}{}{}{+};
+  \draw[medlinep] (dG.east) -- ++(1.0em,0.0em) |- (Ar.east);
+  \draw[medline,<-] (Ar.north) -- ++(0.0em,1.0em);
+  \node[above right] at(Ar.north) {$A$};
+  \draw[semiboldlinep] (Ar.west) -| (Mr.south);
+  %
+  \TikzAddPadding
+  %
+\end{tikzpicture}
