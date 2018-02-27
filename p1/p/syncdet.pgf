@@ -1,0 +1,58 @@
+% vi:syntax=tex
+\begin{tikzpicture}
+  % \draw[hair,step=1.0em] (0,-3) grid (12.0,3.0);
+  \bXStyleBloc{semiboldline,inner sep=2pt};
+  \bXLineStyle{medline};
+  % --- U
+  \bXInput{U};
+  \path (U.center) ++(2.5em,0.0em) coordinate (UxM);
+  \draw (U.center) -- (UxM);
+  \fill (UxM) circle[radius=0.05];
+  \node[above right] at(U) {$u(t)$};
+  % --- Obj
+  \bXBranchy[-3]{UxM}{U0};
+  % \fill[red](U0) circle[radius=0.05];
+  \bXBlocL[1.0]{Obj}{$\mathbf{O}$}{U0};
+  \bXLinkyx{UxM}{Obj};
+  % --- M1
+  \bXBranchy[3]{UxM}{U1};
+  %\fill[green](U1) circle[radius=0.05];
+  \bXBlocL[1.0]{M1}{$\mathbf{M}$}{U1};
+  \bXLinkyx{UxM}{M1};
+  % --- W
+  \bXCompSum[5.0]{W}{Obj}{}{}{}{};
+  \bXLink[$x_o(t)$]{Obj}{W};
+  \path (W.north) ++(0.0em,2.0em) coordinate (Win);
+  \draw[medlinep] (Win) -- (W.north);
+  \node[below right] at(Win) {$w(t)$};
+  % --- Err
+  \bXCompSum[9.5]{Err}{UxM}{+}{-}{}{};
+  \bXLinkxy{W}{Err};
+  \bXLinkxy{M1}{Err};
+  \node[above right] at(M1.east) {$x_m(t)$};
+  % --- Mult
+  \bXCompSum*[9.0]{Mult}{Err}{}{}{}{};
+  \bXLink[$e(t)$]{Err}{Mult};
+  %\fill[black](Mult) circle[radius=0.07];
+  \node at(Mult) {$\times$};
+  % --- LPF
+  \bXBloc[2.0]{LPF}{\textbf{LPF}}{Mult};
+  \bXLink{Mult}{LPF};
+  % --- Mixer
+  \bXBranchy[6]{Mult}{MixPoint};
+  \bXCompSum[0.0]{Mixer}{MixPoint}{}{}{}{};
+  % \bXReturn{LPF}{Mixer}{};
+  \bXLinkyx{LPF}{Mixer};
+  % --- param
+  \draw[semiboldlinep] (Mixer.west) -| (M1.south);
+  \node[below right] at(M1.south east) {$p(t)$};
+  % --- Gener
+  \bXBranchy[3]{Err}{GenPoint};
+  \bXBloc[2]{Gener}{\textbf{G}}{GenPoint};
+  \bXLinkxy[$g(t)$]{Gener}{Mult};
+  \bXLinkxy{Gener}{Mixer};
+  \fill (Mixer) ++(0.0em,3.0em) circle[radius=0.05];
+  %
+  \TikzAddPadding
+  %
+\end{tikzpicture}

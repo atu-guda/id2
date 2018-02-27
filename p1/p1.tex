@@ -106,8 +106,8 @@ $M \{\rho [ y_t, y_t^{*} ] \} \to {\min}$''.
 
 \subsection{Синхронный детектор} % {{{2
 
-Принцип работы синхронного детектора %  \cite{adopt_cont_sys} 
-% (рис.~\ref{f:sd1})
+Принцип работы синхронного детектора %  \cite{adopt_cont_sys}
+(рис.~\ref{atu:f:syncdet})
 заключается в том,
 что значение коэффициента модели модулируется либо гармоническим,
 либо случайным сигналом. Для выявления влияния
@@ -117,16 +117,13 @@ $M \{\rho [ y_t, y_t^{*} ] \} \to {\min}$''.
 получаем оценку значения градиента функции ошибки на
 пространстве параметров.
 
-% \begin{figure}[htb]
-% \centerline{
-%  \includegraphics[width=9cm]{lpics/sd1.eps}
-%  %\resizebox{9.0\scm}{!}{%
-%  %  \input{lpics/sd1.tex}
-%  %}
-% }
-% \caption{Система идентификации с синхронным детектором}
-% \label{f:sd1}
-% \end{figure}
+\begin{figure}[htb!]
+\begin{center}
+\input{p/syncdet.pgf}
+\end{center}
+\caption{Система идентификации с синхронным детектором}
+\label{atu:f:syncdet}
+\end{figure}
 
 %В
 %\cite{Eykhoff,adopt_cont_sys}
