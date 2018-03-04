@@ -43,10 +43,9 @@
 \newcommand{\TermDef}[1]{\textit{\textbf{#1}}}
 \newcommand{\TermUse}[1]{\textit{#1}}
 \newcommand{\ProgName}[1]{\textsl{#1}}
-\newcommand{\xsect}[1]{\medskip\begin{center}\textbf{#1}\end{center}\medskip\penalty10000}
-%\newcommand{\xxsect}[1]{\smallskip\begin{center}\textbf{#1}\end{center}\smallskip\penalty10000}
-\newcommand{\xxsect}[1]{\smallskip\textbf{#1}\smallskip\penalty10000}
-\newcommand{\xxxsect}[1]{\smallskip\textit{#1}\smallskip\penalty10000}
+\newcommand{\xsect}[1]{\vspace{0.15ex}\begin{center}\textbf{#1}\end{center}\vspace{4pt}\penalty10000}
+\newcommand{\xxsect}[1]{\vspace{0.1ex}\textbf{#1}\vspace{0.1ex}\penalty10000}
+\newcommand{\xxxsect}[1]{\vspace{0.02ex}\textit{#1}\vspace{0.02ex}\penalty10000}
 
 
 \begin{document}
@@ -141,8 +140,10 @@
 {~} &
 доктор технічних наук, професор,\newline
 \textbf{Атаманюк Ігор Петрович}, \newline
-Миколаївський національний аграрний університет, \newline
-завідувач кафедри вищої та прикладної математики, м.~Миколаїв;
+Миколаївський національний \newline
+аграрний університет, \newline
+завідувач кафедри вищої та \newline
+прикладної математики, м.~Миколаїв;
 \\
 {~} & {~}
 \\
@@ -150,7 +151,8 @@
 доктор технічних наук, доцент,\newline
 \textbf{Щербовських Сергій Володимирович}, \newline
 Національний університет ``Львівська політехніка'' \newline
-старший науковий співробітник, доцент кафедри САПР, м.~Львів.
+старший науковий співробітник, \newline
+доцент кафедри САПР, м.~Львів.
 \\
 &
 % доктор технічних наук, професор,\newline
@@ -2399,7 +2401,7 @@ $f_{df}( x, \dot{x}, \ldots)$ --- сила сухого тертя.
 при однаковому вхідному сигналі і різних значеннях $f_{dm}$.
 
 Для забезпечення можливості застосування методів ідентифікації, необхідне
-існування критерію $q (x (t))$, що задовольняє наступним вимогам: чутливість
+існування критерію $q(x(t))$, що задовольняє наступним вимогам: чутливість
 до динаміки моделі і об'єкта, властивість астатизму, достатня стійкість до
 шумів вимірювання, фізична реалізація.
 
@@ -2766,16 +2768,15 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 природних процесах можуть проявляти хаотичні властивості в своїй динаміці.
 Існуючи системи ідентифікації нелінійних динамічних об'єктів практично не
 здатні функціонувати у таких умовах.
-
 Проаналізовано існуючи методи ідентифікації та моделі динаміки пошуку.
-Визначено спільні риси систем ідентифікації,
-досліджено чинники, які не дозволяють використовувати їх
-для ідентифікації параметрів хаотичних систем.
+%Визначено спільні риси систем ідентифікації,
+%досліджено чинники, які не дозволяють використовувати їх
+%для ідентифікації параметрів хаотичних систем.
 Обґрунтована необхідність створення нових систем ідентифікації.
 
 Показано, что для створення систем ідентифікації, які були б працездатними
 в умовах хаотичної динаміки, необхідно використання інтегральних критеріїв.
-Розглянута множина фізичних обґрунтувань для створення критеріїв,
+Розглянуті фізични обґрунтуваня для створення критеріїв,
 як на прямому використанні фізичних законів, так і на емпіричних засадах.
 
 З метою підвищення швидкодії системи ідентифікації запропонована
@@ -2789,9 +2790,9 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 Створено класифікацію систем ідентифікації систем, які можуть реалізовувати хаотичну динаміку,
 яка дозволяє не тільки стисло вказувати набір використаних методів,
 а синтезувати нові системи ідентифікації при появі нових методів роботи агентів та координаторів.
-Досліджено властивості множини запропонованих методів для штучної
-квазістаціонарній тестової системи. Обрана підмножина методів, які доцільно
-використовувати у подальшому дослідженні.
+% Досліджено властивості множини запропонованих методів для штучної
+% квазістаціонарній тестової системи. Обрана підмножина методів, які доцільно
+% використовувати у подальшому дослідженні.
 
 Створено програмне забезпечення ``qontrol'',
 яке призначено для моделювання складних нелінійних динамічних
@@ -2802,20 +2803,20 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 як відомих систем хаотичної динаміки, так і нових.
 Було визначено, що існують системи, які не є хаотичними, але
 з точки зору ідентифікації мають з ними спільні риси.
-Досліджено вплив параметрів системи ідентифікації на якість її роботи,
-що дає підстави для адаптації цих параметрів. Визначено,
-що найбільший вплив мають вид критерію та параметри динаміки агентів.
+% Досліджено вплив параметрів системи ідентифікації на якість її роботи,
+% що дає підстави для адаптації цих параметрів. Визначено,
+% що найбільший вплив мають вид критерію та параметри динаміки агентів.
 
 Властивості запропонованих методів ідентифікації досліджено
 на двох реальних фізичних об'єктах:
 генераторі Колпітца та системі зв'язаних релаксаційних елементів.
-Методи підтвердили свою працездатність, та виявлено,
-що залежності якості ідентифікації від її параметрів для реальних систем мають той же вигляд,
-що й для тестових.
+% Методи підтвердили свою працездатність, та виявлено,
+% що залежності якості ідентифікації від її параметрів для реальних систем мають той же вигляд,
+% що й для тестових.
 
 
 
-Ключові слова:
+\textbf{Ключові слова:}
 хаотичні системи,
 критерій ідентифікації,
 пошуковий агент,
@@ -2841,21 +2842,21 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 природных процессах могут проявлять хаотические свойства в своей динамике.
 Существующие системы идентификации нелинейных динамических объектов практически
 не способны работать в таких условиях.
-
+%
 Проанализированы существующие методы идентификации и модели динамики поиска.
-Определены общие черты систем идентификации, исследованы факторы, которые не
-позволяют использовать их для идентификации параметров хаотических систем.
+%Определены общие черты систем идентификации, исследованы факторы, которые не
+%позволяют использовать их для идентификации параметров хаотических систем.
 Обоснована необходимость создания новых систем идентификации.
 
-Показано, что для создания систем идентификации, которые были бы
-работоспособными в условиях хаотической динамики, необходимо использование
-интегральных критериев. Рассмотрена множество физических обоснований для
-создания критериев, как на прямом использовании физических законов, так и на
+Показано, что для создания систем идентификации, которые были бы работоспособными
+в условиях хаотической динамики, необходимо использование интегральных критериев.
+Рассмотрены физические обоснования для создания критериев,
+как на прямом использовании физических законов, так и на
 эмпирических принципах.
 
 С целью повышения быстродействия системы идентификации предложена структура с
-использованием множества поисковых агентов и координатора поиска. Созданы
-методы оценивания параметра тройкой поисковых агентов, как при непосредственном
+использованием множества поисковых агентов и координатора поиска.
+Созданы методы оценивания параметра тройкой поисковых агентов, как при непосредственном
 использовании критерия, так и в случае применения функции качества. Исследованы
 зависимости ошибки идентификации от метода и его параметров. Создана
 група методов работы координаторов поиска, определены зависимости качества
@@ -2863,10 +2864,10 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 Создана классификация систем идентификации систем,
 которая позволяет не только кратко указывать набор
 использованных методов, а синтезировать новые системы идентификации при
-появлении новых методов работы агентов и координаторов. Исследованы свойства
-множества предложенных методов для искусственной Квазистационарный тестовой
-системы. Выбранно подмножество методов, которые целесообразно использовать в
-дальнейшем исследовании.
+появлении новых методов работы агентов и координаторов.
+% Исследованы свойства множества предложенных методов для искусственной квазистационарный тестовой
+% системы. Выбранно подмножество методов, которые целесообразно использовать в
+% дальнейшем исследовании.
 
 Создано программное обеспечение ``qontrol'', которое предназначено для
 моделирования сложных нелинейных динамических систем, в том числе при анализе
@@ -2876,18 +2877,18 @@ $V_{\mathrm{on},i}$, $V_{\mathrm{off},i}$.
 идентификации нескольких нелинейных систем, как известных систем хаотической
 динамики, так и новых. Было определено, что существуют системы, которые не
 являются хаотичными, но с точки зрения идентификации имеют с ними общие черты.
-Исследовано влияние параметров системы идентификации на качество ее работы, что
-дает основания для адаптации этих параметров. Определено, что наибольшее
-влияние имеют вид критерия и параметры динамики агентов.
+% Исследовано влияние параметров системы идентификации на качество ее работы, что
+% дает основания для адаптации этих параметров. Определено, что наибольшее
+% влияние имеют вид критерия и параметры динамики агентов.
 
 Свойства предложенных методов идентификации исследованы на двух реальных
-физических объектах: генератор Колпитца и системе связанных релаксационных
-элементов. Методы подтвердили свою работоспособность, и обнаружено, что
-зависимости качества идентификации от ее параметров для реальных систем имеют
-тот же вид, что и для тестовых.
+физических объектах: генераторе Колпитца и системе связанных релаксационных элементов.
+% Методы подтвердили свою работоспособность, и обнаружено, что
+% зависимости качества идентификации от ее параметров для реальных систем имеют
+% тот же вид, что и для тестовых.
 
 
-Ключевые слова:
+\textbf{Ключевые слова:}
 хаотические системы,
 критерий идентификации,
 поисковый агент,
@@ -2906,25 +2907,25 @@ Thesis for the degree of Doctor of Technical Science in Specialization
 \institutionEn, \belongEn, \cityEn, \bookyear.
 
 The dissertation is devoted to the actual scientific and technical problem of
-identifying the parameters of complex technical systems in the regime of
-chaotic dynamics. Nonlinear dynamic systems common in modern technological and
-natural processes can exhibit chaotic properties in their dynamics. The
-existing systems for identifying nonlinear dynamic objects are practically
+identifying the complex technical systems parameters in the chaotic dynamics regime.
+Nonlinear dynamic systems are usual in modern technological and natural processes,
+and can exhibit chaotic properties in their dynamics.
+The existing systems for identifying nonlinear dynamic objects are practically
 useless in such conditions.
 
 The existing identification methods and search dynamics models are analyzed.
 Identified common features of identification systems, investigated factors that
-do not allow them to use to identify the parameters of chaotic systems. The
-necessity of creating new identification systems is grounded.
+do not allow them to be used in the parameter identification task for chaotic systems.
+The necessity of creating new identification systems is grounded.
 
-It is shown that the use of integral criteria is necessary for the creation of
-identification systems that would be workable under conditions of chaotic
-dynamics. Considered a lot of physical justification for the creation of
-criteria, both on the direct use of physical laws, and on empirical principles.
+It is shown that the use of integral criteria is necessary
+for the identification systems creation, that would be workable under conditions of chaotic
+dynamics. Considered a couple of physical justification for the criteria syntesys,
+both on the direct use of physical laws, and on empirical principles.
 
-In order to improve the speed of the identification system, a structure is
-proposed using a variety of search agents and a search coordinator. Methods for
-estimating the parameter of the triplet of search agents are created, both with
+In order to improve the identification system speed,
+a structure. which consist of a variety search agents and a search coordinatoris is proposed.
+Methods for estimating the parameter of the triplet of search agents are created, both with
 the direct use of the criterion and with the use of the quality function. The
 dependence of the identification error on the method and its parameters is
 investigated.
@@ -2933,15 +2934,14 @@ A group of methods for the work of the search coordinators has been created,
 the dependencies of the identification quality on the parameters of the
 coordinator's interaction with the agents have been determined. A
 classification of system identification systems has been created, which allows
-not only briefly indicating the set of methods used, but also synthesizing new
-identification systems when new methods of work of agents and coordinators
+not only briefly describe the set of methods used, but also allows us to
+create new identification systems when new methods of agents and coordinators
 appear. The properties of the set of proposed methods for an artificial
 quasistationary test system are investigated. A subset of methods is selected,
 which it is expedient to use in further research.
 
-The qontrol software was created, which is intended for modeling complex
-nonlinear dynamical systems, including in the analysis of identification
-processes of chaotic dynamics systems.
+The ``qontrol'' software was created, which is intended for modeling complex
+nonlinear dynamical systems, including in the analysis of chaotic dynamics systems processes identification.
 
 The working capacity and properties of the developed methods have been verified
 in solving the problem of identifying several nonlinear systems, both known
@@ -2953,13 +2953,13 @@ adaptation of these parameters. It is determined that the type of criterion and
 the dynamics of agents have the greatest influence.
 
 The properties of the proposed identification methods are investigated on two
-real physical objects: the Kolpitz oscillator and the system of coupled
+real physical objects: the Kolpitts oscillator and the system of coupled
 relaxation elements. The methods have confirmed their efficiency, and it is
 found that the dependence of the quality of identification on its parameters
 for real systems has the same form as for the test ones.
 
 
-Keywords:
+\textbf{Keywords:}
 chaotic systems,
 identification criterion,
 searching agent,
