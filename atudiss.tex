@@ -1,4 +1,4 @@
-\documentclass[13pt,d,ruslang]{vakthesisatu}
+\documentclass[13pt,d,ukrlang]{vakthesisatu}
 \synctex=1
 %\documentclass[14pt]{dissatu}
 
@@ -57,6 +57,14 @@
 
 \input{atu_annot_en_full.tex}
 
+\medskip
+
+\begin{center}
+Список публікацій здобувача
+\end{center}
+
+\input{litlist_atu.tex}
+
 \clearpage
 \phantomsection
 \pdfbookmark[0]{Contents}{contentsbookmark}
@@ -89,9 +97,40 @@
 
 \clearpage
 \phantomsection
-\printbibliography[sorting=nty]
+
+\printbibliography[sorting=nty,title=СПИСОК ВИКОРИСТАНИХ ДЖЕРЕЛ]
 \label{e:atu}{~}
 
+\clearpage
+\phantomsection
+\chapter*{Додаток A}
+
+\vspace{-7ex}
+\begin{center}
+Акти впровадження дисертаційної роботи
+\end{center}
+
+
+\clearpage
+\phantomsection
+\chapter*{Додаток Б}
+
+\vspace{-7ex}
+\begin{center}
+Акти впровадження дисертаційної роботи у навчаний процес
+\end{center}
+
+
+\clearpage
+\phantomsection
+\chapter*{Додаток В}
+
+\vspace{-7ex}
+\begin{center}
+  Список публікацій здобувача
+\end{center}
+
+\input{litlist_atu.tex}
 
 
 \end{document}

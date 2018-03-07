@@ -60,7 +60,7 @@
   \def\kandidata{\cyrk\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyra}
   \def\doctora{\cyrd\cyro\cyrk\cyrt\cyro\cyrr\cyra}
   \def\manuscriptright{\CYRN\cyra{ }\cyrp\cyrr\cyra\cyrv\cyra\cyrh{ }\cyrr\cyru\cyrk\cyro\cyrp\cyri\cyrs\cyru}
-  \def\forcontest{\CYRD\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrci\cyrya \cyrn\cyra \cyrz\cyrd\cyro\cyrb\cyru\cyrt\cyrt\cyrya \cyrn\cyra\cyru\cyrk\cyro\cyrv\cyro\cyrg\cyro \cyrs\cyrt\cyru\cyrp\cyre\cyrn\cyrya}
+  \def\forcontest{\CYRD\cyri\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyrya{ }\cyrn\cyra{ }\cyrz\cyrd\cyro\cyrb\cyru\cyrt\cyrt\cyrya{ }\cyrn\cyra\cyru\cyrk\cyro\cyrv\cyro\cyrg\cyro{ }\cyrs\cyrt\cyru\cyrp\cyre\cyrn\cyrya}
   \def\scienceheadmaster{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt{ }\cyrk\cyre\cyrr\cyrii\cyrv\cyrn\cyri\cyrk}
   \def\sciencecons{\CYRN\cyra\cyru\cyrk\cyro\cyrv\cyri\cyrishrt{ }\cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
 }
@@ -108,7 +108,7 @@
 %\RequirePackage[T1,T2A]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[pdftex,unicode,bookmarks]{hyperref}
-\RequirePackage[english,ukraineb,russian]{babel}
+\RequirePackage[english,russian,ukrainian]{babel}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
 \RequirePackage{fouriernc}
