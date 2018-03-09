@@ -1,3 +1,4 @@
 #!/bin/bash
 latexmk atuaref2
+play -q ~/doc/music/endrun.wav
 

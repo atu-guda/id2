@@ -1,3 +1,4 @@
 #!/bin/bash
 latexmk atudiss
+play -q ~/doc/music/endrun.wav
 
