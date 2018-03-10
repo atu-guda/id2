@@ -1258,6 +1258,9 @@
 }
 %
 \sloppy
+\widowpenalty=9900
+\clubpenalty=9900
+\displaywidowpenalty=5000
 %
 \endinput
 %%
