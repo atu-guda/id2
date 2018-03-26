@@ -1256,6 +1256,43 @@
 \newcommand{\Lcell}[1]{%
   \raggedright #1
 }
+% for pictures labels
+\newcommand{\ABlbl}{%
+  \vspace{-2.2ex}
+  \begin{center}
+    ~ \hfill a \hfill\hfill b \hfill ~
+  \end{center}
+  \vspace{-1.0ex}
+}
+\newcommand{\ABClbl}{%
+  \vspace{-2.2ex}
+  \begin{center}
+    ~ \hfill a \hfill\hfill b \hfill\hfill c \hfill ~
+  \end{center}
+  \vspace{-1.0ex}
+}
+\newcommand{\PicDouble}[2]{%
+ \begin{center}
+    ~ \hfill
+    \includegraphics[width=0.49\textwidth]{#1}
+    \hfill
+    \includegraphics[width=0.49\textwidth]{#2}
+    \hfill ~
+  \end{center}
+  \ABlbl
+}
+\newcommand{\PicTriple}[3]{%
+ \begin{center}
+    ~ \hfill
+    \includegraphics[width=0.32\textwidth]{#1}
+    \hfill
+    \includegraphics[width=0.32\textwidth]{#2}
+    \hfill
+    \includegraphics[width=0.32\textwidth]{#3}
+    \hfill ~
+  \end{center}
+  \ABlbl
+}
 %
 \sloppy
 \widowpenalty=10000
