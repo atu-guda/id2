@@ -1291,7 +1291,7 @@
     \includegraphics[width=0.32\textwidth]{#3}
     \hfill ~
   \end{center}
-  \ABlbl
+  \ABClbl
 }
 %
 \sloppy
