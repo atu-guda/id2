@@ -27,7 +27,7 @@
 де
 $m$ --- маса тіла,
 $u(t)$ --- сила, що призводить до руху,
-$ f_{df}( x, \dot{x}, \ldots)  $ ---  --- сила сухого тертя.
+$f_{df}(x, \dot{x}, \ldots)$ ---  сила сухого тертя.
 
 Важливою особливістю при моделюванні сили сухого тертя є той факт, що цю силу
 неможливо коректно описати аналітично~\cite{atu_asau11}.
@@ -46,7 +46,7 @@ $ f_{df}( x, \dot{x}, \ldots)  $ ---  --- сила сухого тертя.
 
 У свою чергу, істотною властивістю даної системи є те, що в кожній
 точці \(x\) система може знаходиться в спокої, навіть якщо на неї
-діє зовнішня сила (якщо вона по модулю не перевищує $ f_{dm}$).
+діє зовнішня сила (якщо вона по модулю не перевищує $f_{dm}$).
 Якщо ж розглянути пару або більше подібних систем, то
 отримана система має загальні властивості з системами хаотичної
 динаміки, а саме: малі збурення вхідного сигналу або коефіцієнтів
@@ -168,21 +168,10 @@ $p_0 = 0.7$, $U_p=0.4$, $\omega_p = \pi / 300$.
 представлена на рис.~\ref{atu:f:fric_id_ql3rlWvnAAW_q_dx_sign}.
 
 \begin{figure}[htb!]
-  \begin{center}
-    ~ \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sign.png}
-    \hfill ~
-  \end{center}
-  \vspace{-1.5ex}
-  \begin{center}
-    ~ \hfill a \hfill\hfill b \hfill ~
-  \end{center}
-  \vspace{-2.5ex}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sign.png}
 \caption{
   Процес ідентифікації параметра $f_{dm}$ системи (\ref{atu:eq:dryfric_sys}) групою методів ``ql3rlWvnAAW''
-  при умовах (\ref{atu:eq:po_t_sign})~(a) і  (\ref{atu:eq:po_t_sin})~(b)
+  за умов (\ref{atu:eq:po_t_sign})~(a) і  (\ref{atu:eq:po_t_sin})~(b)
 }
 \label{atu:f:fric_id_ql3rlWvnAAW_q_dx_sign}
 \end{figure}
@@ -204,12 +193,8 @@ $ \omega_p $ спостерігається сильний вплив вхідн
 рис.~\ref{atu:f:fric_id_ql3rlWvnAAW_q_dx_sin}.
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sin.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sin.png}
-  }
-\caption{Процес ідентифікації параметра ``$f_{dm}$'' системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx}$ за умови~(\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sin.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sin.png}
+  \caption{Процес ідентифікації параметра ``$f_{dm}$'' системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx}$ за умовою~(\ref{atu:eq:fric_po_t_sin}): динаміка агентів~(a) та $p_\mathrm{id}$~(b)}
 \label{atu:f:fric_id_ql3rlWvnAAW_q_dx_sin}
 \end{figure}
 
@@ -249,12 +234,8 @@ $ p_{le} $, який зазвичай показує кращі результа
 % TODO: why?
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sin.png}
-  }
-\caption{Залежності $ \overline{e} (a_q)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign}) і (\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sin.png}
+  \caption{Залежності $ \overline{e} (a_q)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign})~(a) і (\ref{atu:eq:fric_po_t_sin})~(b)}
 \label{atu:f:fric_a_q_ql3rlWvnAAW_q_dx}
 \end{figure}
 
@@ -265,12 +246,8 @@ $q_\gamma$
 досить сильно відрізняться від аналогічних для інших систем.
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sin.png}
-  }
-\caption{Залежності $ \overline{e} (q_\gamma) $ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign}) і (\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sin.png}
+  \caption{Залежності $ \overline{e} (q_\gamma) $ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign})~(a) і (\ref{atu:eq:fric_po_t_sin})~(b)}
 \label{atu:f:fric_q_gamma_ql3rlWvnAAW_q_dx}
 \end{figure}
 
@@ -294,12 +271,8 @@ $v_f$. Вид цих залежностей не проявляє ніяких �
 800\%, для стрибкоподібних змін --- порядку 20--25\%.
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sin.png}
-  }
-\caption{Залежності $ \overline{e} (v_f) $ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign}) і (\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_v_f_sin.png}
+  \caption{Залежності $\overline{e}(v_f)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign})~(a) і (\ref{atu:eq:fric_po_t_sin})~(b)}
 \label{atu:f:fric_v_f_ql3rlWvnAAW_q_dx}
 \end{figure}
 
@@ -309,15 +282,11 @@ $ k_e $, що визначає рівноважний стан агентів
 виражені при плавній зміні параметра, що підкреслює користь
 від динаміки агентів. Для стрибкоподібної зміни параметрів
 динаміка агентів поступається динаміці параметра, і залежності
-виражені не неастільки істотно.
+виражені не настільки істотно.
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sin.png}
-  }
-\caption{Залежності $ \overline{e} (k_e) $ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign}) і (\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_e_sin.png}
+  \caption{Залежності $\overline{e}(k_e)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign})~(a) і (\ref{atu:eq:fric_po_t_sin})~(b)}
   \label{atu:f:fric_k_e_ql3rlWvnAAW_q_dx}
 \end{figure}
 
@@ -330,12 +299,8 @@ $k_{nl} $ (рис.~\ref{atu:f:fric_k_nl_ql3rlWvnAAW_q_dx}), який визна�
 і практично фіксованою сіткою агентів.
 
 \begin{figure}[htb!]
-  \centerline{
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sign.png}
-    \hfill
-    \includegraphics[width=0.49\textwidth]{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sin.png}
-  }
-\caption{Залежності $ \overline{e} (k_{nl}) $ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign}) і (\ref{atu:eq:fric_po_t_sin})}
+  \PicDouble{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sign.png}{p/cha/fric/ql3rlWvnAAW/fric_id-p_k_nl_sin.png}
+  \caption{Залежності $\overline{e}(k_{nl})$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:fric_po_t_sign})~(a) і (\ref{atu:eq:fric_po_t_sin})~(b)}
 \label{atu:f:fric_k_nl_ql3rlWvnAAW_q_dx}
 \end{figure}
 
