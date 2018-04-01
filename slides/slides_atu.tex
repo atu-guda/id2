@@ -73,14 +73,14 @@
   \begin{center}
     ~ \hfill a \hfill\hfill b \hfill ~
   \end{center}
-  \vspace{-1.5ex}
+  \vspace{-2.0ex}
 }
 \newcommand{\ABClbl}{%
   \vspace{-2.7ex}
   \begin{center}
     ~ \hfill a \hfill\hfill b \hfill\hfill c \hfill ~
   \end{center}
-  \vspace{-1.5ex}
+  \vspace{-2.0ex}
 }
 \newcommand{\PicDouble}[2]{%
  \begin{center}
@@ -387,6 +387,670 @@
 
 
 % -------------------------- P2 ---------------------------------------------
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Критерії ідентифікації}
+
+  Хаотичні системи: чутливість фазових траєкторій
+  хаотичних систем як до дуже незначних змін параметрів,
+  так і до малих змін в стані системи.
+
+  \begin{figure}
+    \PicDouble{../p3/p/lor_diff-p_xx_x0.png}{../p3/p/lor_diff-p_dx_x0.png}
+    \caption{Різниця в поведінку системи Лоренца при малому збуренні початкових умов: сигнали~(a) та різниця~(b)}
+    \label{atu:f:lor_diff_x0}
+  \end{figure}
+
+  \vspace{-5ex}
+
+  \begin{figure}
+    \PicDouble{../p3/p/lor_diff-p_xx_sigma.png}{../p3/p/lor_diff-p_dx_sigma.png}
+    \caption{Різниця в поведінку системи Лоренца при малому збуренні параметра $\sigma$: сигнали~(a) та різниця~(b)}
+    \label{atu:f:lor_diff_sigma}
+  \end{figure}
+
+  \vspace{-3ex}
+
+  Для синтезу системи ідентифікації необхідно існування заданого
+  \textbf{скалярного критерію} $q(x(t))$, близькість величин якого для об'єкта і моделі
+  свідчить про досягнення мети ідентифікації.
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  %  \Xhead{}
+  \begin{columns}
+    \begin{column}{49\TW}
+      Основні способи визначення енергії:
+      %
+      \begin{equation}
+        E_k = \frac{mv^2}{2} = \frac{m}{2} \left( \od{x}{t} \right)^2.
+        \label{atu:eq:Ek_v}
+      \end{equation}
+      %
+      %
+      \begin{equation}
+        E_p = m g x .
+        \label{atu:eq:Ep_g}
+      \end{equation}
+      %
+      \begin{equation}
+        E_p = k \frac{x^2}{2} .
+        \label{atu:eq:Ep_spring}
+      \end{equation}
+      %
+      \begin{equation}
+        E_k = J \frac{\omega^2}{2} = \frac{J}{2} \left( \od{\varphi}{t} \right)^2 .
+        \label{atu:eq:Ek_spin}
+      \end{equation}
+      %
+      \begin{equation}
+        E_t = \frac{im}{2M} RT.
+        \label{atu:eq:Et}
+      \end{equation}
+      %
+      \begin{equation}
+        E_c = \frac{C U^2}{2}.
+        \label{atu:eq:Ec}
+      \end{equation}
+      %
+      \begin{equation}
+        E_l = \frac{L I^2}{2} = \frac{L}{2} \left( \od{Q}{t}\right)^2 .
+        \label{atu:eq:El}
+      \end{equation}
+      %
+      \begin{equation}
+        E_r = U I = I^2 R = \frac{U^2}{R} = U \od{Q}{t} .
+        \label{atu:eq:Er}
+      \end{equation}
+
+    \end{column}
+    \begin{column}{49\TW}
+      Основні види залежностей:
+
+      \begin{itemize}
+
+        \item
+          Квадратична залежність від координати:
+          $E \sim x^2$.
+
+        \item
+          Лінійна залежність від координати:
+          $E \sim x$.
+
+        \item
+          Квадратична залежність від похідної координати за часом:
+          $E \sim \left( \od{x}{t}\right)^2$.
+
+        \item
+          Лінійна залежність від добутку координат:
+          $E \sim x \cdot y$.
+
+        \item
+          Лінійна залежність від добутку однієї координати на похідну іншої:
+          $E \sim x \cdot \od{y}{t}$.
+
+        \item
+          Максимум величини на заданому інтервалі часу.
+
+      \end{itemize}
+
+    \end{column}
+  \end{columns}
+
+  \vfill
+
+  Навіть при наявності критерію задача ідентифікації не зводиться до
+  зачачі розв'язання нелінійного рівняння
+  задачі пошуку екстремуму:
+\[
+  \mu( q_o, q_m(p) ) \to \min,
+  \quad
+  \text{або}
+  \quad
+  \overline{F}(q_o, q_m(p)) \to \max.
+\]
+
+\begin{itemize}
+
+  \item
+    Найчастіше
+    $p_o(t) \ne \mathrm{const}$,
+    $p_m(t) \ne \mathrm{const}$.
+
+
+  \item
+    Значення $q(t)$, $F(t)$ мають залежність від часу
+    навіть при $p(t) = \mathrm{const}$.
+
+  \item
+    Процес пошуку має вплив на $q_m(t)$, $F_m(t)$.
+
+  \item
+    Існують похимки вимірювання.
+
+\end{itemize}
+
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Функції якості ідентифікації і безрозмірний вид критерію}
+
+  Критерій, заснованих на фізичних принципах --- найчастіше розмірна величина.
+  Два підходи: перший --- усі критерії наводяться до безрозмірного
+  вигляду шляхом нормування на будь-яку характерну величину тієї ж
+  розмірності.
+  Другий --- використання
+  \textbf{функції якості}.
+
+  Вимоги:
+  інваріантність по відношенню до зсуву, симетричність,
+  існування одного екстремуму, монотонність на кожної з гілок,
+  неперервність, та можливо, легкість схемотехнічної реалізації.
+
+
+  \begin{tabular}{p{45\TW}|p{52\TW}}
+  \[
+      q_r = \frac{q_o - q_m}{q_\gamma},
+  \]
+  \begin{equation}
+    F_{\mathrm{gauss}} = \exp( - q_r^2 ),
+  \label{atu:eq:F_gauss}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{parabolic}} = 1 - q_r^2 \left( 1 - \frac{1}{e} \right),
+  \label{atu:eq:F_parabolic}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{triangle}} = 1 - |q_r| \left( 1 - \frac{1}{e} \right),
+  \label{atu:eq:F_triangle}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{hyper}} = \frac{1}{ 1 + |q_r| \left( 1 - \frac{1}{e} \right)},
+  \label{atu:eq:F_hyper}
+  \end{equation}
+  %
+  \begin{equation}
+    F_{\mathrm{log}} = 1 - \ln \left( 1 + |q_r| \right) \frac{1-1/e}{\ln(2)}.
+  \label{atu:eq:F_log}
+  \end{equation}
+ &
+  \begin{figure}[htb!]
+    \includegraphics[width=55\TW]{../p3/p/F_types.png}
+    \caption{Функції якості ідентифікації (\ref{atu:eq:F_gauss})--(\ref{atu:eq:F_log})}
+    \label{atu:f:F_types}
+  \end{figure}
+  \end{tabular}
+
+ $q_\gamma$\label{atu:d:q_gamma}
+  --- величина, обернена до чутливості функції якості $\gamma$,
+  задає масштаб і робочий діапазон функції якості.
+
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Структура пошукових систем}
+
+  Визначення:
+  \textbf{пошуковий агент} --- це динамічна система, яка отримує вихідні ($x(t)$),
+  і, при необхідності, вхідні ($u(t)$) сигнали від однієї або кількох моделей,
+  величину оцінки стану об'єкта за критерієм ідентифікації,
+  може обмінюватися інформацією з іншими елементами пошукової системи,
+  та, на підставі значення критерію
+  ідентифікації, реалізує алгоритм настройки параметрів моделі (моделей) таким
+  чином, щоб забезпечити визначення заданого параметра.
+
+  \medskip
+
+  Визначення:
+  \textbf{координатор пошуку} --- це динамічна система, яка отримує інформацію
+  від пошукових агентів і на підставі цієї інформації визначає
+  $p_{\mathrm{id}}(t)$ --- величину ідентифікованого параметра.
+  Крім цього, координатор може, на підставі цієї ж інформації,
+  керувати процесом адаптації всієї пошукової системи.
+
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \input{../p3/p/agents.pgf}
+    \end{center}
+    \caption{Мультиагентна система ідентифікації з плоскою структурою}
+    \label{atu:f:agents_flat}
+  \end{figure}
+
+  Таким чином, система ідентифікації складається з множини агентів, та
+  множини координаторів пошуку, які спільно вирішують задачу ідентифікації.
+  За винятком ієрархічних систем ідентифікації, найчастіше використовується один координатор пошуку.
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Конфігурації агентів і координаторів}
+
+\textbf{Рій} --- множина агентів, що забезпечує ідентифікацію за рахунок
+концентрації максимальної кількості агентів в області передбачуваного максимуму
+функції якості або ж заданого значення критерію. Три складові поведінки: рух
+до оцінюваного локального екстремуму, до глобального, випадкова складова.
+
+\textbf{Стрій} --- множина агентів, розташування яких, і якщо необхідно,
+зміщення, задається однаковим чином. Відсутня індивідуальна динаміка кожного
+агента. Нерухомий стрій утворює \textbf{сітку},
+як рівномірно розподілену по простору параметрів, так і~ні.
+
+\textbf {Ансамбль} ---
+множина агентів, що забезпечує ідентифікацію за рахунок розподілу агентів таким
+чином, який забезпечує як точність ідентифікації за рахунок обмеженого
+скупчення агентів в областях передбачуваних максимумів функції якості, так і оперативного
+переключення на інші області при зміні параметрів за рахунок недопущення
+невиправданої скупченості агентів.
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \input{../p3/p/agent1.pgf}
+    \end{center}
+    \caption{Пошуковий агент, який використовую функцію якості $F$, та управляє параметром однієї моделі}
+    \label{atu:f:agent1}
+  \end{figure}
+
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \input{../p3/p/agent1q.pgf}
+    \end{center}
+    \caption{Пошуковий агент, який використовую критерій $q$, та управляє параметром однієї моделі}
+    \label{atu:f:agent1q}
+  \end{figure}
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{}
+
+  Вихідними сигналами агента є:
+
+  \begin{itemize}
+
+    \item
+      $p_c(t)$ ---
+      поточне значення параметра.
+
+    \item
+      $p_e(t)$\label{atu:d:p_e} --
+      поточне значення оцінки параметра.
+
+    \item
+      $F_c(t)$ ---
+      поточне значення функції якості (якщо використовується одна
+      модель для агента, або ж якщо агент якимось чином її усередняє
+      або апроксимує в разі декількох моделей). Може поєднувати
+      функції вхідного і вихідного сигналів.
+
+    \item
+      $q_c(t)$ ---
+      значення критерію якості (аналогічно попередньої величиною в
+      разі декількох моделей); спочатку цей сигнал був представлений
+      як вхідний для агента, проте він може використовуватися і
+      на більш високих рівнях системи ідентифікації. Якщо ж агенту
+      значення критерію недоступно, то і в списку вихідних сигналів
+      ця величина також відсутня.
+
+    \item
+      $F_e(t)$ ---
+      апроксимоване значення функції якості в точці
+      $p_e(t)$. Якщо агент не використовує для роботи апроксимацію
+      $F$, то і відповідний вихідний сигнал не використовується.
+
+    \item
+      $S(t)$ ---
+      ступінь ``впевненості'' агента в отриманому значенні.
+
+    \item
+   $W(t) = F_c(t) S(t)$ --- worthiness.
+  \end{itemize}
+
+%
+\begin{equation}
+  S_1 = c_\mathrm{su} \exp \left( - \frac{ \big( k_l c_\mathrm{dist} ( p_e - p_c ) \big)^2 }{p_b^2} \right)
+  ,
+  \label{atu:eq:S1}
+\end{equation}
+%
+\begin{equation}
+  S_3 = c_\mathrm{su} \exp \left( - \frac{ \big( k_l c_\mathrm{dist} \min( |p_e - p_l|,|p_e - p_c|, |p_e - p_r| ) \big)^2 }{p_b^2} \right)
+  .
+  \label{atu:eq:S3}
+\end{equation}
+%
+де
+$c_\mathrm{su}$ ---
+коефіцієнт, що відображає працездатність методу в даному випадку;
+$c_\mathrm{dist}$ ---
+коефіцієнт, що визначає ``штраф'' або ``бонус'', пов'язаний з відносним розташуванням робочих точок;
+$k_l$ ---
+коефіцієнт оцінки нелінійності системи;
+$p_b$
+--- характерний масштаб, щодо якого враховується видалення $p_e$ від використаних точок.
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Методи агентів, які використовують значення критерію}
+
+  1 модель: використовуємо історію. \\
+  2 моделі: можемо оцінити $p_e$ за лінійним наближенням. \\
+  3 моделі: можемо оцінити $p_e$ + ``впевненість'' $S_e$.
+
+  Якщо
+  $F_c > F_\mathrm{good}$, то $p_e = p_c$, $S=1$.
+
+  Якщо
+  $F_c \le F_\mathrm{good}$, то $q_o -q_c \ne 0$,
+  і можна застосувати наступні перетворення:
+  %
+  \[
+    \tilde{p}_l = p_l - p_c;
+  \quad
+  \tilde{p}_c = p_c - p_c = 0;
+  \quad
+  \tilde{p}_r = p_r - p_c;
+  \quad
+  \tilde{p}_e = p_e - p_c;
+\]
+  \begin{equation}
+    \tilde{q}_l = \frac{q_l-q_c}{q_c-q_o};
+    \quad
+    \tilde{q}_c = \frac{q_c-q_o}{q_c-q_o} = 1;
+    \quad
+    \tilde{q}_l = \frac{q_l-q_c}{q_c-q_o}.
+    \label{atu:eq:q_agent_rel}
+  \end{equation}
+
+  \begin{equation}
+    \tilde{p}_{el} = \frac{\tilde{p}_l}{1-\tilde{q}_l},
+    \quad
+    \tilde{p}_{er} = \frac{\tilde{p}_r}{1-\tilde{q}_r}.
+    \label{atu:eq:pr_ex}
+  \end{equation}
+
+  Найкращий випадок,  дві послідовні точки
+  розташовані по один бік
+  від прямої
+  $q = q_o$, а решта --- по інший.
+
+  \begin{figure}[htb!]
+    \centerline{
+      \includegraphics[width=49\TW]{../p3/p/pq_sin-p_pq_po=049_xl.png}
+    \hfill
+    \includegraphics[width=49\TW]{../p3/p/pq_sin-p_pq_po=070_xl.png}
+    }
+    \caption{Визначення точки $p_e$ методом $p_{eql}$ при $p_o \in [p_l, p_r]$}
+    \label{atu:f:pq_4}
+  \end{figure}
+
+  % У цьому найсприятливішому випадку проводиться інтерполяція, а не екстраполяція
+  % залежності $q(p)$, і досить вибрати ту ділянку, на якій гарантовано
+  % відбувається перетин. При цьому значення всіх коефіцієнтів підкреслюють
+  % впевненість агента в значенні $p_e$, що отримано:
+
+  \vspace{-7ex}
+
+  \begin{equation}
+    \tilde{p}_e
+    =
+    \begin{cases}
+      \tilde{p}_{el}, & \tilde{q}_l < 0
+      \\
+      \tilde{p}_{er}, & \text{ otherwise}.
+    \end{cases}
+    ,
+    c_\mathrm{su} = 1.0, \;  c_\mathrm{dist} = 0.5,  \;
+    p_b =
+    \begin{cases}
+      -\tilde{p}_l, & \tilde{q}_l < 0
+      \\
+      \tilde{p}_r, & \text{ otherwise}.
+    \end{cases}.
+    \label{atu:eq:pr_e4}
+  \end{equation}
+
+  Останні випадки,
+  характеризуються меншою ``упевненістю'' в отриманому значенні $p_e$,
+  що відображається у коефіцієнтах
+  $c_\mathrm{su}$, $c_\mathrm{dist}$ та  $p_b$.
+
+  Ций метод означимо як $p_{eql}$.
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Методи для агентів, які використовують значення функції якості}
+
+  Три сусідніх агента, які взаємодіють між собою, здатні не тільки оцінити градієнт
+  функції якості у власному околі, а й визначити наявність там
+  максимуму.
+  %
+  \[
+    \tilde{p}_c = 0, \,
+    \tilde{p}_l = p_l - p_c, \,
+    \tilde{p}_r = p_r - p_c.
+  \]
+  %
+  \[
+    \tilde{F}_c = 0, \,
+    \tilde{F}_l = F_l - F_c, \,
+    \tilde{F}_r = F_r - F_c.
+  \]
+    %
+    \[
+    \left\{
+      \begin{array}{l}
+        a_2 \tilde{p}_l^2 + a_1 \tilde{p}_l  = \tilde{F}_l
+        \\
+        a_2 \tilde{p}_r^2 + a_1 \tilde{p}_r  = \tilde{F}_r
+      \end{array}
+    \right. .
+  \]
+
+  \begin{equation}
+    a_1 = \frac{\tilde{F}_r \tilde{p}_l^2 - \tilde{F}_l \tilde{p}_r^2 }
+              { \tilde{p}_l^2 \tilde{p}_r  - \tilde{p}_l \tilde{p}_r^2 },
+    \;
+    a_2 = - \frac{\tilde{F}_r \tilde{p}_l - \tilde{F}_l \tilde{p}_r }
+               { \tilde{p}_l^2 \tilde{p}_r  - \tilde{p}_l \tilde{p}_r^2 },
+    \;
+    \tilde{p}_e = - \frac{a_1}{2 a_2};
+    \;
+    p_e = p_c - \frac{a_1}{2 a_2}.
+    \label{atu:eq:p_eFq}
+  \end{equation}
+
+  При $a_2<0$, $p_o \in [p_l,p_r]$:
+
+  \begin{figure}
+    \PicDoubleNL{../p3/p/p_eFq/q_p_eFq_p49_xl.png}{../p3/p/p_eFq/q_p_eFq_p70_xl.png}
+    \caption{Визначення точки $p_e$ методом $p_{eFq}$ при $p_o \in [p_l, p_r]$}
+    \label{atu:f:p_eFq_intra}
+  \end{figure}
+
+  Визначення $p_e$ по (\ref{atu:eq:p_eFq}) будемо позначати як $p_{eFq}$.
+
+  Оцінювання $p_e$ методом COG за значеннями функції якості:
+ %
+ \begin{equation}
+   p_e =
+   \frac{p_l F_l + p_c F_c + p_r F_r}{ F_r + F_c + F_r}  .
+   \label{atu:eq:p_eFc}
+ \end{equation}
+
+Умова обмеженості оцінки $p_e \in [p_l; p_r]$ в цьому випадку виконується
+автоматично. Визначення $p_e$ по (\ref{atu:eq:p_eFc}) в подальшому будемо позначати $p_{eFc}$.
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  % \Xhead{}
+  Демонстраційна штучна залежність~$q(p)$:
+  %
+  \begin{equation}
+    q_\mathrm{dem}(p) = q_{00} + c_\mathrm{lin} \tilde{p} + c_\mathrm{s1} \sin( \pi \tilde{p} ) + c_\mathrm{s2} \sin( 2 \pi \tilde{p} ) + c_\mathrm{s20} \sin( 20 \pi \tilde{p} ),
+    \label{atu:eq:q_dem}
+  \end{equation}
+  %
+  де $q_{00}$, $c_\mathrm{lin}$, $c_\mathrm{s1}$, $c_\mathrm{s2}$, $c_\mathrm{s20}$
+  ---
+  коефіцієнти, що дозволяють налаштувати цю залежність для перевірки заданого аспекту поведінки агента,
+  $\tilde{p} = \frac{p - p_{\min}}{p_{\max} - p_{\min}}$.
+
+  \begin{figure}
+    \PicTriple{../p3/p/qls_pe-p_po_qg_eql_all_xl.png}{../p3/p/qls_pe-p_po_qg_eFq_all_xl.png}{../p3/p/qls_pe-p_po_qg_eFc_all_xl.png}
+    \caption{Залежності $e(p_o,q_\gamma)$ для методів $p_{eql}$ (a), $p_{eFq}$ (b), $p_{qFc}$ (c) при повному комплекті нелінійних членів}
+    \label{atu:f:qsl_pe_po_qg_all}
+  \end{figure}
+
+  \begin{figure}
+    \PicTriple{../p3/p/qls_pe-p_po_qg_Sql_all_xl.png}{../p3/p/qls_pe-p_po_qg_SFq_all_xl.png}{../p3/p/qls_pe-p_po_qg_SFc_all_xl.png}
+    \caption{Залежності $S(p_o,q_\gamma)$ для методів $p_{eql}$ (a), $p_{eFq}$ (b), $p_{qFc}$(c)}
+    \label{atu:f:qsl_S_po_qg_all}
+  \end{figure}
+
+  \vspace{-3ex}
+
+  \begin{figure}[htb!]
+    \PicTriple{../p3/p/qls_pe-p_A_qg_eql_all_xl.png}{../p3/p/qls_pe-p_A_qg_eFq_all_xl.png}{../p3/p/qls_pe-p_A_qg_eFc_all_xl.png}
+    \caption{Залежності $e(A,q_\gamma)$ для методов $p_{eql}$ (a), $p_{eFq}$ (b), $p_{qFc}$ (c)}
+    \label{atu:f:qsl_pe_A_qg_all}
+  \end{figure}
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Динаміка пошукових агентів}
+
+  Визначення ``сил'': \\
+  $f_e$ ---
+  ``сила тяжіння'' до локальної оцінки $p_e$:
+  \begin{equation}
+    f_e(t) = - k_e \left( p_c(t) - p_e(t) \right)  ,
+    \label{atu:eq:f_e_lin}
+  \end{equation}
+  \begin{equation}
+    f_e(t) = - k_e W(t) \left( p_c(t) - p_e(t) \right) ,
+    \label{atu:eq:f_e_lin_W}
+  \end{equation}
+
+  ``Сила'' $f_n$ визначає взаємодію агента з найближчими сусідами.
+  %
+  \begin{equation}
+    f_n = k_n ( p_r - 2 p_c + p_l ),
+    \label{atu:eq:f_n_lin}
+  \end{equation}
+  \begin{equation}
+    f_n = k_n \left( \log\left( \frac{p_r-p_c}{p_{d0}} \right) -  \log\left( \frac{p_c-p_l}{p_{d0}}\right) \right),
+    \label{atu:eq:f_n_log}
+  \end{equation}
+  %
+  де
+  $p_{d0}$ ---
+  базова відстань між агентами.
+
+ ``$f_c$'' --- ``сила тяжіння'' до початкового значення параметра ($p_{c}(0)$)
+ %
+  \begin{equation}
+    f_c = -k_c (p_c - p_{c}(0)) ,
+    \label{atu:eq:f_c}
+  \end{equation}
+  %
+  \begin{equation}
+  f_t = f_c + f_n + f_e .
+  \label{atu:eq:f_t}
+\end{equation}
+
+  Можна використовувати різні способи визначення пошукової динаміки агента при
+  заданій силі. Наприклад, метод ``важкої кульки'':
+  \begin{equation}
+    m \ddot{p}_c + \nu \dot{p}_c = f_t(t),
+    \label{atu:eq:heavy_ball}
+  \end{equation}
+  %
+  де $m$ --- еквівалент маси кульки, $\nu$ --- коефіцієнт умовної в'язкості.
+
+  Також може використовуватися наближення динаміки тіла у в'язкій рідині, коли
+  вплив інерції дуже малий в порівнянні з в'язкістю, при цьому зміни параметрів
+  моделей (пошукових агентів) задаються наступним чином:
+  %
+  \begin{equation}
+    \od{p_c}{t} = v_f f_t(t),
+    \label{atu:eq:v_f}
+  \end{equation}
+  %
+  де $f_t$ --- сума всіх діючих ``сил'',
+  $v_f = 1 / \nu$ --- коефіцієнт
+  пропорційності.
+\end{frame}
 
 
 % -------------------------- P3 ---------------------------------------------
