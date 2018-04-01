@@ -4,7 +4,7 @@
 %\usepackage[scale=0.78,size=a1]{beamerposter}
 \usepackage[scale=1.0,size=a4,orientation=portrait]{beamerposter}
 %\setlength{\topmargin}{20mm}
-\setbeamersize{text margin left=15mm,text margin right=15mm}
+\setbeamersize{text margin left=10mm,text margin right=10mm}
 
 \usepackage{cmap}
 \usepackage[T1,T2A]{fontenc}
@@ -18,8 +18,9 @@
 \usepackage{scrextend}
 \changefontsizes{18pt}
 
-\usepackage{caption}
+%\usepackage{caption}
 \setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}[endash]
 %\addtobeamertemplate{navigation symbols}{}{ \hspace{1em}  \usebeamerfont{footline}  {\normalsize \insertframenumber / \inserttotalframenumber}}
 % \addtobeamertemplate{navigation symbols}{}{ \hspace{1em}  \usebeamerfont{footline}  {\normalsize \color{black} \insertframenumber }}
 
@@ -68,18 +69,18 @@
 
 % pics
 \newcommand{\ABlbl}{%
-  \vspace{-2.2ex}
+  \vspace{-2.7ex}
   \begin{center}
     ~ \hfill a \hfill\hfill b \hfill ~
   \end{center}
-  \vspace{-1.0ex}
+  \vspace{-1.5ex}
 }
 \newcommand{\ABClbl}{%
-  \vspace{-2.2ex}
+  \vspace{-2.7ex}
   \begin{center}
     ~ \hfill a \hfill\hfill b \hfill\hfill c \hfill ~
   \end{center}
-  \vspace{-1.0ex}
+  \vspace{-1.5ex}
 }
 \newcommand{\PicDouble}[2]{%
  \begin{center}
@@ -90,6 +91,25 @@
     \hfill ~
   \end{center}
   \ABlbl
+}
+\newcommand{\PicDoubleS}[2]{%
+ \begin{center}
+    ~ \hfill
+    \includegraphics[width=\DDW]{#1}
+    \hfill
+    \includegraphics[width=\DDW]{#2}
+    \hfill ~
+  \end{center}
+  \ABlbl
+}
+\newcommand{\PicDoubleNL}[2]{%
+ \begin{center}
+    ~ \hfill
+    \includegraphics[width=\DDP]{#1}
+    \hfill
+    \includegraphics[width=\DDP]{#2}
+    \hfill ~
+  \end{center}
 }
 \newcommand{\PicTriple}[3]{%
  \begin{center}
@@ -163,12 +183,12 @@
 
   \vfill
 
-\textbf{Об'єктом дослідження є}
+\textbf{Об'єкто дослідження } ---
 технічні системи, які в процесі їх функціювання можуть
 входити в хаотичні режими.
 
 \smallskip
-\textbf{Предметом дослідження є}
+\textbf{Предметом дослідження } ---
 математичні моделі процесів та методи
 ансамблевої ідентифікації технічних систем з хаотичною динамікою.
 
@@ -219,16 +239,6 @@
 
 \end{frame}
 
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Об'єкт, предмет, методи дослідження}
-  %\framesubtitle{}
-
-
-
-\end{frame}
 
 
 
@@ -283,15 +293,18 @@
 
 \end{frame}
 
+% -------------------------- P1 ---------------------------------------------
 
 
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{Исследователи}
+  \frametitle{Прототипи}
   %\framesubtitle{}
 
-  Питаннями ідентифікації динамічних систем займалися
+  \Xhead{}
+
+  Ідентифікація динамічних систем:
   Л.~Заде,
   П.~Эйкхофф,
   Д.~Гропп,
@@ -304,7 +317,7 @@
   \vfill
 
 
-Створенням і розробкою систем пошукової та адаптивно-пошукової ідентифікації займалися
+Системи пошукової та адаптивно-пошукової ідентифікації:
   М.М.~Івахненко,
   А.А.~Красовський,
   Н.Н.~Карабутов,
@@ -316,9 +329,7 @@
 
   \vfill
 
-Питанням моделювання систем динамічного хаосу, в тому числі
-ідентифікації приділяли увагу
-
+Моделювання систем динамічного хаосу, в тому числі ідентифікація:
   Ф.~Мун,
   M.P.~Kennedy,
   J.C.~Sprott,
@@ -332,18 +343,7 @@
   С.П.~Кузнецов,
   В.Я.~Данілов.
 
-
-
-\end{frame}
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{Прототипи}
-  %\framesubtitle{}
-
-  \begin{figure}[h!]
+  \begin{figure}
     \begin{center}
       ~ \hfill
       \includegraphics[width=45\TW]{../p1/p/syncdet.pdf}
@@ -374,7 +374,7 @@
       \hfill ~
     \end{center}
     \label{atu:f:oldsch}
-    %\caption{Існуючі методи}
+    \caption{Існуючі методи}
   \end{figure}
 
 
@@ -388,7 +388,6 @@
 
 
 
-% -------------------------- P1 ---------------------------------------------
 
 
 
@@ -397,11 +396,191 @@
 
 % -------------------------- P3 ---------------------------------------------
 
-
 % -------------------------- P4 ---------------------------------------------
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{}
+  Основные особенности программы ``qontrol'':
+
+  \begin{itemize}
+
+    \item
+      Призначена для моделювання нелінійних динамічних систем як з
+      використанням GUI, так і в пакетному режимі.
+
+    \item
+      Для організації об'єктної моделі використовується як можливості
+      метакомпілятора ``moc'', так і власна система обробки метаданих. Це
+      дозволяє як автоматично генерувати інтерфейсні елементи, так
+      і встановлювати зв'язки між елементами моделі.
+
+    \item
+      Концепція ``модель --- схема --- завдання моделювання --- засоби збору і обробки інформації''
+      дозволяє автоматизувати процес
+      моделювання.
+
+    \item
+     Розвинені засоби представлення даних у вигляді графіків.
+
+    \item
+      У якості мови автоматизації використовується Javascript.
+
+    \item
+      Передбачено засоби взаємодії з зовнішніми програмними
+      засобами. Зокрема, так реалізовано взаємодію з
+      вимірювально-керуючими апаратними засобами.
+
+
+  \end{itemize}
+
+  Open source, GPLv2+, \url{https://github.com/atu-guda/qontrol}
+
+
+\end{frame}
+
 
 
 % -------------------------- P5 ---------------------------------------------
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{Тестові системи: система Лоренца}
+
+  \begin{equation}
+    \begin{cases}
+      \dot{x} = \sigma (y-x ) , \\
+      \dot{y} = x (r-z) - y , \\
+      \dot{z} = x y - b z .
+    \end{cases}
+    \label{atu:eq:lor}
+  \end{equation}
+
+  \begin{equation}
+    \begin{cases}
+      \pd{\vec{v}}{t} + ( \vec{v} \nabla ) \vec{v} = - \frac{\nabla p}{\rho} + \nu \Delta \vec{v} + \vec{g}, \\
+      \pd{\rho}{t} + \nabla ( \rho \vec{v} ) = 0 , \\
+      \pd{T}{t} +\nabla ( T \vec{v} ) = \chi \Delta T , \\
+      \rho = \rho_0 \left( 1 - \gamma (T - T_0) \right) ,
+    \end{cases}
+    \label{atu:eq:lor_gidro}
+  \end{equation}
+  %
+  %де
+  $\Vec{v} $ --- поле швидкостей,
+  $T $ --- поле температури,
+  $T_0 $ і $ T_0 + \Delta T $ --- температури на верхній і нижній межі відповідно,
+  $\rho $ і $ p $ --- поля щільності і тиску,
+  $g $ --- прискорення вільного падіння,
+  $\nu $,
+  $\chi $,
+  $\gamma $ --- коефіцієнти кінематичної в'язкості,
+  температуропроводності і теплового розширення відповідно.
+
+  \begin{figure}
+    \PicDouble{../p5/p/cha/lor/lor0-p_xyz_r=028.png}{../p5/p/cha/lor/lor0_fft-p_f_r=028.png}
+    \caption{Аттрактор (a) і спектр (b) системи Лоренца (\ref{atu:eq:lor}) в хаотичному режимі ($r = 28$)}
+    \label{atu:f:lor_attractor_phase_chaos28}
+  \end{figure}
+
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{Система Лоренца: аналіз і вибір критеріїв}
+
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{../p5/p/cha/lor/lor_q-p_q_r.png}
+    \caption{Розглянуті критерії для системи Лоренца}
+    \label{atu:f:lor_q}
+  \end{figure}
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{Система Лоренца: залежності критеріїв для двох параметрів}
+
+\begin{figure}[htb!]
+  \PicDouble{../p5/p/cha/lor/q2d/lor_qx2_r_b.png}{../p5/p/cha/lor/q2d/lor_qy2_r_b.png}
+  \PicDoubleNL{../p5/p/cha/lor/q2d/lor_qz2_r_b.png}{../p5/p/cha/lor/q2d/lor_qxmy2_r_b.png}
+  \vspace{-2.7ex}
+  \begin{center}
+    ~ \hfill c \hfill\hfill d \hfill ~
+  \end{center}
+  \vspace{-1.5ex}
+  \caption{Залежності $q_{x^2}(r,b)$~(a), $q_{y^2}(r,b)$~(b), $q_{z^2}(r,b)$~(c), $q_{(x-y)^2}(r,b)$~(d) для системи Лоренца}
+  \label{atu:f:lor_q_r_b}
+\end{figure}
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{Система Sprott~A з додатковим параметром}
+
+  \begin{equation}
+    \begin{cases}
+      \dot{x} =  c_{x_y} y, \\
+      \dot{y} = -x + yz, \\
+      \dot{z} =  1 - y^2.
+    \end{cases}
+    \label{atu:eq:spr_a}
+  \end{equation}
+
+  \begin{figure}
+    \PicDouble{../p5/p/cha/spr_a/sprott_a-p_xyz_cx_y=0x372.png}{../p5/p/cha/spr_a/sprott_a_f-p_f_cx_y=0x372.png}
+    \caption{Аттрактор (a) та спектр (b) системи (\ref{atu:eq:spr_a}) при $c_{x_y} =0.372$}
+    \label{atu:f:spr_a_p_0372}
+  \end{figure}
+
+  \begin{figure}[htb!]
+    \PicDouble{../p5/p/cha/spr_a/sprott_a-p_xyz_cx_y=1x000.png}{../p5/p/cha/spr_a/sprott_a_f-p_f_cx_y=1x000.png}
+    \caption{Аттрактор (a) та спектр (b) системи (\ref{atu:eq:spr_a}) при $c_{x_y} =1.0$}
+    \label{atu:f:spr_a_p_1000}
+  \end{figure}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+
+  \Xhead{}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.60\textwidth]{../p5/p/cha/spr_a/sprott_a_q-p_c_x_y.png}
+  \end{center}
+  \caption{Залежності $q_{*}(c_{x_y})$ для системи (\ref{atu:eq:spr_a})}
+  \label{atu:f:spr_a_q}
+\end{figure}
+
+
+\end{frame}
+
+
+
 
 
 % -------------------------- P6 ---------------------------------------------
@@ -411,11 +590,36 @@
 
 \begin{frame}
   \frametitle{}
+
+  \Xhead{}
+
+  Програмно-апаратна складова комплексу реалізована на
+  мікроконтролерах STM32 (ARM Cortex M4F). Використовувалася як власна
+  розробка за базі STM32F407VE, так і отладочная плата на STM32F746ZI +
+  допоміжні елементи.
+
+  \begin{figure}[ht!]
+    \centerline{\includegraphics[width=90\TW]{../p6/p/colp_stand.png} }
+    \caption{Апаратно-програмний комплекс при роботі з генератором Колпітца}
+    \label{atu:colp_stand}
+  \end{figure}
+
+
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
   %\framesubtitle{}
   \Xhead{Моделювання та ідентифікація фізичної системи пов'язаних релаксаційних генераторів}
 
-  \centerline{\includegraphics[width=0.8\textwidth]{../p7/p/relax_types.png} }
-  {Умовні схеми релаксаційних генераторів}
+  \begin{figure}
+    \includegraphics[width=0.68\textwidth]{../p7/p/relax_types.png}
+    \caption{Умовні схеми релаксаційних генераторів}
+  \end{figure}
 
 \begin{equation}
   C \od{V_c}{t}
@@ -425,8 +629,10 @@
   \label{atu:eq:relax0}
 \end{equation}
 
-  \centerline{\includegraphics[width=0.96\textwidth]{../p7/p/relax3d_schem.png} }
-  {Електрична схема \RelaxBjtIi}
+  \begin{figure}
+    \centerline{\includegraphics[width=0.86\textwidth]{../p7/p/relax3d_schem.png} }
+    \caption{Електрична схема \RelaxBjtIi}
+  \end{figure}
 
 
 \end{frame}
@@ -440,11 +646,23 @@
 
   \Xhead{}
 
-  \PicDouble{../p7/p/relax3d_f_02.png}{../p7/p/relax3d_v1v2v3_02.png}
-  Спектр $V_b(t)$~(a), і аттрактор~(b) для системи ``relax3d'' при $R_b = \SI{5.0}{\kilo \ohm} $
+  \begin{figure}
+    \PicDoubleS{../p7/p/relax3d_f_02.png}{../p7/p/relax3d_v1v2v3_02.png}
+    \caption{Спектр $V_b(t)$~(a), і аттрактор~(b) для системи ``relax3d'' при $R_b = \SI{5.0}{\kilo \ohm} $}
+    \label{atu:f:relax3d_f_02}
+  \end{figure}
 
-  \PicDouble{../p7/p/relax3d_f_08.png}{../p7/p/relax3d_v1v2v3_08.png}
-  Спектр $V_b(t)$~(a), і аттрактор~(b) для системи ``relax3d'' при $ R_b = \SI{34.0}{\kilo\ohm} $
+  \begin{figure}
+    \PicDoubleS{../p7/p/relax3d_f_08.png}{../p7/p/relax3d_v1v2v3_08.png}
+    \caption{Спектр $V_b(t)$~(a), і аттрактор~(b) для системи ``relax3d'' при $ R_b = \SI{34.0}{\kilo\ohm} $}
+    \label{atu:f:relax3d_f_08}
+  \end{figure}
+
+  \begin{figure}
+    \PicDoubleS{../p7/p/relax3d_f_09.png}{../p7/p/relax3d_v1v2v3_09.png}
+    \caption{Спектр $V_b(t)$~(a), и аттрактор~(b) для системи ``relax3d'' при $R_b=\SI{36.0}{\kilo\ohm}$ }
+    \label{atu:f:relax3d_f_09}
+  \end{figure}
 
 \end{frame}
 
@@ -507,8 +725,10 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
   \label{atu:eq:q_rv_relax}
 \end{equation}
 
-  \centerline{\includegraphics[width=0.7\textwidth]{../p7/p/relax3d_read_q-p_q1.png} }
-  {Залежності для розглянутих критеріїв ідентифікації для системи релаксаційних генераторів на парі компліментарних транзисторів}
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{../p7/p/relax3d_read_q-p_q1.png}
+    \caption{Залежності для розглянутих критеріїв ідентифікації для системи релаксаційних генераторів на парі компліментарних транзисторів}
+  \end{figure}
 
 
 \end{frame}
@@ -522,11 +742,15 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 
   \Xhead{}
 
-  \PicDouble{../p7/p/relax3ds_read_id2_0-p_p.png}{../p7/p/relax3ds_read_id2_0-p_pp.png}
-  {Процес ідентифікації системи ``relax3ds'' групют методів ``Fq3zlovnAAF'': динаміка агентів~(a) та $p_\mathrm{id}$~(b)}
+  \begin{figure}
+    \PicDouble{../p7/p/relax3ds_read_id2_0-p_p.png}{../p7/p/relax3ds_read_id2_0-p_pp.png}
+    \caption{Процес ідентифікації системи ``relax3ds'' групою методів ``Fq3zlovnAAF'': динаміка агентів~(a) та $p_\mathrm{id}$~(b)}
+  \end{figure}
 
-  \PicDouble{../p7/p/relax3ds_read_id2_prm_0-p_a_q.png}{../p7/p/relax3ds_read_id2_prm_0-p_q_gamma.png}
-  \TextDouble{Залежності $\overline{e}_{r *}(a_q)$ при ідентифікації системи ``relax3ds''}{Залежності $ \overline{e}_{r *} (q_\gamma) $ при ідентифікації системи ``relax3ds''}
+  \begin{figure}
+    \PicDoubleNL{../p7/p/relax3ds_read_id2_prm_0-p_a_q.png}{../p7/p/relax3ds_read_id2_prm_0-p_q_gamma.png}
+    \TextDouble{\caption{Залежності $\overline{e}_{r *}(a_q)$ при ідентифікації системи ``relax3ds''}}{\caption{Залежності $ \overline{e}_{r *} (q_\gamma) $ при ідентифікації системи ``relax3ds''}}
+  \end{figure}
 
 
 \end{frame}
@@ -657,6 +881,8 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
   \frametitle{Друковані роботи та апробація}
   %\framesubtitle{}
 
+  \Xhead{Друковані роботи та апробація}
+
 За темою дисертаційної роботи опубліковано
 50 наукових праць. Основний зміст і результати досліджень
 викладено у 36 друкованих працях у наукових фахових виданнях, які
@@ -665,7 +891,9 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 у тому числі 1 --- включено до бази Web of Science,
 13 робіт опубліковано у збірниках наукових праць та матеріалах конференцій.
 
-{\scriptsize
+\smallskip
+
+%{\scriptsize
 Основные положения диссертационной работы докладывались на
 научно-практических конференциях:
 ``Інформатика та системні науки'' (ІСН-2011) Полтава--2011,
@@ -681,7 +909,7 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 ``Computer Sciences and Information Technologies'' (CSIT) Lviv--2015 (Scopus),
 ``Интеллектуальные системы принятия решений и проблемы вычислительного интеллекта'' (ISDMCI) Херсон--2016,
 ``Data Stream Mining and Processing'' DSMP Lviv--2016 (Scopus,Web of Science).
-}
+%} % scriptsize
 
 \end{frame}
 
