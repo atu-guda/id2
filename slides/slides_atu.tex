@@ -16,7 +16,7 @@
 \usepackage{mathtools}
 
 \usepackage{scrextend}
-\changefontsizes{18pt}
+\changefontsizes{16pt}
 
 %\usepackage{caption}
 \setbeamertemplate{caption}[numbered]
@@ -134,22 +134,24 @@
 }
 
 \makeatletter
-\setbeamertemplate{frametitle}{
-    \vspace{2mm}% \leavevmode
-    % \hfill \insertframetitle \hfill~
+\setbeamertemplate{frametitle}{%
+    \vspace{5mm} \leavevmode
+    \hfill {\normalsize \color{black} \insertframenumber } \hspace{10mm}%
+    %\vspace{5mm}% \leavevmode
+    %\hfill \insertframetitle \hfill~
 }
-\setbeamertemplate{footline}{%
-  \leavevmode%
-  % \hbox{%
-  % \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-  %   \usebeamerfont{title in head/foot}\insertshorttitle
-  % \end{beamercolorbox}}%
-  \hfill {\normalsize \color{black} \insertframenumber } \hspace{10mm}
-  \vspace{10mm}%
-% \begin{tikzpicture}[overlay, remember picture]
-%     \draw[color=green, line width=0.5cm] (current page.south west) rectangle (current page.north east);
-% \end{tikzpicture}
-}
+% \setbeamertemplate{footline}{%
+%   \leavevmode%
+%   % \hbox{%
+%   % \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%   %   \usebeamerfont{title in head/foot}\insertshorttitle
+%   % \end{beamercolorbox}}%
+%   %\hfill {\normalsize \color{black} \insertframenumber } \hspace{10mm}
+%   \vspace{10mm}%
+% % \begin{tikzpicture}[overlay, remember picture]
+% %     \draw[color=green, line width=0.5cm] (current page.south west) rectangle (current page.north east);
+% % \end{tikzpicture}
+% }
 \makeatother
 
 \newcommand{\RelaxBjtIi}{системи з трьох пов'язаних релаксаційних генераторів на парі компліментарних транзисторів}
@@ -384,13 +386,6 @@
 
 
 
-
-
-
-
-
-
-
 % -------------------------- P2 ---------------------------------------------
 
 
@@ -401,7 +396,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{}
   Основные особенности программы ``qontrol'':
@@ -449,7 +444,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{Тестові системи: система Лоренца}
 
@@ -495,7 +490,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{Система Лоренца: аналіз і вибір критеріїв}
 
@@ -512,7 +507,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{Система Лоренца: залежності критеріїв для двох параметрів}
 
@@ -540,7 +535,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{Система Sprott~A з додатковим параметром}
 
@@ -574,7 +569,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{}
 
@@ -599,7 +594,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
 
   \Xhead{}
 
@@ -622,12 +617,12 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
   %\framesubtitle{}
   \Xhead{Моделювання та ідентифікація фізичної системи пов'язаних релаксаційних генераторів}
 
   \begin{figure}
-    \includegraphics[width=0.68\textwidth]{../p7/p/relax_types.png}
+    \includegraphics[width=0.60\textwidth]{../p7/p/relax_types.png}
     \caption{Умовні схеми релаксаційних генераторів}
   \end{figure}
 
@@ -651,7 +646,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
   %\framesubtitle{}
 
   \Xhead{}
@@ -680,7 +675,7 @@
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
   %\framesubtitle{}
 
   \Xhead{Модель систем з трьох пов'язаних релаксаційних генераторів}
@@ -710,7 +705,7 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
   %\framesubtitle{}
 
   \Xhead{Критерії ідентифікації для системи ``relax3d''}
@@ -747,7 +742,7 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 % -----------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{~}
   %\framesubtitle{}
 
   \Xhead{}
@@ -870,18 +865,6 @@ $I_{i, \mathrm{leak}} $ --- струми витоку.
 \end{frame}
 
 
-
-
-% -----------------------------------------------------------------------
-
-\begin{frame}
-  \frametitle{}
-  %\framesubtitle{}
-
-  \Xhead{}
-
-
-\end{frame}
 
 
 
