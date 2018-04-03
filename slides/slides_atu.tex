@@ -140,6 +140,9 @@
     %\vspace{5mm}% \leavevmode
     %\hfill \insertframetitle \hfill~
 }
+\setbeamertemplate{footline}{%
+  \vspace{10mm}%
+}
 % \setbeamertemplate{footline}{%
 %   \leavevmode%
 %   % \hbox{%
@@ -163,7 +166,8 @@
 \begin{frame}
   \frametitle{}
   \begin{center}
-    {\Large \booknameUa}
+    %{\Large \booknameUa}
+    {\Large Ансамблеві пошукові моделі і \\ методи параметричної ідентифікації \\ систем з хаотичною поведінкою}
 
     \vfill
 
@@ -172,6 +176,10 @@
     \vfill
 
     {\large \dissauthorMain}
+
+    \vfill
+
+    {Дисертаційна робота на здобуття наукового ступеня доктора наук}
 
     \vfill
 
@@ -185,12 +193,12 @@
 
   \vfill
 
-\textbf{Об'єкто дослідження } ---
+\textbf{Об'єкт дослідження } ---
 технічні системи, які в процесі їх функціювання можуть
 входити в хаотичні режими.
 
 \smallskip
-\textbf{Предметом дослідження } ---
+\textbf{Предмет дослідження } ---
 математичні моделі процесів та методи
 ансамблевої ідентифікації технічних систем з хаотичною динамікою.
 
@@ -199,6 +207,11 @@
 Для вирішення поставлених задач використовувався математичний апарат
 теорії управління та ідентифікації нелінійних систем, динамічного хаосу,
 обчислювальних методів, нечіткої логіки, теорії інформації тощо.
+
+\smallskip
+Науково-технічна проблема: ідентифікація параметрів складних технічних
+систем у режимі хаотичної динаміки
+з метою забезпечення їх керованої поведінки.
 \end{frame}
 
 % -----------------------------------------------------------------------
@@ -512,7 +525,7 @@
   \vfill
 
   Навіть при наявності критерію задача ідентифікації не зводиться до
-  зачачі розв'язання нелінійного рівняння
+  задачі розв'язання нелінійного рівняння
   задачі пошуку екстремуму:
 \[
   \mu( q_o, q_m(p) ) \to \min,
@@ -538,7 +551,7 @@
     Процес пошуку має вплив на $q_m(t)$, $F_m(t)$.
 
   \item
-    Існують похимки вимірювання.
+    Існують похибки вимірювання.
 
 \end{itemize}
 
@@ -721,7 +734,7 @@
     \item
       $F_c(t)$ ---
       поточне значення функції якості (якщо використовується одна
-      модель для агента, або ж якщо агент якимось чином її усередняє
+      модель для агента, або ж якщо агент якимось чином її усереднює
       або апроксимує в разі декількох моделей). Може поєднувати
       функції вхідного і вихідного сигналів.
 
@@ -864,7 +877,7 @@ $p_b$
   що відображається у коефіцієнтах
   $c_\mathrm{su}$, $c_\mathrm{dist}$ та  $p_b$.
 
-  Ций метод означимо як $p_{eql}$.
+  Цій метод означимо як $p_{eql}$.
 
 \end{frame}
 
@@ -1053,7 +1066,243 @@ $p_b$
 \end{frame}
 
 
-% -------------------------- P3 ---------------------------------------------
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Методи визначення пошуковим координатором значення ідентифікованого параметра}
+
+``Best:''
+\begin{equation}
+  p_{bcF}
+  =
+  p_{c,i};
+  \quad
+  i : F_i = \max{F_j}, \quad j=0 \ldots N-1 .
+  \label{atu:eq:p_bcF}
+\end{equation}
+%
+Аналогічно визначаються залежності
+$p_{bcS}$ та $p_{bcW}$. Якщо замість $p_c$ використовувати $p_e$ ---
+$p_{bcF}$ $p_{bcS}$ та $p_{bcW}$.
+
+\vfill
+
+``Global COG:''
+%
+\begin{equation}
+  p_{gcF}
+  =
+  \frac{\sum\limits_{i=0}^{N-1} F_{i} p_{i}}
+       {\sum\limits_{i=0}^{N-1} F_{i} }
+  .
+  \label{atu:eq:p_gcF}
+\end{equation}
+%
+Аналогічно визначаються методи
+$p_{gcS}$,
+$p_{gcW}$,
+$p_{geF}$,
+$p_{geS}$ та
+$p_{geW}$.
+
+\vfill
+
+``Local COG:''
+%
+\begin{equation}
+  p_{leF}
+  =
+  \frac{ F_{l} p_{l} + F_{c} p_{c} + F_{r} p_{r} }
+       { F_{l}       + F_{c}       + F_{r}       }
+  .
+  \label{atu:eq:p_lcFl}
+\end{equation}
+%
+Аналогічно визначаються методи
+$p_{lcS}$,
+$p_{lcW}$,
+$p_{leF}$,
+$p_{leS}$ та
+$p_{leW}$.
+
+\Xhead{Похибки та якість ідентифікації:}
+
+\begin{equation}
+  e_{gcF}(t) = p_{gcF}(t) - p_o(t),
+  \quad
+  \ldots
+  \quad
+  e_{leW}(t) = p_{leW}(t) - p_o(t).
+  \label{atu:eq:e_xx}
+\end{equation}
+
+\begin{equation}
+  \overline{e} = \mu( p_o(t), p_\mathrm{id}(t) ),
+  \quad
+  t \in [0;T].
+\label{atu:eq:e_mu}
+\end{equation}
+
+\begin{equation}
+  \overline{e}_{00}
+  =
+  \overline{e}\left(p_o(t),p_{00}\right),
+  \quad
+  p_{00} \text{ --- центр  множини } \mathcal{P}.
+  \label{atu:eq:e_00}
+\end{equation}
+
+\begin{equation}
+  \overline{e}_{rbcF} = \frac{\overline{e}_{bcF}}{\overline{e}_{00}}, \;
+  \overline{e}_{rleS} = \frac{\overline{e}_{leS}}{\overline{e}_{00}}, \;
+  \overline{e}_{rgeW} = \frac{\overline{e}_{geW}}{\overline{e}_{00}},
+  \quad \ldots \quad
+  \overline{e}_{rqeF} = \frac{\overline{e}_{qeF}}{\overline{e}_{00}}.
+  \label{atu:eq:e_rxx}
+\end{equation}
+
+\begin{equation}
+  \overline{e}_{rblcS} = \frac{\overline{e}_{lcS}}{\overline{e}_{bc}},
+  \quad \ldots \quad
+  \overline{e}_{rbqeW} = \frac{\overline{e}_{qeW}}{\overline{e}_{bc}} \text{ on }  (v_f=0) .
+  \label{atu:eq:e_rbxx}
+\end{equation}
+
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Класифікація систем пошукової ідентифікації}
+
+  \begin{enumerate}
+
+    \item
+      Перший символ (``F'', ``q'', ``x'' ) визначає,
+      яка величина використовується кожним агентом для визначення $p_e$.
+
+    \item
+      Другий символ (``l'' --- linear, ``q'' --- quadratic \ldots ) 
+      задає спосіб визначення величини $p_e$ одним агентом.
+
+    \item
+      Третій символ визначає локальну пошукову геометрію, найчастіше --- кількість
+      агентів в в пошуковій групі, наприклад: ``2'' --- пошукова пара, ``3'' --- триплет.
+
+    \item
+      Четвертий символ (``z'' --- zero, ``r'' --- real \ldots),
+      описує поведінку додаткових моделей, які розташовані на границі:
+
+    \item
+      П'ятий символ (``c'' --- const, ``l'' --- linear \ldots )
+      позначає обрану залежність для величини $f_e$ (або
+      аналогічної величини, якщо $f_e$ безпосередньо не використовується).
+
+    \item
+      Шостий символ (``o'' --- one, ``F'', ``S'', ``W'') визначає множник,
+      що використовується для величини $f_e$ при визначенні динаміки об'єкта.
+
+    \item
+      Сьомий символ (``z'' --- zero, ``v'' --- viscous \ldots)
+      вказує, яким чином величина $f_t$ (або її еквівалент) впливає на динаміку агента.
+
+    \item
+      Восьмий (``n'' --- none, ``t'' --- triangle \ldots ) символ дозволяє вказати,
+      який додатковий пошуковий рух реалізує агент.
+
+    \item
+      Дев'ятий символ задає спосіб визначення ідентифікованого параметра по всьому ансамблю (``b'', ``g'', ``l'', ``q'').
+
+
+    \item
+      Десятий символ (``c'', ``e'') визначає, який з вихідних сигналів пошукового агента використовується.
+
+    \item
+      Одинадцятий символ (``F'', ``S'', ``W'') вказує,
+      яка величина використовується для визначення ваги кожного агента.
+
+
+  \end{enumerate}
+
+Приклад позначень:
+``Fc3zlovngcW.$q_{x^2}$'',
+``ql3ruWvnAeF'',
+``xl2nlosdlcA''.
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Тестові умови: залежність  (\ref{atu:eq:q_dem}) та}
+
+  \begin{equation}
+    p_o(t) = p_0 +  U_{p} \sign \sin( \omega_{p} t ),
+    \label{atu:eq:po_t_sign}
+  \end{equation}
+
+  \begin{equation}
+    p_o(t) = p_0 +  U_{p} \sin( \omega_{p} t ).
+    \label{atu:eq:po_t_sin}
+  \end{equation}
+
+  \begin{equation}
+    p_o(t) = p_0 +  U_{p} \frac{t}{T}.
+    \label{atu:eq:po_t_ramp}
+  \end{equation}
+
+  \Xhead{Рівноважні конфігурації пошукових агентів}
+
+  \begin{figure}[htb!]
+    \includegraphics[width=\DDP]{../p3/p/ramp/qls-p_t_pi_Fq3rlovnAAF_ramp_xl.png} \hfill
+    \includegraphics[width=\DDP]{../p3/p/ramp/qls-p_t_pi_ql3rlWvnAAF_ramp_xl.png}
+    \\
+    \parbox[t]{\DDP} {
+      \caption{Рівноважні конфігурації агентів при використанні групи методів  Fq3rlovnAAF}
+    \label{atu:f:qls_ramp_Fq3rlovnAAF}
+  }
+    \hfill
+    \parbox[t]{\DDP} {
+      \caption{Рівноважні конфігурації агентів при використанні групи методів ql3rlWvnAAF}
+    \label{atu:f:qls_ramp_ql3rlWvnAAF}
+  }
+  \end{figure}
+
+
+  \Xhead{Залежності $e(p_o)$}
+
+  \begin{figure}[htb!]
+    \begin{center}
+      ~ \hfill
+      \includegraphics[width=\DDP]{../p3/p/scan/qls-p_p_e_Fq3rlFvnAAF_scan_xl.png}
+      \hfill
+      \includegraphics[width=\DDP]{../p3/p/scan/qls-p_p_e_ql3rlWvnAAW_scan_xl.png}
+      \hfill ~
+    \end{center}
+    \parbox[t]{\DDP} {
+      \caption{Залежності $e (p_o)$ для групи методів Fq3rlFvnAAF}
+    \label{atu:f:Fq3rlFvnAAF_scan}
+  } \hfill
+    \parbox[t]{\DDP} {
+      \caption{Залежності $e (p_o)$ для групи методів ql3rlWvnAAW}
+    \label{atu:f:ql3rlWvnAAW_scan}
+  }
+  \end{figure}
+
+\end{frame}
+
 
 % -------------------------- P4 ---------------------------------------------
 
@@ -1062,8 +1311,15 @@ $p_b$
 \begin{frame}
   \frametitle{~}
 
+  Програма ``qontrol'' була створена для моделювання динаміки
+  нелінійних систем та проведення аналізу.
+
+  Мова програмування --- C++,
+  графічний інтерфейс реалізований за допомогою
+  бібліотек Qt та mathGL.
+
   \Xhead{}
-  Основные особенности программы ``qontrol'':
+  Особливості програми ``qontrol'':
 
   \begin{itemize}
 
@@ -1090,7 +1346,7 @@ $p_b$
 
     \item
       Передбачено засоби взаємодії з зовнішніми програмними
-      засобами. Зокрема, так реалізовано взаємодію з
+      засобами. Зокрема, реалізовано взаємодію з
       вимірювально-керуючими апаратними засобами.
 
 
@@ -1101,6 +1357,44 @@ $p_b$
 
 \end{frame}
 
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \begin{figure}[htb!]
+    \begin{center}
+      \includegraphics[width=0.82\textwidth]{../p4/p/qontrol_all.png}
+    \end{center}
+    \caption{Загальний вигляд інтерфейсу користувача програми ``qontrol''}
+    \label{atu:f:qontrol_all}
+  \end{figure}
+
+  % \Xhead{}
+
+  \begin{figure}[htb!]
+    \begin{center}
+      ~ \hfill
+      \includegraphics[width=\DDP]{../p4/p/qontrol_3d_a.png}
+      \hfill
+      \includegraphics[width=\DDP]{../p4/p/qontrol_js.png}
+      \hfill ~
+    \end{center}
+    \parbox[t]{\DDP} {
+      \caption{Вікно, призначене для відображення графіків}
+      \label{atu:f:qontrol_3d}
+    } \hfill
+    \parbox[t]{\DDP} {
+      \caption{Приклад скриптів}
+      \label{atu:f:qontrol_js}
+    }
+  \end{figure}
+
+
+\end{frame}
 
 
 % -------------------------- P5 ---------------------------------------------
