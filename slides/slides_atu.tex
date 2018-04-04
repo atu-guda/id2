@@ -1620,6 +1620,97 @@ $p_{leW}$.
 
 
 
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \Xhead{Система з сухим тертям}
+
+  \begin{equation}
+    m \ddot{x} + f_{df}( x, \dot{x}, \ldots)  = u(t).
+    \label{atu:eq:dryfric_sys}
+  \end{equation}
+  %
+  %\noindent
+  де
+  $m$ --- маса тіла,
+  $u(t)$ --- сила, що призводить до руху,
+  $f_{df}(x, \dot{x}, \ldots)$ ---  сила сухого тертя.
+  Основний параметр --- $f_{dm}$ --- максимальне значення модуля цієї сили.
+
+  Вимоги к  критерію $q(x(t))$:
+
+  \begin{itemize}
+
+    \item
+      чутливість до динаміки моделі і об'єкта;
+
+    \item
+      властивість астатизму,
+      тобто незалежність від зсуву виходу об'єкта або моделі:
+      \( q(x(t)+a ) \approx q( x(t) ) \);
+
+    \item
+      достатня стійкість до шумів вимірювання;
+
+    \item
+      фізична реалізація.
+
+  \end{itemize}
+
+  Пропонується метод обчислення критерію: ФНЧ, реальна ланка, що диференціює,
+  усереднення ($q_{dx}$).
+
+  \begin{figure}[htb!]
+    \PicDoubleNL{../p5/p/cha/fric/fric_outs1.png}{../p5/p/cha/fric/fric_q-p_f_dm_q.png}
+    \parbox[t]{\DDP} {
+      \caption{Динаміка трьох моделей виду~(\ref{atu:eq:dryfric_sys})}
+      \label{atu:f:fric_outs}
+    }
+    \hfill
+    \parbox[t]{\DDP} {
+      \caption{Залежність $q_{dx}(f_{dm})$ для системи~(\ref{atu:eq:dryfric_sys}) }
+      \label{atu:f:fric_q}
+    }
+  \end{figure}
+
+
+\end{frame}
+
+
+
+% -----------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{~}
+  %\framesubtitle{}
+
+  \begin{figure}[htb!]
+    \PicDouble{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_t_pi_ql3rlWvnAAW_sign.png}{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_t_p_ql3rlWvnAAW_sign.png}
+    \caption{
+      Процес ідентифікації параметра $f_{dm}$ системи (\ref{atu:eq:dryfric_sys}) групою методів ``ql3rlWvnAAW''
+      за умов (\ref{atu:eq:po_t_sign}): динаміка агентів~(a) та $p_\mathrm{id}$~(b)
+    }
+    \label{atu:f:fric_id_ql3rlWvnAAW_q_dx_sign}
+  \end{figure}
+
+  \begin{figure}[htb!]
+    \PicDoubleS{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sign.png}{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_a_q_sin.png}
+    \caption{Залежності $\overline{e}(a_q)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:po_t_sign})~(a) і (\ref{atu:eq:po_t_sin})~(b)}
+    \label{atu:f:fric_a_q_ql3rlWvnAAW_q_dx}
+  \end{figure}
+
+  \begin{figure}[htb!]
+    \PicDoubleS{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sign.png}{../p5/p/cha/fric/ql3rlWvnAAW/fric_id-p_q_gamma_sin.png}
+    \caption{Залежності $\overline{e}(q_\gamma)$ при ідентифікації системи (\ref{atu:eq:dryfric_sys}) групою методів ql3rlWvnAAW.$q_\mathrm{dx} $ при~(\ref{atu:eq:po_t_sign})~(a) і (\ref{atu:eq:po_t_sin})~(b)}
+    \label{atu:f:fric_q_gamma_ql3rlWvnAAW_q_dx}
+  \end{figure}
+
+
+\end{frame}
+
 
 
 % -------------------------- P6 ---------------------------------------------
